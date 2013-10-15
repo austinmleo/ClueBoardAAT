@@ -17,9 +17,9 @@ public abstract class BoardCell {
 	protected boolean room = false;
 	protected boolean walkway = false;
 	
-	public BoardCell(int pcolumn, int prow) {
-		row = prow;
-		column = pcolumn;
+	public BoardCell(int column, int row) {
+		this.row = row;
+		this.column = column;
 	}
 	
 	public boolean isWalkway(){

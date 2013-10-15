@@ -13,7 +13,7 @@ public class CR_BoardAdjTargetTests {
 	public static void setUp() {
 		board = new Board("ClueLayouttest.csv", "ClueLegend.txt");
 		board.loadConfigFiles();
-//testing testing
+
 	}
 
 	// Ensure that player does not move around within room

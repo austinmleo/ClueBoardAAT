@@ -86,6 +86,7 @@ public class Board {
 					//add walkway
 					if( line2[i].equalsIgnoreCase("w")){
 						cells.add(new WalkwayCell(i, numRows));
+						
 						//add other rooms
 					} else if(rooms.containsKey((Character)line2[i].charAt(0))){
 						cells.add(new RoomCell(i, numRows, RoomCell.DoorDirection.NONE, line2[i].charAt(0)));
