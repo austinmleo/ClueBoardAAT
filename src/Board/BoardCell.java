@@ -1,3 +1,4 @@
+package Board;
 
 public abstract class BoardCell {
 

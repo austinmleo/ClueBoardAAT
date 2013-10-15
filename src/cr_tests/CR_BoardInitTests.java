@@ -1,3 +1,4 @@
+package cr_tests;
 // Doing a static import allows me to write assertEquals rather than
 // Assert.assertEquals
 import static junit.framework.Assert.assertEquals;
@@ -9,6 +10,13 @@ import java.util.Map;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
+
+import Board.BadConfigException;
+import Board.Board;
+import Board.BoardCell;
+import Board.RoomCell;
+import Board.RoomCell.DoorDirection;
+
 
 
 public class CR_BoardInitTests {

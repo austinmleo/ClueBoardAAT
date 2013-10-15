@@ -1,3 +1,5 @@
+package Board;
+
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.ArrayList;
@@ -8,6 +10,8 @@ import java.util.LinkedList;
 import java.util.Map;
 import java.util.Scanner;
 import java.util.Set;
+
+import Board.RoomCell.DoorDirection;
 
 
 //Authors: Arnaud Filliat and Vy Ta
@@ -28,10 +32,10 @@ public class Board {
 	private String LegendFile;
 	private String BoardFile;
 
-	public Board(String file1, String file2) {
+	public Board(String BoardFile, String LegendFile) {
 		// TODO Auto-generated constructor stub
-		LegendFile = file2;
-		BoardFile = file1;
+		this.LegendFile = LegendFile;
+		this.BoardFile = BoardFile;
 	}
 
 

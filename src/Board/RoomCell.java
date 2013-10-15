@@ -1,3 +1,4 @@
+package Board;
 
 public class RoomCell extends BoardCell{
 
