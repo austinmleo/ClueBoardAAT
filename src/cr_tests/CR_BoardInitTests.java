@@ -128,23 +128,23 @@ public class CR_BoardInitTests {
 		// You may change these calls if needed to match your function names
 		// My loadConfigFiles has a try/catch, so I can't call it directly to
 		// see test throwing the BadConfigFormatException
-		b.loadLegend();
-		b.loadBoard();
+		b.loadLegend("ClueLegend.txt");
+		b.loadBoard("ClueLayoutBadColumns.csv");
 	}
 	// Test that an exception is thrown for a bad config file
 	@Test (expected = BadConfigException.class)
 	public void testBadRoom() throws BadConfigException, FileNotFoundException {
 		// overloaded Board ctor takes config file name
 		Board b = new Board("ClueLayoutBadRoom.csv", "ClueLegend.txt");
-		b.loadLegend();
-		b.loadBoard();
+		b.loadLegend("ClueLegend.txt");
+		b.loadBoard("ClueLayoutBadRoom.csv");
 	}
 	// Test that an exception is thrown for a bad config file
 	@Test (expected = BadConfigException.class)
 	public void testBadRoomFormat() throws BadConfigException, FileNotFoundException {
 		// overloaded Board ctor takes config file name
 		Board b = new Board("ClueLayouttest.csv", "ClueLegendBadFormat.txt");
-		b.loadLegend();
-		b.loadBoard();
+		b.loadLegend("ClueLegendBadFormat.txt");
+		b.loadBoard("ClueLayouttest.csv");
 	}
 }

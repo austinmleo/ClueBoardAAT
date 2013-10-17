@@ -104,23 +104,23 @@ public class ClueBoardTests {
 	@Test (expected = BadConfigException.class)
 	public void testBadRoom() throws Exception {
 		Board b = new Board("ClueLayoutBadRoom.csv", "ClueLegend.txt");
-		b.loadLegend();
-		b.loadBoard();
+		b.loadLegend( "ClueLegend.txt");
+		b.loadBoard("ClueLayoutBadRoom.csv");
 	}
 
 	@Test (expected = BadConfigException.class)
 	public void testBadColumns() throws Exception {
 		Board b = new Board("ClueLayoutBadColumns.csv", "ClueLegend.txt");
-		b.loadLegend();
-		b.loadBoard();
+		b.loadLegend("ClueLegend.txt");
+		b.loadBoard("ClueLayoutBadColumns.csv");
 	}
 
 
 	@Test (expected = BadConfigException.class)
 	public void testBadFormat() throws Exception {
 		Board b = new Board("ClueLayouttest.csv", "ClueLegendBadFormat.txt");
-		b.loadLegend();
-		b.loadBoard();
+		b.loadLegend("ClueLegendBadFormat.txt");
+		b.loadBoard("ClueLayouttest.csv");
 	}
 
 

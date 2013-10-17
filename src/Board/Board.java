@@ -46,15 +46,15 @@ public class Board {
 
 	public void loadConfigFiles() {
 		try {
-			loadLegend();
-			loadBoard();
+			loadLegend(LegendFile);
+			loadBoard(BoardFile);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 
-	public void loadBoard() throws BadConfigException, FileNotFoundException {
-		FileReader reader = new FileReader(BoardFile);
+	public void loadBoard(String fileName) throws BadConfigException, FileNotFoundException {
+		FileReader reader = new FileReader(fileName);
 		Scanner in = new Scanner(reader);
 		cells = new ArrayList<BoardCell>();
 		numRows = 0;
@@ -104,8 +104,8 @@ public class Board {
 	}
 
 
-	public void loadLegend() throws FileNotFoundException, BadConfigException {
-		FileReader reader = new FileReader(LegendFile);
+	public void loadLegend(String fileName) throws FileNotFoundException, BadConfigException {
+		FileReader reader = new FileReader(fileName);
 		Scanner in = new Scanner(reader);
 		rooms = new HashMap<Character, String>();
 
