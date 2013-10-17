@@ -30,7 +30,7 @@ public class CR_BoardInitTests {
 	@BeforeClass
 	public static void setUp() {
 		board = new Board("ClueLayouttest.csv", "ClueLegend.txt");
-		board.loadConfigFiles();
+		//board.loadConfigFiles();
 	}
 	@Test
 	public void testRooms() {

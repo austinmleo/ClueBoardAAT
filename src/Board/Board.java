@@ -10,6 +10,7 @@ import java.util.LinkedList;
 import java.util.Map;
 import java.util.Scanner;
 import java.util.Set;
+
 import Board.RoomCell.DoorDirection;
 
 
@@ -17,24 +18,14 @@ import Board.RoomCell.DoorDirection;
 //Make sure to note that for the cells we use (x,y) coordinates so (column, row)
 public class Board {
 
-	public static void main(String [ ] args) {
-
-		Board b = new Board("ClueLayout.csv" , "Legend.txt");
-		System.out.println(b.getAdjList(7));
-		//System.out.println(b.getAdjList(493));
-		System.out.println(b.getAdjList(b.calcIndex(15,6)));
-		System.out.println(b.getAdjList(b.calcIndex(7,4)));
-		
-	}
-
 	private ArrayList<BoardCell> cells;
 	private int numRows;
 	private int numColumns;
 	private Map<Character, String> rooms;
 	private Map<Integer, ArrayList<Integer>> adjs = new HashMap<Integer, ArrayList<Integer>>();
 	private LinkedList<Integer> adjList;
-	private boolean [] visited;
-	private Set<BoardCell> targets;
+	private ArrayList<Integer> visited = new ArrayList<Integer>();
+	private Set<BoardCell> targets = new HashSet<BoardCell>();
 	private String LegendFile;
 	private String BoardFile;
 
@@ -49,11 +40,16 @@ public class Board {
 		}
 	}
 
-
 	public Board() {
-		// TODO Auto-generated constructor stub
+		this.BoardFile = "ClueLayout.csv";
+		this.LegendFile = "legend.txt";
+		try {
+		loadConfigFiles();
+		calcAdjacencies();
+		} catch (Exception e) {
+			System.out.println(e.getLocalizedMessage());
+		}
 	}
-
 
 	public void loadConfigFiles() {
 		try {
@@ -114,7 +110,6 @@ public class Board {
 		}
 	}
 
-
 	public void loadLegend(String fileName) throws FileNotFoundException, BadConfigException {
 		FileReader reader = new FileReader(fileName);
 		Scanner in = new Scanner(reader);
@@ -170,23 +165,19 @@ public class Board {
  		else {return col + row*(numColumns);}
 	}
 
-	/**
-	public int getColumn(int index){
-		return index % numColumns;
-	}
-
-	public int getRow(int index){
-		return index/numColumns;
-	}
-	**/
-
 	public Map<Character, String> getRooms() {
 		return rooms;
 	}
 
 	public void calcAdjacencies() {
 		int index;
-		for (index = 0; index <= calcIndex(getNumRows(), getNumColumns()); index ++ ) {
+		for (index = 0; index <= calcIndex(getNumColumns(), getNumRows()); index ++ ) {
+			
+			if(index > 117){
+			int i = 0;
+			}
+			
+			
 			ArrayList<Integer> spots = new ArrayList<Integer>();
 			if (cells.get(index).isWalkway() || cells.get(index).isDoorway()) {
 				if ((index+1) % (getNumColumns()) != 0) {
@@ -201,14 +192,14 @@ public class Board {
 						spots.add(index - 1);
 					}
 				}
-				if ((index + this.getNumColumns()) <= calcIndex(this.getNumRows(), this.getNumColumns())){
-					RoomCell testRoom = getRoomCellAt(index + this.getNumRows());
+				if ((index + this.getNumColumns()) <= calcIndex(this.getNumColumns(), this.getNumRows())){
+					RoomCell testRoom = getRoomCellAt(index + this.getNumColumns());
 					if (cells.get(index + this.getNumColumns()).isWalkway() || ((cells.get(index + this.getNumColumns()).isDoorway()) && testRoom.getDoorDirection() == DoorDirection.UP )) {
 						spots.add(index + this.getNumColumns());
 					}
 				}
 				if (index - this.getNumColumns() >= 0){
-					RoomCell testRoom = getRoomCellAt(index - this.getNumRows());
+					RoomCell testRoom = getRoomCellAt(index - this.getNumColumns());
 					if (cells.get(index - this.getNumColumns()).isWalkway() || ((cells.get(index - this.getNumColumns()).isDoorway()) && testRoom.getDoorDirection() == DoorDirection.DOWN )) {
 						spots.add(index - this.getNumColumns());
 					}
@@ -219,119 +210,55 @@ public class Board {
 		}
 	}
 	
-	/**
-	
-	public LinkedList<Integer> calcAdjacencies(int index) {
-		int column = getColumn(index);
-		int row = getRow(index);
-		int [] index1 = {-1, -1, -1, -1};
-		LinkedList<Integer> list = new LinkedList<Integer>();
-		
-		//return empty list if inside room and not at doorway
-		if(cells.get(calcIndex(column, row)).isRoom() && !cells.get(calcIndex(column, row)).isDoorway())
-			return list;
-
-		//set to -1 if we don't want the side to be added to list
-		//checks that it is not past the max row/column and that it is either a walkway or doorway.
-		//Also checks direction if it is a doorway.
-
-		//checks to the left
-		int testcolumn = column-1;
-		if(testcolumn >= 0 && (cells.get(calcIndex(testcolumn, row)).isWalkway() || cells.get(calcIndex(testcolumn, row)).isDoorway())){
-			RoomCell room = getRoomCellAt(testcolumn, row);
-			if(room == null || room.getDoorDirection() == RoomCell.DoorDirection.RIGHT)
-				index1[0] = calcIndex(testcolumn, row);
-		}
-		else {
-			index1[0] = -1;
-		}
-
-		//checks to the right
-		testcolumn = column + 1;
-		if(testcolumn < numColumns  && (cells.get(calcIndex(testcolumn, row)).isWalkway() || cells.get(calcIndex(testcolumn, row)).isDoorway())){
-			RoomCell room = getRoomCellAt(testcolumn, row);
-			if(room == null || room.getDoorDirection() == RoomCell.DoorDirection.LEFT)
-				index1[1] = calcIndex(testcolumn, row);
-		} else {
-			index1[1] = -1;
-		}
-
-		//checks up
-		int testrow = row - 1;
-		if(testrow >= 0  && (cells.get(calcIndex(column, testrow)).isWalkway() || cells.get(calcIndex(column, testrow)).isDoorway())){
-			RoomCell room = getRoomCellAt(column, testrow);
-			if(room == null || room.getDoorDirection() == RoomCell.DoorDirection.DOWN)
-				index1[2] = calcIndex(column, testrow);
-		} else {
-			index1[2] = -1;
-		}
-
-
-		//checks down
-		testrow = row + 1;
-		if(testrow < numRows  && (cells.get(calcIndex(column, testrow)).isWalkway() || cells.get(calcIndex(column, testrow)).isDoorway())) {
-			RoomCell room = getRoomCellAt(column, testrow);
-			if(room == null || room.getDoorDirection() == RoomCell.DoorDirection.UP)
-				index1[3] = calcIndex(column, testrow);
-		} else {
-			index1[3] = -1;
-		}
-
-
-		for(int i = 0; i < 4; i++){
-			if(index1[i] >= 0 && index1[i] <= (numRows + numRows*numColumns-1)){
-				list.add(index1[i]);
-			}
-		}
-
-		return list;
-	}
-
-
-	**/
-	
 	public ArrayList<Integer> getAdjList(int index) {
 		return adjs.get(index);
-		//List = calcAdjacencies(index);
-		//return adjList;
 	}
-
-	/*
-	public void fillTargets(int index, int steps){
-		ArrayList<Integer> list = new ArrayList<Integer>();
-		list = getAdjList(index);
-
-		visited[index] = true;
-
-		System.out.println("column: " + getColumn(index) + " row: " + getRow(index) + " steps: " + steps + " index: " + index);
-
-		for(Integer number:list){
-			if(visited[number]){
-				System.out.println("removed column: " + getColumn(number) + " row: " + getRow(number));
-			} else{
-				visited[number] = true;
-				System.out.println("column: " + getColumn(number) + " row: " + getRow(number) + " steps: " + steps + " number: " + number);
-				if(steps == 1 || cells.get(number).isDoorway()){
-					System.out.println("added");
-					targets.add(cells.get(number));
-				} else {
-					fillTargets(number, (steps-1));
-				}
-				visited[number] = false;
+	
+	public void startTargets(int index, int numSteps){
+		visited.clear();
+		visited.add(index);
+		targets.clear();
+		calcTargets(index, numSteps);
+	}
+	
+	public void calcTargets(int index, int numSteps) {
+		ArrayList<Integer> possibleSpots = new ArrayList<Integer>();
+		for (Integer i : getAdjList(index)) {
+			if (!(visited.contains(i))) {
+				possibleSpots.add(i);
+			}
+		}
+		
+		for (Integer j: possibleSpots) {
+			visited.add(j);
+			if (this.getCellAt(j).isDoorway())
+				targets.add(this.getCellAt(j));
+			else if (numSteps == 1) {
+				targets.add(this.getCellAt(j));
+				visited.remove(j);
+			}
+			else {		
+				calcTargets(j, numSteps - 1);
+				visited.remove(j);
 			}
 		}
 	}
-	*/
-
-	public void calcTargets(int index, int steps) {
-		visited = new boolean [10000];
-		targets = new HashSet<BoardCell>();
-		//fillTargets(index, steps);
-	}
-
-
+	
 	public Set<BoardCell> getTargets() {
 		return targets;
 	}
 
+	public static void main(String [ ] args) {
+
+		//Board b = new Board("ClueLayout.csv" , "Legend.txt");
+		Board b = new Board("ClueLayouttest.csv", "ClueLegend.txt");
+		System.out.println(b.getAdjList(7));
+		System.out.println(b.getAdjList(505));
+		System.out.println(b.getAdjList(b.calcIndex(15,6)));
+		System.out.println(b.getAdjList(b.calcIndex(7,4)));
+		System.out.println(b.getNumRows());
+		System.out.println(b.getNumColumns());
+		System.out.println(b.calcIndex(b.getNumColumns(), b.getNumRows()));
+		
+	}
 }
