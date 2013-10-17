@@ -5,6 +5,9 @@ public abstract class BoardCell {
 	protected int row;
 	protected int column;
 	
+	protected boolean direction = false;
+	protected boolean room = false;
+	protected boolean walkway = false;
 	
 	public int getRow() {
 		return row;
@@ -14,9 +17,6 @@ public abstract class BoardCell {
 		return column;
 	}
 
-	protected boolean direction = false;
-	protected boolean room = false;
-	protected boolean walkway = false;
 	
 	public BoardCell(int column, int row) {
 		this.row = row;
