@@ -1,3 +1,4 @@
+package cr_tests;
 
 import java.util.LinkedList;
 import java.util.Set;
@@ -5,6 +6,10 @@ import java.util.Set;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
+
+import Board.Board;
+import Board.BoardCell;
+
 
 
 public class CR_BoardAdjTargetTests {

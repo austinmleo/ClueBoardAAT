@@ -1,25 +1,26 @@
+package Board;
 
 public class RoomCell extends BoardCell{
 
 	
 	public enum DoorDirection {UP, DOWN, LEFT, RIGHT, NONE};
-	private DoorDirection doorDirection;
+	private DoorDirection directionOfDoor;
 	private char roomInitial;
 	
-	public RoomCell(int pcolumn, int prow, DoorDirection pdirection, char initial) {
-		super(pcolumn, prow);
+	public RoomCell(int column, int row, DoorDirection direction, char initial) {
+		super(column, row);
 		room = true;
 		roomInitial = initial;
-		doorDirection = pdirection;
+		directionOfDoor = direction;
 		
-		if(pdirection != DoorDirection.NONE){
-			direction = true;
+		if(direction != DoorDirection.NONE){
+			this.direction = true;
 		}
 	}
 	
 	
 	public DoorDirection getDoorDirection(){
-		return doorDirection;
+		return directionOfDoor;
 	}
 	
 	public char getInitial(){

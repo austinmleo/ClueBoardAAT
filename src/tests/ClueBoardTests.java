@@ -1,3 +1,5 @@
+package tests;
+
 import static org.junit.Assert.*;
 
 import java.util.LinkedList;
@@ -5,6 +7,13 @@ import java.util.Map;
 import java.util.Set;
 
 import org.junit.*;
+
+import Board.BadConfigException;
+import Board.Board;
+import Board.BoardCell;
+import Board.RoomCell;
+import Board.RoomCell.DoorDirection;
+
 
 import junit.framework.TestCase;
 
