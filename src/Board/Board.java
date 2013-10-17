@@ -10,7 +10,6 @@ import java.util.LinkedList;
 import java.util.Map;
 import java.util.Scanner;
 import java.util.Set;
-
 import Board.RoomCell.DoorDirection;
 
 
@@ -20,12 +19,19 @@ public class Board {
 
 	public static void main(String [ ] args) {
 
+		Board b = new Board("ClueLayout.csv" , "Legend.txt");
+		System.out.println(b.getAdjList(7));
+		//System.out.println(b.getAdjList(493));
+		System.out.println(b.getAdjList(b.calcIndex(15,6)));
+		System.out.println(b.getAdjList(b.calcIndex(7,4)));
+		
 	}
 
 	private ArrayList<BoardCell> cells;
 	private int numRows;
 	private int numColumns;
 	private Map<Character, String> rooms;
+	private Map<Integer, ArrayList<Integer>> adjs = new HashMap<Integer, ArrayList<Integer>>();
 	private LinkedList<Integer> adjList;
 	private boolean [] visited;
 	private Set<BoardCell> targets;
@@ -33,9 +39,14 @@ public class Board {
 	private String BoardFile;
 
 	public Board(String BoardFile, String LegendFile) {
-		// TODO Auto-generated constructor stub
 		this.LegendFile = LegendFile;
 		this.BoardFile = BoardFile;
+		try {
+		loadConfigFiles();
+		calcAdjacencies();
+		} catch (Exception e) {
+			System.out.println(e.getLocalizedMessage());
+		}
 	}
 
 
@@ -138,15 +149,28 @@ public class Board {
 			return null;
 		}
 	}
+	
+	public RoomCell getRoomCellAt(int index){
+		if(cells.get(index).isRoom()){
+			return (RoomCell) cells.get(index);
+		} else {
+			return null;
+		}
+	}
 
 	public BoardCell getCellAt(int index){
 		BoardCell cell = cells.get(index);
 		return cell;
 	}
+	
 	public int calcIndex(int col, int row) {
-		return col + row*(numColumns);
+		if (col == this.getNumColumns() && row == this.getNumRows()) {
+			return calcIndex(col -1, row -1);
+		}
+ 		else {return col + row*(numColumns);}
 	}
 
+	/**
 	public int getColumn(int index){
 		return index % numColumns;
 	}
@@ -154,11 +178,49 @@ public class Board {
 	public int getRow(int index){
 		return index/numColumns;
 	}
+	**/
 
 	public Map<Character, String> getRooms() {
 		return rooms;
 	}
 
+	public void calcAdjacencies() {
+		int index;
+		for (index = 0; index <= calcIndex(getNumRows(), getNumColumns()); index ++ ) {
+			ArrayList<Integer> spots = new ArrayList<Integer>();
+			if (cells.get(index).isWalkway() || cells.get(index).isDoorway()) {
+				if ((index+1) % (getNumColumns()) != 0) {
+					RoomCell testRoom = getRoomCellAt(index + 1);
+					if (cells.get(index + 1).isWalkway()|| ((cells.get(index + 1).isDoorway()) && testRoom.getDoorDirection() == DoorDirection.LEFT )){
+						spots.add(index + 1);
+					}
+				}
+				if (index % getNumColumns() != 0){
+					RoomCell testRoom = getRoomCellAt(index - 1);
+					if (cells.get(index - 1).isWalkway() || ((cells.get(index - 1).isDoorway()) && testRoom.getDoorDirection() == DoorDirection.RIGHT )) {
+						spots.add(index - 1);
+					}
+				}
+				if ((index + this.getNumColumns()) <= calcIndex(this.getNumRows(), this.getNumColumns())){
+					RoomCell testRoom = getRoomCellAt(index + this.getNumRows());
+					if (cells.get(index + this.getNumColumns()).isWalkway() || ((cells.get(index + this.getNumColumns()).isDoorway()) && testRoom.getDoorDirection() == DoorDirection.UP )) {
+						spots.add(index + this.getNumColumns());
+					}
+				}
+				if (index - this.getNumColumns() >= 0){
+					RoomCell testRoom = getRoomCellAt(index - this.getNumRows());
+					if (cells.get(index - this.getNumColumns()).isWalkway() || ((cells.get(index - this.getNumColumns()).isDoorway()) && testRoom.getDoorDirection() == DoorDirection.DOWN )) {
+						spots.add(index - this.getNumColumns());
+					}
+				}
+			}	
+			adjs.put(index, spots);
+			System.out.println("Cell indexed " + index + " " + adjs.get(index));
+		}
+	}
+	
+	/**
+	
 	public LinkedList<Integer> calcAdjacencies(int index) {
 		int column = getColumn(index);
 		int row = getRow(index);
@@ -226,15 +288,18 @@ public class Board {
 	}
 
 
-	public LinkedList<Integer> getAdjList(int index) {
-		adjList = new LinkedList<Integer>();
-		adjList = calcAdjacencies(index);
-		return adjList;
+	**/
+	
+	public ArrayList<Integer> getAdjList(int index) {
+		return adjs.get(index);
+		//List = calcAdjacencies(index);
+		//return adjList;
 	}
 
+	/*
 	public void fillTargets(int index, int steps){
-		LinkedList<Integer> list = new LinkedList<Integer>();
-		list = calcAdjacencies(index);
+		ArrayList<Integer> list = new ArrayList<Integer>();
+		list = getAdjList(index);
 
 		visited[index] = true;
 
@@ -250,18 +315,18 @@ public class Board {
 					System.out.println("added");
 					targets.add(cells.get(number));
 				} else {
-					fillTargets(number, --steps);
-					steps++;
+					fillTargets(number, (steps-1));
 				}
 				visited[number] = false;
 			}
 		}
 	}
+	*/
 
 	public void calcTargets(int index, int steps) {
 		visited = new boolean [10000];
 		targets = new HashSet<BoardCell>();
-		fillTargets(index, steps);
+		//fillTargets(index, steps);
 	}
 
 

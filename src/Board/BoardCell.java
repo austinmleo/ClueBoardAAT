@@ -1,11 +1,13 @@
 package Board;
 
+import Board.RoomCell.DoorDirection;
+
 public abstract class BoardCell {
 
 	protected int row;
 	protected int column;
 	
-	protected boolean direction = false;
+	protected boolean isDoor = false;
 	protected boolean room = false;
 	protected boolean walkway = false;
 	
@@ -33,8 +35,15 @@ public abstract class BoardCell {
 	}
 	
 	public boolean isDoorway(){
-		return direction;
+		return isDoor;
 	}
+	
+	/*
+	public DoorDirection getDoorDirection() {
+		RoomCell room = new RoomCell(this);
+		return room. getDoorDirection();
+	}
+	*/
 	
 	public abstract void draw();
 

@@ -6,6 +6,8 @@ public class RoomCell extends BoardCell{
 	public enum DoorDirection {UP, DOWN, LEFT, RIGHT, NONE};
 	private DoorDirection directionOfDoor;
 	private char roomInitial;
+	private int row;
+	private int column;
 	
 	public RoomCell(int column, int row, DoorDirection direction, char initial) {
 		super(column, row);
@@ -14,11 +16,20 @@ public class RoomCell extends BoardCell{
 		directionOfDoor = direction;
 		
 		if(direction != DoorDirection.NONE){
-			this.direction = true;
+			this.isDoor = true;
 		}
 	}
 	
 	
+	/*
+	public RoomCell(BoardCell cell) {
+		this.row = cell.getRow();
+		this.column = cell.getColumn();
+		//this.roomInitial = cell.getInitial();
+	}
+`	*/
+
+
 	public DoorDirection getDoorDirection(){
 		return directionOfDoor;
 	}
