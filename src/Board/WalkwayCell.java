@@ -2,8 +2,8 @@ package Board;
 
 public class WalkwayCell extends BoardCell {
 
-	public WalkwayCell(int pcolumn, int prow) {
-		super(pcolumn, prow);
+	public WalkwayCell(int column, int row) {
+		super(column, row);
 		walkway = true;
 	}
 
