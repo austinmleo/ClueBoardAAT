@@ -18,7 +18,7 @@ public class ClueBoardTests {
 	public static final int NUM_ROOMS = 11;
 	public static final int NUM_ROWS = 23;
 	public static final int NUM_COLUMNS = 23;
-	
+
 	@Before
 	public void setUp(){
 		board = new Board("ClueLayout.csv", "Legend.txt");
@@ -31,7 +31,7 @@ public class ClueBoardTests {
 		// Ensure we read the correct number of rooms
 		assertEquals(NUM_ROOMS, rooms.size());
 	}
-	
+
 	@Test
 	public void testRoom() {
 		Map<Character, String> rooms = board.getRooms();
@@ -40,13 +40,13 @@ public class ClueBoardTests {
 		assertEquals("Billiard Room", rooms.get('R'));
 		assertEquals("Dining Room", rooms.get('D'));
 	}
-	
+
 	@Test
 	public void testDimensions() {
 		assertEquals(NUM_ROWS, board.getNumRows());
 		assertEquals(NUM_COLUMNS, board.getNumColumns());
 	}
-	
+
 	@Test
 	public void testDoorDirections() {
 		RoomCell room = board.getRoomCellAt(6, 2);
@@ -62,7 +62,7 @@ public class ClueBoardTests {
 		assertTrue(room.isDoorway());
 		assertEquals(RoomCell.DoorDirection.LEFT, room.getDoorDirection());
 	}
-	
+
 	@Test
 	public void testIsNotDoor() {
 		RoomCell room = board.getRoomCellAt(4, 3);
@@ -71,7 +71,7 @@ public class ClueBoardTests {
 		BoardCell cell = board.getRoomCellAt(5, 0);
 		assertFalse(cell.isDoorway());
 	}
-	
+
 	@Test
 	public void testRoomInitials() {
 		assertEquals('C', board.getRoomCellAt(2, 22).getInitial());
@@ -91,21 +91,21 @@ public class ClueBoardTests {
 		assertEquals(3, board.calcIndex(3, 0));
 		assertEquals(52, board.calcIndex(6, 2));
 	}
-	
+
 	@Test (expected = BadConfigException.class)
 	public void testBadRoom() throws Exception {
 		Board b = new Board("ClueLayoutBadRoom.csv", "ClueLegend.txt");
 		b.loadLegend();
 		b.loadBoard();
 	}
-	
+
 	@Test (expected = BadConfigException.class)
 	public void testBadColumns() throws Exception {
 		Board b = new Board("ClueLayoutBadColumns.csv", "ClueLegend.txt");
 		b.loadLegend();
 		b.loadBoard();
 	}
-	
+
 
 	@Test (expected = BadConfigException.class)
 	public void testBadFormat() throws Exception {
@@ -113,8 +113,8 @@ public class ClueBoardTests {
 		b.loadLegend();
 		b.loadBoard();
 	}
-	
-	
+
+
 	@Test
 	public void testAdjacenciesInsideRooms()
 	{
@@ -138,8 +138,8 @@ public class ClueBoardTests {
 		Assert.assertEquals(0, testList.size());
 	}
 
-	
-	
+
+
 	@Test
 	public void testRoomExit()
 	{
@@ -157,8 +157,8 @@ public class ClueBoardTests {
 		Assert.assertTrue(targets.contains(board.getCellAt(board.calcIndex(18, 15))));
 		Assert.assertTrue(targets.contains(board.getCellAt(board.calcIndex(19, 16))));
 	}
-	
-	
+
+
 	@Test
 	public void testAdjacencyDoorways()
 	{
@@ -197,8 +197,8 @@ public class ClueBoardTests {
 		// This ensures we haven't included cell (4, 3) which is a doorway
 		Assert.assertEquals(3, testList.size());		
 	}
-	
-	
+
+
 	@Test
 	public void testAdjacencyWalkways()
 	{
@@ -207,7 +207,7 @@ public class ClueBoardTests {
 		Assert.assertTrue(testList.contains(8));
 		Assert.assertTrue(testList.contains(30));
 		Assert.assertEquals(2, testList.size());
-		
+
 		// Test on left edge of board, two walkway pieces
 		testList = board.getAdjList(board.calcIndex(0, 3));
 		Assert.assertTrue(testList.contains(board.calcIndex(0, 4)));
@@ -227,13 +227,13 @@ public class ClueBoardTests {
 		Assert.assertTrue(testList.contains(board.calcIndex(20, 6)));
 		Assert.assertTrue(testList.contains(board.calcIndex(20, 4)));
 		Assert.assertEquals(4, testList.size());
-		
+
 		// Test on bottom edge of board, next to 1 room piece
 		testList = board.getAdjList(board.calcIndex(6, 22));
 		Assert.assertTrue(testList.contains(board.calcIndex(6, 21)));
 		Assert.assertTrue(testList.contains(board.calcIndex(7, 22)));
 		Assert.assertEquals(2, testList.size());
-		
+
 		// Test on right edge of board, next to 1 room piece
 		testList = board.getAdjList(board.calcIndex(22, 15));
 		Assert.assertTrue(testList.contains(board.calcIndex(22, 16)));
@@ -248,7 +248,7 @@ public class ClueBoardTests {
 		Assert.assertTrue(testList.contains(board.calcIndex(4, 16)));
 		Assert.assertEquals(3, testList.size());
 	}
-	
+
 	@Test
 	public void testTargetsIntoRoomShortcut() 
 	{
@@ -265,9 +265,9 @@ public class ClueBoardTests {
 		Assert.assertTrue(targets.contains(board.getCellAt(board.calcIndex(19, 15))));
 		// left then up
 		Assert.assertTrue(targets.contains(board.getCellAt(board.calcIndex(17, 15))));		
-		
+
 	}
-	
+
 	@Test
 	public void testTargetsOneStep() {
 		board.calcTargets(board.calcIndex(7, 11), 1);
@@ -277,7 +277,7 @@ public class ClueBoardTests {
 		Assert.assertTrue(targets.contains(board.getCellAt(board.calcIndex(8, 11))));
 		Assert.assertTrue(targets.contains(board.getCellAt(board.calcIndex(7, 12))));
 		Assert.assertTrue(targets.contains(board.getCellAt(board.calcIndex(7, 10))));	
-		
+
 		board.calcTargets(board.calcIndex(14, 1), 1);
 		targets= board.getTargets();
 		Assert.assertEquals(3, targets.size());
@@ -285,7 +285,7 @@ public class ClueBoardTests {
 		Assert.assertTrue(targets.contains(board.getCellAt(board.calcIndex(14, 0))));	
 		Assert.assertTrue(targets.contains(board.getCellAt(board.calcIndex(14, 2))));			
 	}
-	
+
 	@Test
 	public void testTargetsThreeSteps() {
 		board.calcTargets(board.calcIndex(1, 17), 3);
@@ -296,7 +296,7 @@ public class ClueBoardTests {
 		Assert.assertTrue(targets.contains(board.getCellAt(board.calcIndex(0, 17))));
 		Assert.assertTrue(targets.contains(board.getCellAt(board.calcIndex(3, 16))));
 		Assert.assertTrue(targets.contains(board.getCellAt(board.calcIndex(2, 17))));
-		
+
 		board.calcTargets(board.calcIndex(15, 22), 3);
 		targets= board.getTargets();
 		Assert.assertEquals(5, targets.size());
