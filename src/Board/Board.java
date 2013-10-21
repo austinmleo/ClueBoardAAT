@@ -205,6 +205,8 @@ public class Board {
 		
 		while(!(deck.isEmpty())) {
 			for (int i = 0 ; i < players.size(); i++) {
+				if (i == 1)
+					i = i+1;
 				choice = generator.nextInt(deck.size());
 				players.get(i).getCards().add(deck.get(choice));
 				//System.out.println("Gave " + players.get(i).getName() + deck.get(choice));

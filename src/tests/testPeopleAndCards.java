@@ -67,12 +67,31 @@ public class testPeopleAndCards {
 	}
 	
 	@Test
-	public void testAllCardsDealt() {
+	public void testAllCardsDealt() { //Ensures the deck is empty after the deal.
 		ArrayList<Card> test = board.getDeck();
 		Assert.assertTrue(test.size() == 0);
 	}
 	
-	
+	@Test
+	public void testPlayersHaveRoughlyTheSameNumberOfCards() { //Checks that players card numbers are +/- 1 of each other;
+		ArrayList<Player> test = board.getPlayers();
+		int last = test.get(0).getNumCards();
+		int current = test.get(1).getNumCards();
+		
+		for (int i = 1; (i+1) < test.size(); i++ ) {
+			int abs = Math.abs(current - last);
+			Boolean check = false;
+			if (abs <= 1)
+				check = true;
+			Assert.assertTrue(check);
+			
+			last = current;
+			current =  test.get(i+1).getNumCards();
+				
+		}
+		
+		
+	}
 	
 	
 	

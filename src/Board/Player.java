@@ -8,6 +8,7 @@ public class Player {
 	private String color;
 	private int currentIndex;
 	public ArrayList<Card> cards = new ArrayList<Card>();
+	private int numCards;
 	
 	public Player(String name, String color, int currentIndex) {
 		super();
@@ -35,6 +36,9 @@ public class Player {
 		return cards;
 	}
 	
+	public int getNumCards() {
+			return cards.size();
+	}
 	
 	@Override
 	public String toString() {
