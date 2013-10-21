@@ -59,7 +59,7 @@ public class Board {
 			loadLegend(LegendFile);
 			loadBoard(BoardFile);
 			loadPlayers("People.txt");
-			loadCards("Cards.txt");
+			loadCards("cards.txt");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -154,7 +154,27 @@ public class Board {
 	}
 			
 	public void loadCards(String fileName) throws BadConfigException, FileNotFoundException  {
+		FileReader reader = new FileReader(fileName);
+		Scanner in = new Scanner(reader);
+		deck.clear();
+		type cardType;
 		
+		while(in.hasNextLine()){
+			String line = in.nextLine();
+			String[] data = line.split(",");
+			
+			if (data[0].equalsIgnoreCase("w"))
+				 cardType = type.WEAPON;
+			else if (data[0].equalsIgnoreCase("p"))
+				cardType = type.PERSON;
+			else
+				cardType = type.ROOM;
+			
+			String content = data[1];
+			
+			Card next = new Card  (cardType, content);
+			deck.add(next);				
+		}	
 	}
 	
 	public int getNumRows() {
