@@ -1,0 +1,6 @@
+Jesus,White,8
+The Boss,Black,14
+King Awesome,Purple,160
+Uncle Sam,Red,522
+Some Guy,Teal,512
+A Girl,Pink,230

@@ -11,6 +11,7 @@ import java.util.Map;
 import java.util.Scanner;
 import java.util.Set;
 
+import Board.Card.type;
 import Board.RoomCell.DoorDirection;
 
 
@@ -29,6 +30,7 @@ public class Board {
 	private String LegendFile;
 	private String BoardFile;
 	private ArrayList<Player> players = new ArrayList<Player>();
+	private ArrayList<Card> deck = new ArrayList<Card>();
 	
 	public Board(String BoardFile, String LegendFile) {	
 		this.LegendFile = LegendFile;
@@ -57,6 +59,7 @@ public class Board {
 			loadLegend(LegendFile);
 			loadBoard(BoardFile);
 			loadPlayers("People.txt");
+			loadCards("Cards.txt");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -134,7 +137,6 @@ public class Board {
 		
 			FileReader reader = new FileReader(fileName);
 			Scanner in = new Scanner(reader);
-
 			players.clear();
 			
 			while(in.hasNextLine()){
@@ -147,13 +149,13 @@ public class Board {
 				int index = Integer.parseInt(spot);
 				
 				Player next = new Player (name, color, index);
-				players.add(next);
-				
+				players.add(next);				
 			}
-		
-		
 	}
 			
+	public void loadCards(String fileName) throws BadConfigException, FileNotFoundException  {
+		
+	}
 	
 	public int getNumRows() {
 		return numRows;
@@ -279,6 +281,9 @@ public class Board {
 		return players;
 	}
 	
+	public ArrayList<Card> getDeck() {
+		return deck;
+	}
 	
 	public static void main(String [ ] args) {
 
