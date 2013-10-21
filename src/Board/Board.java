@@ -28,8 +28,9 @@ public class Board {
 	private Set<BoardCell> targets = new HashSet<BoardCell>();
 	private String LegendFile;
 	private String BoardFile;
-
-	public Board(String BoardFile, String LegendFile) {
+	private ArrayList<Player> players = new ArrayList<Player>();
+	
+	public Board(String BoardFile, String LegendFile) {	
 		this.LegendFile = LegendFile;
 		this.BoardFile = BoardFile;
 		try {
@@ -55,6 +56,7 @@ public class Board {
 		try {
 			loadLegend(LegendFile);
 			loadBoard(BoardFile);
+			loadPlayers("People.txt");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -128,6 +130,12 @@ public class Board {
 		}
 	}
 
+	public void loadPlayers(String fileName) throws BadConfigException, FileNotFoundException {
+	
+		
+	}
+			
+	
 	public int getNumRows() {
 		return numRows;
 	}
@@ -206,7 +214,7 @@ public class Board {
 				}
 			}	
 			adjs.put(index, spots);
-			System.out.println("Cell indexed " + index + " " + adjs.get(index));
+			//System.out.println("Cell indexed " + index + " " + adjs.get(index));
 		}
 	}
 	
@@ -248,6 +256,11 @@ public class Board {
 		return targets;
 	}
 
+	public ArrayList<Player> getPlayers() {
+		return players;
+	}
+	
+	
 	public static void main(String [ ] args) {
 
 		//Board b = new Board("ClueLayout.csv" , "Legend.txt");
