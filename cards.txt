@@ -1,0 +1,9 @@
+weapon,Plasma Cannon
+weapon,Bare Hands
+weapon,Chain Saw
+weapon,Falcon
+weapon,Maul
+weapon,Sword of Sari
+person,
+person,
+person
