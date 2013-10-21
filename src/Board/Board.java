@@ -190,7 +190,29 @@ public class Board {
 	}
 	
 	public void dealCards () {
+		System.out.println(testDeck);
+		Random generator = new Random();
+		int choice = generator.nextInt(9);
+		Solution.add(deck.get(choice + 12));
+		deck.remove(choice + 12);
+		choice = generator.nextInt(6);
+		Solution.add(deck.get(choice + 6));
+		deck.remove(choice + 6);
+		choice = generator.nextInt(6);
+		Solution.add(deck.get(choice));
+		deck.remove(choice);
+		//System.out.println("Soln " + Solution);
 		
+		while(!(deck.isEmpty())) {
+			for (int i = 0 ; i < players.size(); i++) {
+				choice = generator.nextInt(deck.size());
+				players.get(i).getCards().add(deck.get(choice));
+				//System.out.println("Gave " + players.get(i).getName() + deck.get(choice));
+				deck.remove(choice);
+				if (deck.isEmpty())
+					break;
+			}
+		}
 	}
 	
 	public int getNumRows() {
