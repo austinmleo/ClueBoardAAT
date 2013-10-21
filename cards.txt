@@ -1,9 +1,21 @@
-weapon,Plasma Cannon
-weapon,Bare Hands
-weapon,Chain Saw
-weapon,Falcon
-weapon,Maul
-weapon,Sword of Sari
-person,
-person,
-person
+w,Plasma Cannon
+w,Bare Hands
+w,Chain Saw
+w,Falcon
+w,Maul
+w,Sword of Sari
+p,Jesus
+p,Uncle Sam
+p,Some Guy
+p,Girl
+p,King Awesome
+p,The Boss
+r,Conservatory
+r,Kitchen
+r,Ballroom
+r,Library
+r,Study
+r,Dining Room
+r,Lounge
+r,Hall
+r,Billiard Room
