@@ -7,7 +7,7 @@ public class Player {
 	private String name;
 	private String color;
 	private int currentIndex;
-	public ArrayList<Card> cards;
+	public ArrayList<Card> cards = new ArrayList<Card>();
 	
 	public Player(String name, String color, int currentIndex) {
 		super();
@@ -31,7 +31,11 @@ public class Player {
 		return currentIndex;
 	}
 
-
+	public ArrayList<Card> getCards() {
+		return cards;
+	}
+	
+	
 	@Override
 	public String toString() {
 		return "Player [name=" + name + ", color=" + color + ", currentIndex="

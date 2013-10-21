@@ -22,6 +22,12 @@ public class Card {
 	public String getContent() {
 		return content;
 	}
+
+
+	@Override
+	public String toString() {
+		return "Card [cardType=" + cardType + ", content=" + content + "]";
+	}
 	
 	
 	

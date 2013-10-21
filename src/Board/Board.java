@@ -10,6 +10,7 @@ import java.util.LinkedList;
 import java.util.Map;
 import java.util.Scanner;
 import java.util.Set;
+import java.util.Random;
 
 import Board.Card.type;
 import Board.RoomCell.DoorDirection;
@@ -31,6 +32,8 @@ public class Board {
 	private String BoardFile;
 	private ArrayList<Player> players = new ArrayList<Player>();
 	private ArrayList<Card> deck = new ArrayList<Card>();
+	private ArrayList<Card> testDeck = new ArrayList<Card>(); //Only used for testing.
+	private ArrayList<Card> Solution = new ArrayList<Card>();
 	
 	public Board(String BoardFile, String LegendFile) {	
 		this.LegendFile = LegendFile;
@@ -60,6 +63,7 @@ public class Board {
 			loadBoard(BoardFile);
 			loadPlayers("People.txt");
 			loadCards("cards.txt");
+			dealCards();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -175,6 +179,18 @@ public class Board {
 			Card next = new Card  (cardType, content);
 			deck.add(next);				
 		}	
+		
+		testDeck.clear();
+		for(int i = 0; i < deck.size() ; i++) {
+			testDeck.add(deck.get(i));
+		}
+		
+		
+		//testDeck = deck;
+	}
+	
+	public void dealCards () {
+		
 	}
 	
 	public int getNumRows() {
@@ -305,17 +321,21 @@ public class Board {
 		return deck;
 	}
 	
+	public ArrayList<Card> getTestDeck() {
+		return testDeck;
+	}
+	
 	public static void main(String [ ] args) {
 
 		//Board b = new Board("ClueLayout.csv" , "Legend.txt");
 		Board b = new Board("ClueLayouttest.csv", "ClueLegend.txt");
-		System.out.println(b.getAdjList(7));
-		System.out.println(b.getAdjList(505));
-		System.out.println(b.getAdjList(b.calcIndex(15,6)));
-		System.out.println(b.getAdjList(b.calcIndex(7,4)));
-		System.out.println(b.getNumRows());
-		System.out.println(b.getNumColumns());
-		System.out.println(b.calcIndex(b.getNumColumns(), b.getNumRows()));
+		//System.out.println(b.getAdjList(7));
+		//System.out.println(b.getAdjList(505));
+		//System.out.println(b.getAdjList(b.calcIndex(15,6)));
+		//System.out.println(b.getAdjList(b.calcIndex(7,4)));
+		//System.out.println(b.getNumRows());
+		//System.out.println(b.getNumColumns());
+		//System.out.println(b.calcIndex(b.getNumColumns(), b.getNumRows()));
 		
 	}
 }

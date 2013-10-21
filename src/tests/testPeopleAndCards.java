@@ -52,7 +52,7 @@ public class testPeopleAndCards {
 	
 	@Test
 	public void testCardsReadProperly() { //Tests four cards to make sure they exist and have the proper type and content.
-		ArrayList<Card> test = board.getDeck();
+		ArrayList<Card> test = board.getTestDeck();
 		Assert.assertTrue(test.get(0).getCardType() == type.WEAPON);
 		Assert.assertTrue(test.get(0).getContent().equalsIgnoreCase("Plasma Cannon"));
 		
@@ -65,5 +65,51 @@ public class testPeopleAndCards {
 		Assert.assertTrue(test.get(20).getCardType() == type.ROOM);
 		Assert.assertTrue(test.get(20).getContent().equalsIgnoreCase("Billiard Room"));
 	}
+	
+	@Test
+	public void testAllCardsDealt() {
+		ArrayList<Card> test = board.getDeck();
+		Assert.assertTrue(test.size() == 0);
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 }
