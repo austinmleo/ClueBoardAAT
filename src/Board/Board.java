@@ -131,7 +131,26 @@ public class Board {
 	}
 
 	public void loadPlayers(String fileName) throws BadConfigException, FileNotFoundException {
-	
+		
+			FileReader reader = new FileReader(fileName);
+			Scanner in = new Scanner(reader);
+
+			players.clear();
+			
+			while(in.hasNextLine()){
+				String line = in.nextLine();
+				String[] data = line.split(",");
+				
+				String name = data[0];
+				String color = data[1];
+				String spot = data[2];
+				int index = Integer.parseInt(spot);
+				
+				Player next = new Player (name, color, index);
+				players.add(next);
+				
+			}
+		
 		
 	}
 			
