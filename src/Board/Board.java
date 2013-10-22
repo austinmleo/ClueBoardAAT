@@ -212,7 +212,7 @@ public class Board {
 				//else
 				//	players.get(1).getCards().add(deck.get(choice));
 				//System.out.println("Gave " + players.get(i).getName() + deck.get(choice));
-				if(choice != 3) {deck.remove(choice);}
+				deck.remove(choice);
 				if (deck.isEmpty())
 					break;
 			}
