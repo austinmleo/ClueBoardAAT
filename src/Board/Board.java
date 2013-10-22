@@ -362,11 +362,11 @@ public class Board {
 	}
 	
 	public void setSoln(Card roomCard, Card personCard, Card weaponCard) { //ONLY USE FOR TESTING!!
-		//Solution.clear();
+		Solution.clear();
 		Solution.add(roomCard);
 		Solution.add(personCard);
 		Solution.add(weaponCard);
-		Solution.clear();
+		//Solution.clear();
 	}
 	
 	public static void main(String [ ] args) {
