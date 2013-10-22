@@ -3,6 +3,8 @@ package tests;
 import static org.junit.Assert.*;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 import org.junit.Assert;
 import org.junit.BeforeClass;
@@ -89,9 +91,33 @@ public class testPeopleAndCards {
 			current =  test.get(i+1).getNumCards();
 				
 		}
-		
-		
 	}
+		
+	@Test
+	public void testNoCardDuplicates() {
+		ArrayList<Player> temp = board.getPlayers();
+		ArrayList<Card> test = new ArrayList<Card>();
+		for (int i = 0; i < temp.size(); i++) {
+			test.addAll(temp.get(i).getCards());
+		}
+		Set<Card> test2 = new HashSet<Card>(test);
+		Assert.assertTrue(test.size() == test2.size());
+
+	}
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	
 	
 	
 	

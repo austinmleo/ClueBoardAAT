@@ -207,8 +207,12 @@ public class Board {
 			for (int i = 0 ; i < players.size(); i++) {
 				choice = generator.nextInt(deck.size());
 				players.get(i).getCards().add(deck.get(choice));
+				//if(i != 5)
+				//	players.get(i +1).getCards().add(deck.get(choice));
+				//else
+				//	players.get(1).getCards().add(deck.get(choice));
 				//System.out.println("Gave " + players.get(i).getName() + deck.get(choice));
-				deck.remove(choice);
+				if(choice != 3) {deck.remove(choice);}
 				if (deck.isEmpty())
 					break;
 			}
