@@ -117,21 +117,21 @@ public class testPeopleAndCards {
 	public void testWrongRoom() {
 		ArrayList<Card> test = board.getTestDeck();
 		board.setSoln(test.get(19),test.get(9),test.get(4));
-		Assert.assertFalse(board.makeAccusation(test.get(19).getContent(),test.get(9).getContent(),test.get(4).getContent()));	
+		Assert.assertFalse(board.makeAccusation(test.get(19+1).getContent(),test.get(9).getContent(),test.get(4).getContent()));	
 	}
 			
 	@Test	
 	public void testWrongPerson() {
 		ArrayList<Card> test = board.getTestDeck();
 		board.setSoln(test.get(19),test.get(9),test.get(4));
-		Assert.assertFalse(board.makeAccusation(test.get(19).getContent(),test.get(9).getContent(),test.get(4).getContent()));	
+		Assert.assertFalse(board.makeAccusation(test.get(19).getContent(),test.get(9+1).getContent(),test.get(4).getContent()));	
 	}
 		
 	@Test	
 	public void testWrongWeapon() {
 		ArrayList<Card> test = board.getTestDeck();
 		board.setSoln(test.get(19),test.get(9),test.get(4));
-		Assert.assertFalse(board.makeAccusation(test.get(19).getContent(),test.get(9).getContent(),test.get(4).getContent()));	
+		Assert.assertFalse(board.makeAccusation(test.get(19).getContent(),test.get(9).getContent(),test.get(4+1).getContent()));	
 	}		
 		
 		

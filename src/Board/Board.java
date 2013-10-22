@@ -222,7 +222,7 @@ public class Board {
 	public Boolean makeAccusation (String room, String person, String weapon) {
 		if (Solution.get(0).getContent().equalsIgnoreCase(room) 
 			&& Solution.get(1).getContent().equalsIgnoreCase(person)
-			&& Solution.get(1).getContent().equalsIgnoreCase(person))
+			&& Solution.get(2).getContent().equalsIgnoreCase(weapon))
 					return true;
 		else
 			return false;
@@ -366,7 +366,6 @@ public class Board {
 		Solution.add(roomCard);
 		Solution.add(personCard);
 		Solution.add(weaponCard);
-		//Solution.clear();
 	}
 	
 	public static void main(String [ ] args) {
