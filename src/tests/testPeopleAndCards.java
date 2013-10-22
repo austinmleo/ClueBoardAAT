@@ -105,9 +105,13 @@ public class testPeopleAndCards {
 
 	}
 		
+	@Test	
+	public void testProperAccusation() {
+		ArrayList<Card> test = board.getTestDeck();
+		board.setSoln(test.get(19),test.get(9),test.get(4));
+		Assert.assertTrue(board.makeAccusation(test.get(19).getContent(),test.get(9).getContent(),test.get(4).getContent()));
 		
-		
-		
+	}
 		
 		
 		

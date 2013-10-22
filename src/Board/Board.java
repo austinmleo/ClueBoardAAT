@@ -219,6 +219,16 @@ public class Board {
 		}
 	}
 	
+	public Boolean makeAccusation (String room, String person, String weapon) {
+		if (Solution.get(0).getContent().equalsIgnoreCase(room) 
+			&& Solution.get(1).getContent().equalsIgnoreCase(person)
+			&& Solution.get(1).getContent().equalsIgnoreCase(person))
+					return true;
+		else
+			return false;
+	}
+	
+	
 	public int getNumRows() {
 		return numRows;
 	}
@@ -349,6 +359,14 @@ public class Board {
 	
 	public ArrayList<Card> getTestDeck() {
 		return testDeck;
+	}
+	
+	public void setSoln(Card roomCard, Card personCard, Card weaponCard) { //ONLY USE FOR TESTING!!
+		//Solution.clear();
+		Solution.add(roomCard);
+		Solution.add(personCard);
+		Solution.add(weaponCard);
+		Solution.clear();
 	}
 	
 	public static void main(String [ ] args) {
