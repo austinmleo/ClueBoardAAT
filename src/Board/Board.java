@@ -248,8 +248,30 @@ public class Board {
 	}
 	
 	public String handelSuggestion(String room, String person, String weapon, Player accuser) {
-		String info = "butts";
-
+		String info = null;
+		ArrayList<String> dissapprovals = new ArrayList<String>();
+		Boolean cardShown = false;
+		for (int i = 0; i < players.size(); i++ ) {
+			if (cardShown)
+				break;
+			if (players.get(i).getName().equalsIgnoreCase(accuser.getName()))
+				continue;
+			else {
+				for (int j = 0; j < players.get(i).getCards().size(); j++) {
+					if (players.get(i).getCards().get(j).getContent().equalsIgnoreCase(room)
+						|| players.get(i).getCards().get(j).getContent().equalsIgnoreCase(person)
+						|| players.get(i).getCards().get(j).getContent().equalsIgnoreCase(weapon)) {
+							dissapprovals.add(players.get(i).revealCard(players.get(i).getCards().get(j)).getContent());
+							cardShown = true;
+							//break;
+					}			
+				}
+			}
+		}
+		if (dissapprovals.size() > 0) {
+			Random generator = new Random();
+			info = dissapprovals.get(generator.nextInt(dissapprovals.size()));
+		}	
 		return info;
 	}
 	

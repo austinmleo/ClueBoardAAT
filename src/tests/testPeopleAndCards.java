@@ -220,7 +220,7 @@ public class testPeopleAndCards {
 		//String test = board.handelSuggestion("Some Place", "A Person", "MiniGun", playersTest.get(0));
 		//System.out.println(test);
 		Assert.assertTrue(info.equalsIgnoreCase("MiniGun"));	
-		Assert.assertTrue(playerCounter == 4);	
+		Assert.assertTrue(playerCounter == 3);	
 		board.getPlayers().get(3).setCards(hold3);
 	}
 	
