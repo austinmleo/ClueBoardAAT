@@ -4,11 +4,17 @@ import java.util.ArrayList;
 
 public class Player {
 
-	private String name;
-	private String color;
-	private int currentIndex;
+	protected String name;
+	protected String color;
+	protected int currentIndex;
 	public ArrayList<Card> cards = new ArrayList<Card>();
-	private int numCards;
+	protected int numCards;
+	protected ArrayList<Card> possibleWeapons;
+	protected ArrayList<Card> possiblePeople;
+	protected ArrayList<Card> possibleRooms;
+	
+	
+	
 	
 	public Player(String name, String color, int currentIndex) {
 		super();
@@ -17,6 +23,17 @@ public class Player {
 		this.currentIndex = currentIndex;
 	}
 
+	public Player(String name, String color, int currentIndex,
+			ArrayList<Card> possibleWeapons, ArrayList<Card> possiblePeople,
+			ArrayList<Card> possibleRooms) {
+		super();
+		this.name = name;
+		this.color = color;
+		this.currentIndex = currentIndex;
+		this.possibleWeapons = possibleWeapons;
+		this.possiblePeople = possiblePeople;
+		this.possibleRooms = possibleRooms;
+	}
 
 	public String getName() {
 		return name;
@@ -46,6 +63,13 @@ public class Player {
 				+ currentIndex + "]";
 	}
 	
+	public void setCards(ArrayList<Card> hand) {
+		cards = hand;
+	}
+	
+	public Card revealCard(Card toReveal) {
+		return toReveal;
+	}
 	
 	
 }

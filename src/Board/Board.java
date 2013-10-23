@@ -34,6 +34,9 @@ public class Board {
 	private ArrayList<Card> deck = new ArrayList<Card>();
 	private ArrayList<Card> testDeck = new ArrayList<Card>(); //Only used for testing.
 	private ArrayList<Card> Solution = new ArrayList<Card>();
+	private ArrayList<Card> weapons = new ArrayList<Card>();
+	private ArrayList<Card> people = new ArrayList<Card>();
+	private ArrayList<Card> roomCards = new ArrayList<Card>();
 	
 	public Board(String BoardFile, String LegendFile) {	
 		this.LegendFile = LegendFile;
@@ -61,8 +64,9 @@ public class Board {
 		try {
 			loadLegend(LegendFile);
 			loadBoard(BoardFile);
-			loadPlayers("People.txt");
 			loadCards("cards.txt");
+			loadPlayers("People.txt");
+			//loadCards("cards.txt");
 			dealCards();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -137,27 +141,38 @@ public class Board {
 		}
 	}
 
-	public void loadPlayers(String fileName) throws BadConfigException, FileNotFoundException {
+	public void loadPlayers(String fileName) throws FileNotFoundException {
 		
 			FileReader reader = new FileReader(fileName);
 			Scanner in = new Scanner(reader);
 			players.clear();
 			
+			String line = in.nextLine();
+			String[] data = line.split(",");
+			
+			String name = data[0];
+			String color = data[1];
+			String spot = data[2];
+			int index = Integer.parseInt(spot);
+			
+			Player human = new Player(name, color, index, weapons, people, roomCards);
+			players.add(human);
+			
 			while(in.hasNextLine()){
-				String line = in.nextLine();
-				String[] data = line.split(",");
+				line = in.nextLine();
+				data = line.split(",");
 				
-				String name = data[0];
-				String color = data[1];
-				String spot = data[2];
-				int index = Integer.parseInt(spot);
+				name = data[0];
+				color = data[1];
+				spot = data[2];
+				index = Integer.parseInt(spot);
 				
-				Player next = new Player (name, color, index);
+				Player next = new ComputerPlayer (name, color, index, weapons, people, roomCards);
 				players.add(next);				
 			}
 	}
 			
-	public void loadCards(String fileName) throws BadConfigException, FileNotFoundException  {
+	public void loadCards(String fileName) throws FileNotFoundException  {
 		FileReader reader = new FileReader(fileName);
 		Scanner in = new Scanner(reader);
 		deck.clear();
@@ -167,13 +182,17 @@ public class Board {
 			String line = in.nextLine();
 			String[] data = line.split(",");
 			
-			if (data[0].equalsIgnoreCase("w"))
+			if (data[0].equalsIgnoreCase("w")) {
 				 cardType = type.WEAPON;
-			else if (data[0].equalsIgnoreCase("p"))
+				 weapons.add(new Card(cardType, data[1]));
+			} else if (data[0].equalsIgnoreCase("p")) {
 				cardType = type.PERSON;
-			else
+				people.add(new Card(cardType, data[1]));
+			} else {
 				cardType = type.ROOM;
-			
+				roomCards.add(new Card(cardType, data[1]));
+			}
+				
 			String content = data[1];
 			
 			Card next = new Card  (cardType, content);
@@ -190,7 +209,7 @@ public class Board {
 	}
 	
 	public void dealCards () {
-		System.out.println(testDeck);
+		//System.out.println(testDeck);
 		Random generator = new Random();
 		int choice = generator.nextInt(9);
 		Solution.add(deck.get(choice + 12));
@@ -228,6 +247,11 @@ public class Board {
 			return false;
 	}
 	
+	public String handelSuggestion(String room, String person, String weapon, Player accuser) {
+		String info = "butts";
+
+		return info;
+	}
 	
 	public int getNumRows() {
 		return numRows;
