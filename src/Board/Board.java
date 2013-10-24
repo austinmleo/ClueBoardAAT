@@ -361,6 +361,10 @@ public class Board {
 		return adjs.get(index);
 	}
 	
+	public String getRoomName(char init) {
+		return rooms.get(init);
+	}
+	
 	public void startTargets(int index, int numSteps){
 		visited.clear();
 		visited.add(index);
@@ -425,6 +429,7 @@ public class Board {
 		//System.out.println(b.getNumRows());
 		//System.out.println(b.getNumColumns());
 		//System.out.println(b.calcIndex(b.getNumColumns(), b.getNumRows()));
+		System.out.println(b.getRoomName('K'));
 		
 	}
 }

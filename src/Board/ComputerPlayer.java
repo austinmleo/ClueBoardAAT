@@ -41,16 +41,26 @@ public class ComputerPlayer extends Player {
 	}
 	
 	public void makeSuggestion() {
+		Random generator = new Random();
+		
+		int rand = generator.nextInt(possibleWeapons.size());
+		String weapon = possibleWeapons.get(rand).getContent();
+		rand = generator.nextInt(possiblePeople.size());
+		String person = possiblePeople.get(rand).getContent();
+		rand = generator.nextInt(possibleRooms.size());
+		String room = possibleRooms.get(rand).getContent();
+		
+		
 		
 	}
 	
 	public void updatePossibilities(Card seen) {
 		if(seen.getCardType() == type.WEAPON)
-			possibleWeapons.remove(seen.getContent());
+			possibleWeapons.remove(seen);
 		else if (seen.getCardType() == type.PERSON)
-			possiblePeople.remove(seen.getContent());
+			possiblePeople.remove(seen);
 		else if (seen.getCardType() == type.ROOM)
-			possibleRooms.remove(seen.getContent());
+			possibleRooms.remove(seen);
 	}
 
 	public void setLastVisited(char lastVisited) {

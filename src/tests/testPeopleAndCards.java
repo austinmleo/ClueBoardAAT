@@ -119,8 +119,7 @@ public class testPeopleAndCards {
 		board.setSoln(test.get(19),test.get(9),test.get(4));
 		Assert.assertTrue(board.makeAccusation(test.get(19).getContent(),test.get(9).getContent(),test.get(4).getContent()));	
 	}
-		
-		
+			
 	@Test	
 	public void testWrongRoom() {
 		ArrayList<Card> test = board.getTestDeck();
@@ -170,7 +169,6 @@ public class testPeopleAndCards {
 		board.getPlayers().get(0).setCards(hold0);
 	}
 	
-	
 	@Test
 	public void testPlayersQueriedInOrder() { // This tests that the players are surveyed in order to see if they hold the cards.
 		ArrayList<Player> playersTest = board.getPlayers();
@@ -214,8 +212,7 @@ public class testPeopleAndCards {
 		Assert.assertTrue(playerCounter == 3);	
 		board.getPlayers().get(3).setCards(hold3);
 	}
-	
-	
+		
 	@Test
 	public void testPlayerForThatTurnDoesNotShowACard() { //This ensures the accusing player will not show his cards.
 		ArrayList<Player> playersTest = board.getPlayers();
@@ -265,10 +262,64 @@ public class testPeopleAndCards {
 				|| testBot.getCurrentIndex() == board.calcIndex(5, 3));
 	}
 	
+	@Test
+	public void testSuggestionWithOnlyOnePossible() {
+		Random generator = new Random();
+		ArrayList<Card> cards = board.getTestDeck(); 
+		ArrayList<Card> people = new ArrayList<Card>();
+		ArrayList<Card> rooms = new ArrayList<Card>();
+		ArrayList<Card> weapons = new ArrayList<Card>();
+	 	people.add(new Card(type.PERSON, "Joe"));
+	 	weapons.add(new Card(type.WEAPON, "Gun"));
+	 	rooms.add(new Card(type.ROOM, "A Place"));
+		
+		ComputerPlayer test = new ComputerPlayer("Bot" , "A color" , 42, weapons, people, rooms); 
+		
+		test.updatePossibilities(new Card(type.PERSON, "Tim"));
+		
+		int rand = generator.nextInt(test.getPossibleWeapons().size());
+		String weapon = test.getPossibleWeapons().get(rand).getContent();
+		rand = generator.nextInt(test.getPossiblePeople().size());
+		String person = test.getPossiblePeople().get(rand).getContent();
+		rand = generator.nextInt(test.getPossibleRooms().size());
+		String room = test.getPossibleRooms().get(rand).getContent();
+		
+		Assert.assertTrue(weapon.equalsIgnoreCase("gun"));
+		Assert.assertTrue(room.equalsIgnoreCase("A place"));
+		Assert.assertTrue(person.equalsIgnoreCase("Frank"));	
+	}
 	
-	
-	
-	
+	@Test
+	public void testSuggestionWithMoreThenOnePossible() {
+		Random generator = new Random();
+		ArrayList<Card> cards = board.getTestDeck(); 
+		ArrayList<Card> people = new ArrayList<Card>();
+		ArrayList<Card> rooms = new ArrayList<Card>();
+		ArrayList<Card> weapons = new ArrayList<Card>();
+	 	people.add(new Card(type.PERSON, "Tim"));
+	 	people.add(new Card(type.PERSON, "Joe"));
+	 	rooms.add(new Card(type.ROOM, "Office"));
+	 	rooms.add(new Card(type.ROOM, "Patio"));
+	 	weapons.add(new Card(type.WEAPON, "Gun"));
+	 	weapons.add(new Card(type.WEAPON, "Grenade"));
+	 	weapons.add(new Card(type.WEAPON, "Large Puppy"));
+		
+		ComputerPlayer test = new ComputerPlayer("Bot" , "A color" , 42, weapons, people, rooms); 
+		
+		test.updatePossibilities(new Card(type.PERSON, "Tim"));
+		test.updatePossibilities(new Card(type.WEAPON, "Gun"));
+		
+		int rand = generator.nextInt(test.getPossibleWeapons().size());
+		String weapon = test.getPossibleWeapons().get(rand).getContent();
+		rand = generator.nextInt(test.getPossiblePeople().size());
+		String person = test.getPossiblePeople().get(rand).getContent();
+		rand = generator.nextInt(test.getPossibleRooms().size());
+		String room = test.getPossibleRooms().get(rand).getContent();
+		
+		Assert.assertTrue(weapon.equalsIgnoreCase("Grenade")  || weapon.equalsIgnoreCase("Large Puppy") || weapon.equalsIgnoreCase("Gun"));
+		Assert.assertTrue(room.equalsIgnoreCase("Patio")  || room.equalsIgnoreCase("Office"));
+		Assert.assertTrue(person.equalsIgnoreCase("Frank")  || person.equalsIgnoreCase("Bob"));	
+	}
 	
 	
 	

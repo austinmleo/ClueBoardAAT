@@ -70,6 +70,30 @@ public class Player {
 	public Card revealCard(Card toReveal) {
 		return toReveal;
 	}
+
+	public ArrayList<Card> getPossibleWeapons() {
+		return possibleWeapons;
+	}
+
+	public ArrayList<Card> getPossiblePeople() {
+		return possiblePeople;
+	}
+
+	public ArrayList<Card> getPossibleRooms() {
+		return possibleRooms;
+	}
+
+	public void setPossibleWeapons(ArrayList<Card> possibleWeapons) {
+		this.possibleWeapons = possibleWeapons;
+	}
+
+	public void setPossiblePeople(ArrayList<Card> possiblePeople) {
+		this.possiblePeople = possiblePeople;
+	}
+
+	public void setPossibleRooms(ArrayList<Card> possibleRooms) {
+		this.possibleRooms = possibleRooms;
+	}
 	
 	
 }
