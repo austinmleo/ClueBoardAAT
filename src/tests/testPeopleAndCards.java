@@ -12,8 +12,10 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import Board.Board;
+import Board.BoardCell;
 import Board.Card;
 import Board.Card.type;
+import Board.ComputerPlayer;
 import Board.Player;
 
 public class testPeopleAndCards {
@@ -173,11 +175,8 @@ public class testPeopleAndCards {
 	public void testPlayersQueriedInOrder() { // This tests that the players are surveyed in order to see if they hold the cards.
 		ArrayList<Player> playersTest = board.getPlayers();
 		ArrayList<Card> hold3 = playersTest.get(3).getCards();
-		//System.out.println(hold3);
-		
 		ArrayList<Card> newHand = new ArrayList<Card>();
 		newHand.add(new Card(type.WEAPON, "MiniGun"));
-		//newHand.add(new Card(type.PERSON, "Jesus"));
 		playersTest.get(3).setCards(newHand);
 		
 		Player accuser = playersTest.get(0);
@@ -201,7 +200,6 @@ public class testPeopleAndCards {
 						|| playersTest.get(i).getCards().get(j).getContent().equalsIgnoreCase(weapon)) {
 							dissapprovals.add(playersTest.get(i).revealCard(playersTest.get(i).getCards().get(j)).getContent());
 							cardShown = true;
-							//break;
 					}			
 				}
 			}
@@ -211,14 +209,7 @@ public class testPeopleAndCards {
 			Random generator = new Random();
 			info = dissapprovals.get(generator.nextInt(dissapprovals.size()));
 		}
-			
-		//test = info;
-		
-		
-		
-		
-		//String test = board.handelSuggestion("Some Place", "A Person", "MiniGun", playersTest.get(0));
-		//System.out.println(test);
+	
 		Assert.assertTrue(info.equalsIgnoreCase("MiniGun"));	
 		Assert.assertTrue(playerCounter == 3);	
 		board.getPlayers().get(3).setCards(hold3);
@@ -240,11 +231,39 @@ public class testPeopleAndCards {
 		board.getPlayers().get(0).setCards(hold0);
 	}
 	
+	@Test
+	public void testComputerMoveSelctionWithRoom() { //Ensures the computer will pick a room if they have not visited it last.
+		ComputerPlayer testBot = new ComputerPlayer("Bot", "Nobody cares", 75);
+		board.startTargets(75,  1);
+		Set<BoardCell> test = board.getTargets();
+		testBot.selectTarget(test);
+		Assert.assertTrue(testBot.getCurrentIndex() == 52);
+	}
 	
+	@Test
+	public void testComputerMoveSelctionWithoutRoom() { //Checks to see the computer will pick one of the possible spots at random.
+		ComputerPlayer testBot = new ComputerPlayer("Bot", "Nobody cares", board.calcIndex(15, 15));
+		board.startTargets(board.calcIndex(15, 15),  1);
+		Set<BoardCell> test = board.getTargets();
+		testBot.selectTarget(test);
+		Assert.assertTrue(testBot.getCurrentIndex() == board.calcIndex(14, 15)
+				|| testBot.getCurrentIndex() == board.calcIndex(15, 14)
+				|| testBot.getCurrentIndex() == board.calcIndex(16, 15)
+				|| testBot.getCurrentIndex() == board.calcIndex(15, 16));
+	}
 	
-	
-	
-	
+	@Test
+	public void testComputerMoveSelctionWithVisitedRoom() { //Checks to see the computer will pick one of the possible spots at random since the room has been visited.
+		ComputerPlayer testBot = new ComputerPlayer("Bot", "Nobody cares", board.calcIndex(6, 3));
+		board.startTargets(board.calcIndex(6, 3),  1);
+		Set<BoardCell> test = board.getTargets();
+		testBot.setLastVisited('s');
+		testBot.selectTarget(test);
+		Assert.assertTrue(testBot.getCurrentIndex() == board.calcIndex(6, 2)
+				|| testBot.getCurrentIndex() == board.calcIndex(6, 4)
+				|| testBot.getCurrentIndex() == board.calcIndex(7, 3)
+				|| testBot.getCurrentIndex() == board.calcIndex(5, 3));
+	}
 	
 	
 	
