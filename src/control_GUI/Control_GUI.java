@@ -16,9 +16,18 @@ public class Control_GUI extends JFrame {
 			
 			
 			whoseTurn whoseTurn = new whoseTurn();
-			add(whoseTurn, BorderLayout.CENTER);
+			add(whoseTurn, BorderLayout.NORTH);
 			button button = new button();
 			add(button,BorderLayout.EAST);
+			
+			Die dieRoll = new Die();
+			add(dieRoll, BorderLayout.SOUTH);
+			
+			Guess guess = new Guess();
+			add(guess, BorderLayout.CENTER);
+			
+			
+			
 		}
 
 	
