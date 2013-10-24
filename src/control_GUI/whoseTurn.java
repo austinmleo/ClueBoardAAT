@@ -1,8 +1,11 @@
 package control_GUI;
 
 
+import java.awt.Dimension;
 import java.util.ArrayList;
 
+import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
@@ -15,11 +18,26 @@ public class whoseTurn extends JPanel{
 
 	private String name;
 	private JTextArea display;
+	
+	
+	private JButton nextPlayerButton, accusationButton;
+	
 
 	public whoseTurn(){
 		Board GUI_board = new Board("ClueLayout.csv", "ClueLegend.txt");
 		ArrayList<Player> test = GUI_board.getPlayers();
 		String player = test.get(0).getName();
+		
+		
+	
+			nextPlayerButton = new JButton("Next Player");
+			accusationButton = new JButton("Make an accusation");
+			
+			
+			add(nextPlayerButton);
+			add(accusationButton);
+		
+		
 
 
 		JLabel label = new JLabel("Whose Turn");
@@ -35,6 +53,9 @@ public class whoseTurn extends JPanel{
 
 		add(label);
 		add(display);
+		
+		add(nextPlayerButton);
+		add(accusationButton);
 
 	}
 

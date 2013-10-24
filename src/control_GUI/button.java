@@ -6,6 +6,8 @@ import javax.swing.JPanel;
 
 
 public class button extends JPanel{
+
+	
 	
 	private JButton nextPlayerButton, accusationButton;
 	
@@ -19,5 +21,6 @@ public class button extends JPanel{
 	
 	}
 	
+	 
 
 }
