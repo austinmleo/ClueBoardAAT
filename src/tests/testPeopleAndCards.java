@@ -275,8 +275,6 @@ public class testPeopleAndCards {
 		
 		ComputerPlayer test = new ComputerPlayer("Bot" , "A color" , 42, weapons, people, rooms); 
 		
-		test.updatePossibilities(new Card(type.PERSON, "Tim"));
-		
 		int rand = generator.nextInt(test.getPossibleWeapons().size());
 		String weapon = test.getPossibleWeapons().get(rand).getContent();
 		rand = generator.nextInt(test.getPossiblePeople().size());
@@ -286,7 +284,7 @@ public class testPeopleAndCards {
 		
 		Assert.assertTrue(weapon.equalsIgnoreCase("gun"));
 		Assert.assertTrue(room.equalsIgnoreCase("A place"));
-		Assert.assertTrue(person.equalsIgnoreCase("Frank"));	
+		Assert.assertTrue(person.equalsIgnoreCase("Joe"));	
 	}
 	
 	@Test
@@ -318,7 +316,7 @@ public class testPeopleAndCards {
 		
 		Assert.assertTrue(weapon.equalsIgnoreCase("Grenade")  || weapon.equalsIgnoreCase("Large Puppy") || weapon.equalsIgnoreCase("Gun"));
 		Assert.assertTrue(room.equalsIgnoreCase("Patio")  || room.equalsIgnoreCase("Office"));
-		Assert.assertTrue(person.equalsIgnoreCase("Frank")  || person.equalsIgnoreCase("Bob"));	
+		Assert.assertTrue(person.equalsIgnoreCase("Tim")  || person.equalsIgnoreCase("Joe"));	
 	}
 	
 	
