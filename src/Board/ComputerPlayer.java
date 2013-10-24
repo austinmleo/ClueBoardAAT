@@ -1,6 +1,7 @@
 package Board;
 
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.Set;
 
 import Board.Card.type;
@@ -19,9 +20,22 @@ public class ComputerPlayer extends Player {
 	}
 	
 	public void selectTarget(Set<BoardCell> targets) {
+		Random generator = new Random();
 		int selected = currentIndex;
+		ArrayList<BoardCell> temp = new ArrayList<BoardCell>();
+		Boolean roomFound = false;
 		
-		
+		for (BoardCell c: targets) {
+			if (c.isRoom() && ((RoomCell)c).getInitial() != lastVisited) {
+				selected = c.getIndex();
+				roomFound = true;
+			}
+			else
+				temp.add(c);
+		}
+			
+		if (!roomFound)
+			selected = temp.get(generator.nextInt(temp.size())).getIndex();
 		
 		currentIndex = selected;
 	}
