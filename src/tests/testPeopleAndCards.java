@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Random;
 import java.util.Set;
 
 import org.junit.Assert;
@@ -11,8 +12,10 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import Board.Board;
+import Board.BoardCell;
 import Board.Card;
 import Board.Card.type;
+import Board.ComputerPlayer;
 import Board.Player;
 
 public class testPeopleAndCards {
@@ -81,6 +84,7 @@ public class testPeopleAndCards {
 		int current = test.get(1).getNumCards();
 		
 		for (int i = 1; (i+1) < test.size(); i++ ) {
+			//System.out.println(i + "" + test.get(i).getName() + "" + test.get(i).getNumCards() );
 			int abs = Math.abs(current - last);
 			Boolean check = false;
 			if (abs <= 1)
@@ -89,8 +93,12 @@ public class testPeopleAndCards {
 			
 			last = current;
 			current =  test.get(i+1).getNumCards();
-				
+			
+			
 		}
+		//System.out.println("Uncle Sam has " + test.get(3).getCards());
+		//System.out.println("what the hell");
+		//Assert.assertTrue(2 > 1);
 	}
 		
 	@Test
@@ -134,20 +142,128 @@ public class testPeopleAndCards {
 		Assert.assertFalse(board.makeAccusation(test.get(19).getContent(),test.get(9).getContent(),test.get(4+1).getContent()));	
 	}		
 		
+	@Test
+	public void testSuggestionWithOnlyOneCard() { //Ensures a player will shown the only correct card in their hand. 
+		ArrayList<Player> playersTest = board.getPlayers();
+		ArrayList<Card> hold0 = playersTest.get(0).getCards();
+		ArrayList<Card> newHand = new ArrayList<Card>();
+		newHand.add(new Card(type.WEAPON, "Maul"));
+		playersTest.get(0).setCards(newHand);
 		
+		String test = board.handelSuggestion("Some Place", "A Person", "Maul", playersTest.get(3));
+		Assert.assertTrue(test.equalsIgnoreCase("Maul"));	
+		board.getPlayers().get(0).setCards(hold0);
+	}
+				
+	@Test
+	public void testPlayerShowsRandomCard() {
+		ArrayList<Player> playersTest = board.getPlayers();
+		ArrayList<Card> hold0 = playersTest.get(0).getCards();
+		ArrayList<Card> newHand = new ArrayList<Card>();
+		newHand.add(new Card(type.WEAPON, "Maul"));
+		newHand.add(new Card(type.PERSON, "Jesus"));
+		playersTest.get(0).setCards(newHand);
 		
+		String test = board.handelSuggestion("Some Place", "Jesus", "Maul", playersTest.get(3));
+		//System.out.println(test);
+		Assert.assertTrue(test.equalsIgnoreCase("Maul") || test.equalsIgnoreCase("Jesus"));	
+		board.getPlayers().get(0).setCards(hold0);
+	}
+	
+	
+	@Test
+	public void testPlayersQueriedInOrder() { // This tests that the players are surveyed in order to see if they hold the cards.
+		ArrayList<Player> playersTest = board.getPlayers();
+		ArrayList<Card> hold3 = playersTest.get(3).getCards();
+		ArrayList<Card> newHand = new ArrayList<Card>();
+		newHand.add(new Card(type.WEAPON, "MiniGun"));
+		playersTest.get(3).setCards(newHand);
 		
+		Player accuser = playersTest.get(0);
+		String room = "Some Place";
+		String person = "A Person";
+		String weapon = "Minigun";
+		int playerCounter = 0;
+		
+		String info = null;
+		ArrayList<String> dissapprovals = new ArrayList<String>();
+		Boolean cardShown = false;
+		for (int i = 0; i < playersTest.size(); i++ ) {
+			if (cardShown)
+				break;
+			if (playersTest.get(i).getName().equalsIgnoreCase(accuser.getName()))
+				continue;
+			else {
+				for (int j = 0; j < playersTest.get(i).getCards().size(); j++) {
+					if (playersTest.get(i).getCards().get(j).getContent().equalsIgnoreCase(room)
+						|| playersTest.get(i).getCards().get(j).getContent().equalsIgnoreCase(person)
+						|| playersTest.get(i).getCards().get(j).getContent().equalsIgnoreCase(weapon)) {
+							dissapprovals.add(playersTest.get(i).revealCard(playersTest.get(i).getCards().get(j)).getContent());
+							cardShown = true;
+					}			
+				}
+			}
+			playerCounter++;
+		}
+		if (dissapprovals.size() > 0) {
+			Random generator = new Random();
+			info = dissapprovals.get(generator.nextInt(dissapprovals.size()));
+		}
+	
+		Assert.assertTrue(info.equalsIgnoreCase("MiniGun"));	
+		Assert.assertTrue(playerCounter == 3);	
+		board.getPlayers().get(3).setCards(hold3);
+	}
 	
 	
+	@Test
+	public void testPlayerForThatTurnDoesNotShowACard() { //This ensures the accusing player will not show his cards.
+		ArrayList<Player> playersTest = board.getPlayers();
+		ArrayList<Card> hold0 = playersTest.get(0).getCards();
+		ArrayList<Card> newHand = new ArrayList<Card>();
+		newHand.add(new Card(type.WEAPON, "Minigun"));
+		//newHand.add(new Card(type.PERSON, "Jesus"));
+		playersTest.get(0).setCards(newHand);
+		
+		String test = board.handelSuggestion("Some Place", "A Person", "MiniGun", playersTest.get(0));
+		//System.out.println(test);
+		Assert.assertTrue(test == null);	
+		board.getPlayers().get(0).setCards(hold0);
+	}
 	
+	@Test
+	public void testComputerMoveSelctionWithRoom() { //Ensures the computer will pick a room if they have not visited it last.
+		ComputerPlayer testBot = new ComputerPlayer("Bot", "Nobody cares", 75);
+		board.startTargets(75,  1);
+		Set<BoardCell> test = board.getTargets();
+		testBot.selectTarget(test);
+		Assert.assertTrue(testBot.getCurrentIndex() == 52);
+	}
 	
+	@Test
+	public void testComputerMoveSelctionWithoutRoom() { //Checks to see the computer will pick one of the possible spots at random.
+		ComputerPlayer testBot = new ComputerPlayer("Bot", "Nobody cares", board.calcIndex(15, 15));
+		board.startTargets(board.calcIndex(15, 15),  1);
+		Set<BoardCell> test = board.getTargets();
+		testBot.selectTarget(test);
+		Assert.assertTrue(testBot.getCurrentIndex() == board.calcIndex(14, 15)
+				|| testBot.getCurrentIndex() == board.calcIndex(15, 14)
+				|| testBot.getCurrentIndex() == board.calcIndex(16, 15)
+				|| testBot.getCurrentIndex() == board.calcIndex(15, 16));
+	}
 	
-	
-	
-	
-	
-	
-	
+	@Test
+	public void testComputerMoveSelctionWithVisitedRoom() { //Checks to see the computer will pick one of the possible spots at random since the room has been visited.
+		ComputerPlayer testBot = new ComputerPlayer("Bot", "Nobody cares", board.calcIndex(6, 3));
+		board.startTargets(board.calcIndex(6, 3),  1);
+		Set<BoardCell> test = board.getTargets();
+		testBot.setLastVisited('s');
+		testBot.selectTarget(test);
+		Assert.assertTrue(testBot.getCurrentIndex() == board.calcIndex(6, 2)
+				|| testBot.getCurrentIndex() == board.calcIndex(6, 4)
+				|| testBot.getCurrentIndex() == board.calcIndex(7, 3)
+				|| testBot.getCurrentIndex() == board.calcIndex(5, 3));
+	}
 	
 	
 	

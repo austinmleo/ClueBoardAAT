@@ -45,6 +45,10 @@ public abstract class BoardCell {
 	}
 	*/
 	
+	public int getIndex() {
+		return column + row * 23;
+	}
+	
 	public abstract void draw();
 
 	
