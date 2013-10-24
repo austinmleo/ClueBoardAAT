@@ -190,7 +190,7 @@ public class Board {
 	}
 	
 	public void dealCards () {
-		System.out.println(testDeck);
+		//System.out.println(testDeck);
 		Random generator = new Random();
 		int choice = generator.nextInt(9);
 		Solution.add(deck.get(choice + 12));
