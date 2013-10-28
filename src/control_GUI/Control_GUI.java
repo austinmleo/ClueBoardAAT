@@ -44,20 +44,27 @@ public class Control_GUI extends JFrame {
 	//resultPanel variables
 	private String response;
 	private JTextArea responseArea;
+	
+	
+	
+		
+	
+	
 
-	public Control_GUI(){
-
+	public  Control_GUI(){
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("Clue GUI");
 		setSize(800, 200);	
+		Controler();
+}
+	
+	
+		public void Controler(){
 
 		final JPanel test = new JPanel();
-
 		GridLayout experimentLayout = new GridLayout(0,3);
 		test.setLayout(experimentLayout);
-
-
-
+		
 		// Whose Turn Label and Current Players Turn
 
 		JPanel whoseTurnPanel = new JPanel();
@@ -139,7 +146,6 @@ public class Control_GUI extends JFrame {
 		// add panels to the grid
 		test.add(whoseTurnPanel);
 		test.add(buttonPanel);
-
 		test.add(buttonPanel2);
 		test.add(diePanel);
 		test.add(guessPanel);

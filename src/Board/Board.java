@@ -12,13 +12,15 @@ import java.util.Scanner;
 import java.util.Set;
 import java.util.Random;
 
+import javax.swing.JFrame;
+
 import Board.Card.type;
 import Board.RoomCell.DoorDirection;
 
 
 //Authors: Arnaud Filliat and Vy Ta
 //Make sure to note that for the cells we use (x,y) coordinates so (column, row)
-public class Board {
+public class Board extends JFrame{
 
 	private ArrayList<BoardCell> cells;
 	private int numRows;
