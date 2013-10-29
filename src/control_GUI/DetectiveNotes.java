@@ -8,6 +8,7 @@ import static java.util.Arrays.asList;
 
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EtchedBorder;
@@ -15,7 +16,7 @@ import javax.swing.border.TitledBorder;
 
 import Board.Board;
 
-public class DetectiveNotes extends JFrame {
+public class DetectiveNotes extends JDialog {
 
 	private JCheckBox 
 	people,
@@ -23,8 +24,8 @@ public class DetectiveNotes extends JFrame {
 	weapon;
 
 	public DetectiveNotes(){
-		JFrame detectiveNotes = new JFrame();
-		detectiveNotes.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		//JFrame detectiveNotes = new JFrame();
+		//detectiveNotes.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("Detective Notes");
 		setSize(550, 500);
 
