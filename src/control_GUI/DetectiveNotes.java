@@ -2,8 +2,8 @@ package control_GUI;
 
 import java.awt.GridLayout;
 import java.lang.reflect.Array;
-import java.util.ArrayList;
 import java.util.*;
+
 import static java.util.Arrays.asList;
 
 import javax.swing.JCheckBox;
@@ -12,6 +12,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
+
+import Board.Board;
 
 public class DetectiveNotes extends JFrame {
 	
@@ -30,7 +32,7 @@ public class DetectiveNotes extends JFrame {
 		
 	}
 	
-
+	Board theboard = new Board();
 	
 	public void addPeople() {
 		final JPanel topPanel = new JPanel();
@@ -76,21 +78,25 @@ public class DetectiveNotes extends JFrame {
 	roomPanel.add(Room9);
 	roomPanel.setLayout(new GridLayout(0, 2));
 	
-	List<String> weaponList = new ArrayList<String>(asList("butts"));
+	//List<String> weaponList = new ArrayList<String>(asList("Candel Stick"));
+	
 	
 	JPanel weaponPanel = new JPanel();
-	weapon1 = new JCheckBox(weaponList.get(0));
-	weapon2 = new JCheckBox("Knife");
-	weapon3 = new JCheckBox("Lead Pipe");
-	weapon4 = new JCheckBox("Revolver");
-	weapon5 = new JCheckBox("Rope");
-	weapon6 = new JCheckBox("Wrench");
-	weaponPanel.add(weapon1);
-	weaponPanel.add(weapon2);
-	weaponPanel.add(weapon3);
-	weaponPanel.add(weapon4);
-	weaponPanel.add(weapon5);
-	weaponPanel.add(weapon6);
+	for (int i = 0; i< theboard.weapons.size(); i++	){
+		weapon1 = new JCheckBox(theboard.weapons.get(i).getContent());
+		weaponPanel.add(weapon1);
+	}
+	//weapon2 = new JCheckBox("Knife");
+	//weapon3 = new JCheckBox("Lead Pipe");
+	//weapon4 = new JCheckBox("Revolver");
+	//weapon5 = new JCheckBox("Rope");
+	//weapon6 = new JCheckBox("Wrench");
+	//weaponPanel.add(weapon1);
+	//weaponPanel.add(weapon2);
+//	weaponPanel.add(weapon3);
+	//weaponPanel.add(weapon4);
+	//weaponPanel.add(weapon5);
+	//weaponPanel.add(weapon6);
 	weaponPanel.setLayout(new GridLayout(0, 2));
 	weaponPanel.setBorder(new TitledBorder(new EtchedBorder(), "Weapons"));
 	

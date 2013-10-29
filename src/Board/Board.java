@@ -41,7 +41,7 @@ public class Board extends JPanel{
 	private ArrayList<Card> deck = new ArrayList<Card>();
 	private ArrayList<Card> testDeck = new ArrayList<Card>(); //Only used for testing.
 	private ArrayList<Card> Solution = new ArrayList<Card>();
-	private ArrayList<Card> weapons = new ArrayList<Card>();
+	public ArrayList<Card> weapons = new ArrayList<Card>();
 	private ArrayList<Card> people = new ArrayList<Card>();
 	private ArrayList<Card> roomCards = new ArrayList<Card>();
 	
