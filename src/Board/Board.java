@@ -41,7 +41,7 @@ public class Board extends JPanel{
 	private ArrayList<Card> deck = new ArrayList<Card>();
 	private ArrayList<Card> testDeck = new ArrayList<Card>(); //Only used for testing.
 	private ArrayList<Card> Solution = new ArrayList<Card>();
-	public ArrayList<Card> weapons = new ArrayList<Card>();
+	private ArrayList<Card> weapons = new ArrayList<Card>();
 	private ArrayList<Card> people = new ArrayList<Card>();
 	private ArrayList<Card> roomCards = new ArrayList<Card>();
 	
@@ -162,7 +162,7 @@ public class Board extends JPanel{
 			String spot = data[2];
 			int index = Integer.parseInt(spot);
 			
-			HumanPlayer human = new HumanPlayer(name, color, index, weapons, people, roomCards);
+			HumanPlayer human = new HumanPlayer(name, color, index, getWeapons(), getPeople(), getRoomCards());
 			players.add(human);
 			
 			while(in.hasNextLine()){
@@ -174,7 +174,7 @@ public class Board extends JPanel{
 				spot = data[2];
 				index = Integer.parseInt(spot);
 				
-				Player next = new ComputerPlayer (name, color, index, weapons, people, roomCards);
+				Player next = new ComputerPlayer (name, color, index, getWeapons(), getPeople(), getRoomCards());
 				players.add(next);				
 			}
 	}
@@ -191,13 +191,13 @@ public class Board extends JPanel{
 			
 			if (data[0].equalsIgnoreCase("w")) {
 				 cardType = type.WEAPON;
-				 weapons.add(new Card(cardType, data[1]));
+				 getWeapons().add(new Card(cardType, data[1]));
 			} else if (data[0].equalsIgnoreCase("p")) {
 				cardType = type.PERSON;
-				people.add(new Card(cardType, data[1]));
+				getPeople().add(new Card(cardType, data[1]));
 			} else {
 				cardType = type.ROOM;
-				roomCards.add(new Card(cardType, data[1]));
+				getRoomCards().add(new Card(cardType, data[1]));
 			}
 				
 			String content = data[1];
@@ -483,5 +483,29 @@ public class Board extends JPanel{
 		//System.out.println(b.calcIndex(b.getNumColumns(), b.getNumRows()));
 		System.out.println(b.getRoomName('K'));
 		
+	}
+
+	public ArrayList<Card> getRoomCards() {
+		return roomCards;
+	}
+
+	public void setRoomCards(ArrayList<Card> roomCards) {
+		this.roomCards = roomCards;
+	}
+
+	public ArrayList<Card> getWeapons() {
+		return weapons;
+	}
+
+	public void setWeapons(ArrayList<Card> weapons) {
+		this.weapons = weapons;
+	}
+
+	public ArrayList<Card> getPeople() {
+		return people;
+	}
+
+	public void setPeople(ArrayList<Card> people) {
+		this.people = people;
 	}
 }
