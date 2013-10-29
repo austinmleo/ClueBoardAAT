@@ -20,7 +20,7 @@ public class DetectiveNotes extends JFrame {
 	public DetectiveNotes(){
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("Clue GUI");
-		setSize(400, 400);
+		setSize(550, 500);
 		
 		addPeople();
 		

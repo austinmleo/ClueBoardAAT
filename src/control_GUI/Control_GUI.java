@@ -187,7 +187,7 @@ public class Control_GUI extends JFrame {
 			public void actionPerformed(ActionEvent e){
 				DetectiveNotes notes = new DetectiveNotes();
 				notes.setVisible(true);
-			System.out.println("good job");
+			
 			}
 
 			
