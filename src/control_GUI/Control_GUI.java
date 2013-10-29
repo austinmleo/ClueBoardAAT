@@ -5,11 +5,18 @@ package control_GUI;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.GridLayout;
+import java.awt.MenuItem;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.Random;
 
+import javax.swing.Action;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JSeparator;
 import javax.swing.JTextArea;
@@ -56,6 +63,10 @@ public class Control_GUI extends JFrame {
 		setTitle("Clue GUI");
 		setSize(800, 200);	
 		Controler();
+		
+		JMenuBar menuBar = new JMenuBar();
+		setJMenuBar(menuBar);
+		menuBar.add(openNotes());
 }
 	
 	
@@ -64,6 +75,7 @@ public class Control_GUI extends JFrame {
 		final JPanel test = new JPanel();
 		GridLayout experimentLayout = new GridLayout(0,3);
 		test.setLayout(experimentLayout);
+		
 		
 		// Whose Turn Label and Current Players Turn
 
@@ -163,6 +175,28 @@ public class Control_GUI extends JFrame {
 		responseArea.setText(response);
 	}
 
+	private JMenu openNotes(){
+		JMenu menu = new JMenu("File");
+		menu.add(detectiveNotes());
+		return menu;
+	}
+	
+	private JMenuItem detectiveNotes(){
+		JMenuItem item = new JMenuItem("Detective Notes");
+		class MenuItemListener  implements ActionListener{
+			public void actionPerformed(ActionEvent e){
+				DetectiveNotes notes = new DetectiveNotes();
+				notes.setVisible(true);
+			System.out.println("good job");
+			}
+
+			
+			
+		}
+		item.addActionListener(new MenuItemListener());
+		return item;
+		
+	}
 
 
 	public static void main(String[] args) {
