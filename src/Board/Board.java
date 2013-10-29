@@ -1,5 +1,7 @@
 package Board;
 
+import java.awt.Color;
+import java.awt.Graphics;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.ArrayList;
@@ -13,6 +15,7 @@ import java.util.Set;
 import java.util.Random;
 
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 import Board.Card.type;
 import Board.RoomCell.DoorDirection;
@@ -20,7 +23,9 @@ import Board.RoomCell.DoorDirection;
 
 //Authors: Arnaud Filliat and Vy Ta
 //Make sure to note that for the cells we use (x,y) coordinates so (column, row)
-public class Board extends JFrame{
+public class Board extends JPanel{
+	public static final int CELL_SIZE = 25;
+
 
 	private ArrayList<BoardCell> cells;
 	private int numRows;
@@ -157,7 +162,7 @@ public class Board extends JFrame{
 			String spot = data[2];
 			int index = Integer.parseInt(spot);
 			
-			Player human = new Player(name, color, index, weapons, people, roomCards);
+			HumanPlayer human = new HumanPlayer(name, color, index, weapons, people, roomCards);
 			players.add(human);
 			
 			while(in.hasNextLine()){
@@ -419,6 +424,51 @@ public class Board extends JFrame{
 		Solution.add(personCard);
 		Solution.add(weaponCard);
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	public void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        g.setColor(Color.GRAY);
+        g.fillRect(0, 0, numColumns * CELL_SIZE, numRows * CELL_SIZE);
+        for (int i = 0; i < numRows; ++i) {
+                for (int j = 0; j < numColumns; ++j) {
+                        int index = calcIndex(i, j);
+                        int x = j * CELL_SIZE;
+                        int y = i * CELL_SIZE;
+                        
+                        BoardCell cell = getCellAt(index);
+                        if (cell.isRoom()) {
+                                RoomCell roomCell = (RoomCell) cell;
+                                cell.draw(g);
+                        } else if (cell.isWalkway()) {
+                                cell.draw(g);
+                        }        
+                        
+                }
+        }
+        
+        for (Player p : players) {
+                p.draw(g);
+        }
+        g.setColor(Color.BLACK);
+        g.drawRect(0, 0, numColumns * CELL_SIZE, numRows * CELL_SIZE);
+}
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	public static void main(String [ ] args) {
 

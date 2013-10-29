@@ -61,7 +61,7 @@ public class Control_GUI extends JFrame {
 	public  Control_GUI(){
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("Clue GUI");
-		setSize(800, 200);	
+		setSize(1000, 200);	
 		Controler();
 		
 		JMenuBar menuBar = new JMenuBar();
@@ -91,18 +91,20 @@ public class Control_GUI extends JFrame {
 		whoseTurnPanel.add(displayPlayer);
 		//add(whoseTurnPanel, BorderLayout.NORTH);
 
-
+		//empty panel
+		JPanel emptyPanel = new JPanel();
+		emptyPanel.setOpaque(false);
+		
+		
 		// Buttons
 
 		JPanel buttonPanel = new JPanel();
 		nextPlayerButton = new JButton("Next Player");
-		buttonPanel.add(nextPlayerButton);
-		//add(buttonPanel, BorderLayout.SOUTH);
-
-		JPanel buttonPanel2 = new JPanel();
 		accusationButton = new JButton("Make and accusation");
-		buttonPanel2.add(accusationButton);
-
+		buttonPanel.add(nextPlayerButton);
+		buttonPanel.add(accusationButton);
+		buttonPanel.setLayout(new GridLayout(0, 2));
+		
 
 		// Die
 
@@ -157,8 +159,10 @@ public class Control_GUI extends JFrame {
 
 		// add panels to the grid
 		test.add(whoseTurnPanel);
+		test.add(emptyPanel);
 		test.add(buttonPanel);
-		test.add(buttonPanel2);
+	
+		//test.add(buttonPanel2);
 		test.add(diePanel);
 		test.add(guessPanel);
 		test.add(resultPanel);

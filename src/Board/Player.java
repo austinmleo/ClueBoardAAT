@@ -1,5 +1,7 @@
 package Board;
 
+import java.awt.Color;
+import java.awt.Graphics;
 import java.util.ArrayList;
 
 public class Player {
@@ -12,6 +14,9 @@ public class Player {
 	protected ArrayList<Card> possibleWeapons;
 	protected ArrayList<Card> possiblePeople;
 	protected ArrayList<Card> possibleRooms;
+	
+	protected BoardCell location;
+
 	
 	
 	
@@ -39,10 +44,6 @@ public class Player {
 		return name;
 	}
 
-
-	public String getColor() {
-		return color;
-	}
 
 
 	public int getCurrentIndex() {
@@ -95,5 +96,22 @@ public class Player {
 		this.possibleRooms = possibleRooms;
 	}
 	
+	public void  setLocation(){
+		this.location = location;
+	}
 	
+	public BoardCell getLocation(){
+		return location;
+	}
+	
+	public void setColor(){
+		this.color = color;
+	}
+
+	public String getColor() {
+		return color;
+	}
+	
+	void draw(Graphics g){}
+
 }

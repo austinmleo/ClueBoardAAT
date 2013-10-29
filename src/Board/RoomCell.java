@@ -1,5 +1,8 @@
 package Board;
 
+import java.awt.Color;
+import java.awt.Graphics;
+
 public class RoomCell extends BoardCell{
 
 	
@@ -44,6 +47,42 @@ public class RoomCell extends BoardCell{
 		String string = roomInitial + " (" + column + ", " + row + ")";
 		return string;
 	}
+
+	@Override
+	public void draw(Graphics g) {
+		
+		int x = column * Board.CELL_SIZE;
+		int y = row * Board.CELL_SIZE;
+		
+		if (false){
+			g.setColor(new Color(51,204,255));
+			g.fillRect(x, y, Board.CELL_SIZE, Board.CELL_SIZE);
+		}
+		
+		if(directionOfDoor != DoorDirection.NONE){
+			int height = 4;
+			int width = Board.CELL_SIZE;
+			switch (directionOfDoor){
+			case UP:
+				break;
+			case DOWN:
+				y = (y + Board.CELL_SIZE - height);
+				width = Board.CELL_SIZE;
+				break;
+			case RIGHT:
+				x = (x + Board.CELL_SIZE - height);
+				height = Board.CELL_SIZE;
+				break;
+			case LEFT:
+				height = Board.CELL_SIZE;
+				break;
+			}
+			g.setColor(Color.BLUE);
+			g.fillRect(x, y, width, height);
+		}
+		
+	}
+
 
 	@Override
 	public void draw() {

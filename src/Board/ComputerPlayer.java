@@ -1,5 +1,7 @@
 package Board;
 
+import java.awt.Color;
+import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Set;
@@ -67,4 +69,14 @@ public class ComputerPlayer extends Player {
 		this.lastVisited = lastVisited;
 	}
 	
+	 @Override
+     void draw(Graphics g) {
+             BoardCell location = getLocation();
+             int x = location.column * Board.CELL_SIZE;
+             int y = location.row * Board.CELL_SIZE;
+           // g.setColor(getColor());
+             g.fillOval(x, y, Board.CELL_SIZE, Board.CELL_SIZE);
+             g.setColor(Color.BLACK);
+             g.drawOval(x, y, Board.CELL_SIZE, Board.CELL_SIZE);                
+     }
 }

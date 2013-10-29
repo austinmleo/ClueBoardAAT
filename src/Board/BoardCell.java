@@ -1,5 +1,7 @@
 package Board;
 
+import java.awt.Graphics;
+
 import Board.RoomCell.DoorDirection;
 
 public abstract class BoardCell {
@@ -50,6 +52,11 @@ public abstract class BoardCell {
 	}
 	
 	public abstract void draw();
+
+	public void draw(Graphics g) {
+		// TODO Auto-generated method stub
+		
+	}
 
 	
 

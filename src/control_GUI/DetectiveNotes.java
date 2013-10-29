@@ -1,7 +1,10 @@
 package control_GUI;
 
-import java.awt.BorderLayout;
 import java.awt.GridLayout;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.*;
+import static java.util.Arrays.asList;
 
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
@@ -18,8 +21,9 @@ public class DetectiveNotes extends JFrame {
 	weapon1, weapon2, weapon3, weapon4, weapon5, weapon6;
 	
 	public DetectiveNotes(){
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setTitle("Clue GUI");
+		JFrame detectiveNotes = new JFrame();
+		detectiveNotes.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setTitle("Detective Notes");
 		setSize(550, 500);
 		
 		addPeople();
@@ -71,10 +75,11 @@ public class DetectiveNotes extends JFrame {
 	roomPanel.add(Room8);
 	roomPanel.add(Room9);
 	roomPanel.setLayout(new GridLayout(0, 2));
-	roomPanel.setBorder(new TitledBorder (new EtchedBorder(), "Rooms"));
+	
+	List<String> weaponList = new ArrayList<String>(asList("butts"));
 	
 	JPanel weaponPanel = new JPanel();
-	weapon1 = new JCheckBox("Candelstick");
+	weapon1 = new JCheckBox(weaponList.get(0));
 	weapon2 = new JCheckBox("Knife");
 	weapon3 = new JCheckBox("Lead Pipe");
 	weapon4 = new JCheckBox("Revolver");
