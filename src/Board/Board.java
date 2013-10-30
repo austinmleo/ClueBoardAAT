@@ -454,6 +454,11 @@ public class Board extends JPanel{
         int counter = 0;
         g.setColor(Color.GRAY);
         g.fillRect(0, 0, numColumns * CELL_SIZE, numRows * CELL_SIZE);
+        
+        for(BoardCell cell : cells)
+        	cell.draw(g);
+        
+        /*
         for (int i = 0; i < numRows; ++i) {
                 for (int j = 0; j < numColumns; ++j) {
                         int index = calcIndex(i, j);
@@ -475,6 +480,7 @@ public class Board extends JPanel{
                         
                 }
         }
+        */
         
         for (Player p : players) {
                 p.draw(g);

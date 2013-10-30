@@ -63,7 +63,7 @@ public class Control_GUI extends JFrame {
 	public  Control_GUI(){
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("Clue GUI");
-		setSize(1000, 1000);	
+		setSize(800, 800);	
 		Controler();
 		createBoard();
 		
