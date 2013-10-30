@@ -31,27 +31,27 @@ public class testPeopleAndCards {
 	public void testPlayers() { //This test ensures each player has the proper name color and starting spot.
 		ArrayList<Player> test = board.getPlayers();
 		Assert.assertTrue(test.get(0).getName().equalsIgnoreCase("Jesus"));
-		Assert.assertTrue(test.get(0).getColor().equalsIgnoreCase("White"));
+		Assert.assertTrue(test.get(0).getStrColor().equalsIgnoreCase("White"));
 		Assert.assertTrue(test.get(0).getCurrentIndex() == 8);
 		
 		Assert.assertTrue(test.get(1).getName().equalsIgnoreCase("The Boss"));
-		Assert.assertTrue(test.get(1).getColor().equalsIgnoreCase("Black"));
+		Assert.assertTrue(test.get(1).getStrColor().equalsIgnoreCase("Black"));
 		Assert.assertTrue(test.get(1).getCurrentIndex() == 14);
 		
 		Assert.assertTrue(test.get(2).getName().equalsIgnoreCase("King Awesome"));
-		Assert.assertTrue(test.get(2).getColor().equalsIgnoreCase("Purple"));
+		Assert.assertTrue(test.get(2).getStrColor().equalsIgnoreCase("Purple"));
 		Assert.assertTrue(test.get(2).getCurrentIndex() == 160);
 		
 		Assert.assertTrue(test.get(3).getName().equalsIgnoreCase("Uncle Sam"));
-		Assert.assertTrue(test.get(3).getColor().equalsIgnoreCase("Red"));
+		Assert.assertTrue(test.get(3).getStrColor().equalsIgnoreCase("Red"));
 		Assert.assertTrue(test.get(3).getCurrentIndex() == 522);
 		
 		Assert.assertTrue(test.get(4).getName().equalsIgnoreCase("Some Guy"));
-		Assert.assertTrue(test.get(4).getColor().equalsIgnoreCase("Teal"));
+		Assert.assertTrue(test.get(4).getStrColor().equalsIgnoreCase("Teal"));
 		Assert.assertTrue(test.get(4).getCurrentIndex() == 512);
 		
 		Assert.assertTrue(test.get(5).getName().equalsIgnoreCase("A Girl"));
-		Assert.assertTrue(test.get(5).getColor().equalsIgnoreCase("Pink"));
+		Assert.assertTrue(test.get(5).getStrColor().equalsIgnoreCase("Pink"));
 		Assert.assertTrue(test.get(5).getCurrentIndex() == 230);		
 	}
 	

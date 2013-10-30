@@ -9,10 +9,10 @@ public class HumanPlayer extends Player{
 
 
 
-	public HumanPlayer(String name, String color, int currentIndex,
+	public HumanPlayer(String name, String strColor, int currentIndex,
 			ArrayList<Card> possibleWeapons, ArrayList<Card> possiblePeople,
 			ArrayList<Card> possibleRooms) {
-		super(name, color, currentIndex, possibleWeapons, possiblePeople, possibleRooms);
+		super(name, strColor, currentIndex, possibleWeapons, possiblePeople, possibleRooms);
 		// TODO Auto-generated constructor stub
 	}
 

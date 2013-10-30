@@ -73,6 +73,7 @@ public class Board extends JPanel{
 			loadBoard(BoardFile);
 			loadCards("cards.txt");
 			loadPlayers("People.txt");
+			//paintComponent(Graphics g = new Graphics();)
 			//loadCards("cards.txt");
 			dealCards();
 		} catch (Exception e) {
@@ -481,7 +482,8 @@ public class Board extends JPanel{
 		//System.out.println(b.getNumRows());
 		//System.out.println(b.getNumColumns());
 		//System.out.println(b.calcIndex(b.getNumColumns(), b.getNumRows()));
-		System.out.println(b.getRoomName('K'));
+		//System.out.println(b.getRoomName('K'));
+		System.out.println(b.players.get(0).getColor());
 		
 	}
 
