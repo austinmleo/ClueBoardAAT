@@ -122,7 +122,7 @@ public class Control_GUI extends JFrame {
 		dieRoll = Integer.toString(tempDie);
 		diePanel.add(dieLabel);
 		diePanel.add(die);
-		//add(diePanel, BorderLayout.WEST);
+		
 		
 		diePanel.setBorder(new TitledBorder (new EtchedBorder(), "Die"));
 	
@@ -165,14 +165,14 @@ public class Control_GUI extends JFrame {
 		test.add(emptyPanel);
 		test.add(buttonPanel);
 	
-		//test.add(buttonPanel2);
+		
 		test.add(diePanel);
 		test.add(guessPanel);
 		test.add(resultPanel);
 
 
 		add(test, BorderLayout.SOUTH);
-		//add(new JSeparator(), BorderLayout.CENTER);
+	
 	}
 
 	private void updateDisplay	(){
