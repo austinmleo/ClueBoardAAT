@@ -451,6 +451,7 @@ public class Board extends JPanel{
 	
 	public void paintComponent(Graphics g) {
         super.paintComponent(g);
+        int counter = 0;
         g.setColor(Color.GRAY);
         g.fillRect(0, 0, numColumns * CELL_SIZE, numRows * CELL_SIZE);
         for (int i = 0; i < numRows; ++i) {
@@ -458,14 +459,18 @@ public class Board extends JPanel{
                         int index = calcIndex(i, j);
                         int x = j * CELL_SIZE;
                         int y = i * CELL_SIZE;
+                        //int counter = 0;
                         
                         BoardCell cell = getCellAt(index);
                         if (getRoomCellAt(index) != null) {
-                                //RoomCell roomCell = (RoomCell) cell;
-                        		//getRoomCellAt(index);
-                                cell.draw(g);
+                        	System.out.println("A room Cell!");
+                        	counter++;
+                        	System.out.println(counter);
+                            //RoomCell roomCell = (RoomCell) cell;
+                        	RoomCell room = getRoomCellAt(index);
+                            room.draw(g);
                         } else if (cell.isWalkway()) {
-                               cell.draw(g);
+                            cell.draw(g);
                         }        
                         
                 }
@@ -478,6 +483,17 @@ public class Board extends JPanel{
         g.drawRect(0, 0, numColumns * CELL_SIZE, numRows * CELL_SIZE);
         
        
+        //g.setColor(Color.BLACK);
+        g.drawString("Study", 90, 45);
+        g.drawString("Hall", 280, 45);
+        g.drawString("Lounge", 450, 45);
+        g.drawString("Library", 70, 180);
+        g.drawString("Dining Room", 450, 270);
+        g.drawString("Billiard Room", 40, 315);
+        g.drawString("Conservatory", 50, 500);
+        g.drawString("BallRoom", 260, 500);
+        g.drawString("Kitchen", 480, 500);
+        
 }
 
 	
