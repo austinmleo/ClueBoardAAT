@@ -74,7 +74,7 @@ public class ComputerPlayer extends Player {
              BoardCell location = getLocation();
              int x = location.column * Board.CELL_SIZE;
              int y = location.row * Board.CELL_SIZE;
-           // g.setColor(getColor());
+            g.setColor(getColor());
              g.fillOval(x, y, Board.CELL_SIZE, Board.CELL_SIZE);
              g.setColor(Color.BLACK);
              g.drawOval(x, y, Board.CELL_SIZE, Board.CELL_SIZE);                

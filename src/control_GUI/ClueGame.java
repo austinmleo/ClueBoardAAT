@@ -14,9 +14,9 @@ public class ClueGame extends JFrame {
         setTitle("Clue Game");
         setSize(800, 700);
         
-        createMenuBar();
+       // createMenuBar();
         createBoard();
-        createControls();
+       // createControls();
         
     }
 	

@@ -1,6 +1,6 @@
 Jesus,WHITE,8
 The Boss,BLACK,14
-King Awesome,PURPLE,160
+King Awesome,GREEN,160
 Uncle Sam,RED,522
 Some Guy,ORANGE,512
 A Girl,PINK,230

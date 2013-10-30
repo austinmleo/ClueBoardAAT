@@ -98,11 +98,12 @@ public class Player {
 		this.possibleRooms = possibleRooms;
 	}
 	
-	public void  setLocation(){
+	public void  setLocation(BoardCell location){
 		this.location = location;
 	}
 	
 	public BoardCell getLocation(){
+		
 		return location;
 	}
 	

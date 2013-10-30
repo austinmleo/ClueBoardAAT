@@ -23,6 +23,8 @@ import javax.swing.JTextArea;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
 
+import Board.Board;
+
 
 
 
@@ -55,14 +57,15 @@ public class Control_GUI extends JFrame {
 	
 	
 		
-	
+	Board board;
 	
 
 	public  Control_GUI(){
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("Clue GUI");
-		setSize(1000, 200);	
+		setSize(1000, 1000);	
 		Controler();
+		createBoard();
 		
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
@@ -202,6 +205,12 @@ public class Control_GUI extends JFrame {
 		
 	}
 
+	
+	  public void createBoard() {
+	        board = new Board();
+	        add(board, BorderLayout.CENTER);
+	    }
+	
 
 	public static void main(String[] args) {
 		Control_GUI controler = new Control_GUI() ;

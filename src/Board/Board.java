@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -28,8 +29,8 @@ public class Board extends JPanel{
 
 
 	private ArrayList<BoardCell> cells;
-	private int numRows;
-	private int numColumns;
+	public int numRows;
+	public int numColumns;
 	private Map<Character, String> rooms;
 	private Map<Integer, ArrayList<Integer>> adjs = new HashMap<Integer, ArrayList<Integer>>();
 	private LinkedList<Integer> adjList;
@@ -164,6 +165,7 @@ public class Board extends JPanel{
 			int index = Integer.parseInt(spot);
 			
 			HumanPlayer human = new HumanPlayer(name, color, index, getWeapons(), getPeople(), getRoomCards());
+			human.setLocation(getCellAt(index));
 			players.add(human);
 			
 			while(in.hasNextLine()){
@@ -176,6 +178,7 @@ public class Board extends JPanel{
 				index = Integer.parseInt(spot);
 				
 				Player next = new ComputerPlayer (name, color, index, getWeapons(), getPeople(), getRoomCards());
+				next.setLocation(getCellAt(index));
 				players.add(next);				
 			}
 	}
@@ -314,10 +317,13 @@ public class Board extends JPanel{
 	}
 	
 	public int calcIndex(int col, int row) {
-		if (col == this.getNumColumns() && row == this.getNumRows()) {
-			return calcIndex(col -1, row -1);
+		if (col == this.getNumColumns()) {
+			col--;
 		}
- 		else {return col + row*(numColumns);}
+		if (row == this.getNumRows()) {
+			row--;
+		}
+ 		return col + row*(numColumns);
 	}
 
 	public Map<Character, String> getRooms() {
@@ -427,8 +433,18 @@ public class Board extends JPanel{
 	}
 	
 	
-	
-	
+	public Color convertColor(String strColor) {
+		Color color; 
+		try {     
+			// We can use reflection to convert the string to a color
+			System.out.println(strColor.trim());
+			Field field = Class.forName("java.awt.Color").getField(strColor.trim());     
+			color = (Color)field.get(null); } 
+		catch (Exception e) {  
+			color = null; // Not defined } 
+		}
+		return color;
+	}
 	
 	
 	
@@ -444,11 +460,12 @@ public class Board extends JPanel{
                         int y = i * CELL_SIZE;
                         
                         BoardCell cell = getCellAt(index);
-                        if (cell.isRoom()) {
-                                RoomCell roomCell = (RoomCell) cell;
+                        if (getRoomCellAt(index) != null) {
+                                //RoomCell roomCell = (RoomCell) cell;
+                        		//getRoomCellAt(index);
                                 cell.draw(g);
                         } else if (cell.isWalkway()) {
-                                cell.draw(g);
+                               cell.draw(g);
                         }        
                         
                 }
@@ -459,6 +476,8 @@ public class Board extends JPanel{
         }
         g.setColor(Color.BLACK);
         g.drawRect(0, 0, numColumns * CELL_SIZE, numRows * CELL_SIZE);
+        
+       
 }
 
 	

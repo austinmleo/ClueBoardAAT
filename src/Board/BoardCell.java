@@ -51,12 +51,8 @@ public abstract class BoardCell {
 		return column + row * 23;
 	}
 	
-	public abstract void draw();
+	public abstract void draw(Graphics g);
 
-	public void draw(Graphics g) {
-		// TODO Auto-generated method stub
-		
-	}
 
 	
 

@@ -51,13 +51,32 @@ public class RoomCell extends BoardCell{
 	@Override
 	public void draw(Graphics g) {
 		
-		int x = column * Board.CELL_SIZE;
+		
+		int x = this.column * Board.CELL_SIZE;
+		int y = this.row * Board.CELL_SIZE;
+		
+		g.setColor(Color.GREEN);
+       
+        g.fillRect(x, y, Board.CELL_SIZE, Board.CELL_SIZE);
+        g.setColor(Color.BLACK);
+        g.drawRect(x, y, Board.CELL_SIZE, Board.CELL_SIZE);
+       
+        
+		
+		
+		
+		
+		
+		
+		
+		
+	/*	int x = column * Board.CELL_SIZE;
 		int y = row * Board.CELL_SIZE;
 		
-		if (false){
-			g.setColor(new Color(51,204,255));
-			g.fillRect(x, y, Board.CELL_SIZE, Board.CELL_SIZE);
-		}
+		//if (board.getTargets().contains(this)){
+		//	g.setColor(new Color(51,204,255));
+		//	g.fillRect(x, y, Board.CELL_SIZE, Board.CELL_SIZE);
+		//}
 		
 		if(directionOfDoor != DoorDirection.NONE){
 			int height = 4;
@@ -81,13 +100,19 @@ public class RoomCell extends BoardCell{
 			g.fillRect(x, y, width, height);
 		}
 		
-	}
-
-
-	@Override
-	public void draw() {
-		// TODO Auto-generated method stub
+		// if (displayRoomName) {
+         //    g.setColor(Color.BLUE);
+             //prepare string
+         //    String roomName = name;
+             
+           //  g.drawString(name, x, y);
+    // }
+     */
+   
 		
 	}
+
+
+	
 
 }
