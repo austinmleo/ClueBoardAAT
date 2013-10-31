@@ -18,17 +18,17 @@ import Board.Board;
 
 public class DetectiveNotes extends JDialog {
 
-	//private Board theboard;
+	private Board theboard;
 	
 	private JCheckBox 
 	people,
 	room,
 	weapon;
 
-	public DetectiveNotes(){
+	public DetectiveNotes(Board input){
 		//JFrame detectiveNotes = new JFrame();
 		//detectiveNotes.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		//theboard = input;
+		theboard = input;
 		setTitle("Detective Notes");
 		setSize(550, 500);
 
@@ -36,7 +36,7 @@ public class DetectiveNotes extends JDialog {
 
 	}
 
-	Board theboard = new Board();
+	//Board theboard = new Board();
 
 	public void addComponents() {
 		final JPanel topPanel = new JPanel();
@@ -114,8 +114,8 @@ public class DetectiveNotes extends JDialog {
 
 
 	public static void main(String[] args) {
-		DetectiveNotes controler = new DetectiveNotes() ;
-		controler.setVisible(true);
+		//DetectiveNotes controler = new DetectiveNotes() ;
+		//controler.setVisible(true);
 
 	}
 

@@ -25,14 +25,6 @@ import javax.swing.border.TitledBorder;
 
 import Board.Board;
 
-
-
-
-
-
-
-
-
 public class Control_GUI extends JPanel {
 
 	// whoseTurnPanel variables

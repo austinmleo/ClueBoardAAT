@@ -15,6 +15,7 @@ public class ClueGame extends JFrame {
 
 	private Board board;
 	private Control_GUI gui;
+	DetectiveNotes notes; // = new DetectiveNotes(this.getBoard());
 	
     public ClueGame() {
         setTitle("Clue Game");
@@ -22,8 +23,8 @@ public class ClueGame extends JFrame {
         
         createMenuBar();
         createBoard();
-        createControls();
-        
+        createControls();     
+        notes = new DetectiveNotes(this.getBoard());
     }
 	
 	public void createMenuBar() {
@@ -32,8 +33,6 @@ public class ClueGame extends JFrame {
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
 		menuBar.add(openNotes());
-		
-		
 	}
 	
     public void createBoard() {
@@ -46,13 +45,11 @@ public class ClueGame extends JFrame {
     	add(gui, BorderLayout.SOUTH);
     	
     }
-	
-
-
     
     public Board getBoard() {
         return board;
     }
+    
     public Control_GUI getGui(){
     	return gui;
     }
@@ -60,7 +57,6 @@ public class ClueGame extends JFrame {
     public static void main(String[] args) {
     	ClueGame controler = new ClueGame() ;
 		controler.setVisible(true);
-
 	}
     
     private JMenu openNotes(){
@@ -70,21 +66,16 @@ public class ClueGame extends JFrame {
 	}
 	
 	private JMenuItem detectiveNotes(){
+		//final ClueGame temp = this;
 		JMenuItem item = new JMenuItem("Detective Notes");
 		class MenuItemListener  implements ActionListener{
 			public void actionPerformed(ActionEvent e){
-				DetectiveNotes notes = new DetectiveNotes();
 				notes.setVisible(true);
 			
 			}
-
-			
-			
 		}
 		item.addActionListener(new MenuItemListener());
-		return item;
-		
-	}
-    
+		return item;	
+	}  
 }
 
