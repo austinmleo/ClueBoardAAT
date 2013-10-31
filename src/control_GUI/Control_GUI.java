@@ -103,7 +103,7 @@ public class Control_GUI extends JFrame {
 
 		JPanel buttonPanel = new JPanel();
 		nextPlayerButton = new JButton("Next Player");
-		accusationButton = new JButton("Make and accusation");
+		accusationButton = new JButton("Make an accusation");
 		buttonPanel.add(nextPlayerButton);
 		buttonPanel.add(accusationButton);
 		buttonPanel.setLayout(new GridLayout(0, 2));
@@ -195,10 +195,7 @@ public class Control_GUI extends JFrame {
 				DetectiveNotes notes = new DetectiveNotes();
 				notes.setVisible(true);
 			
-			}
-
-			
-			
+			}	
 		}
 		item.addActionListener(new MenuItemListener());
 		return item;

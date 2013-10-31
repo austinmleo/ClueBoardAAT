@@ -123,7 +123,7 @@ public class Player {
 		Color color; 
 		try {     
 			// We can use reflection to convert the string to a color
-			System.out.println(strColor.trim());
+			//System.out.println(strColor.trim());
 			Field field = Class.forName("java.awt.Color").getField(strColor.trim());     
 			color = (Color)field.get(null); } 
 		catch (Exception e) {  

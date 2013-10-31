@@ -18,6 +18,8 @@ import Board.Board;
 
 public class DetectiveNotes extends JDialog {
 
+	//private Board theboard;
+	
 	private JCheckBox 
 	people,
 	room,
@@ -26,6 +28,7 @@ public class DetectiveNotes extends JDialog {
 	public DetectiveNotes(){
 		//JFrame detectiveNotes = new JFrame();
 		//detectiveNotes.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		//theboard = input;
 		setTitle("Detective Notes");
 		setSize(550, 500);
 
