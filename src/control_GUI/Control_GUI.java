@@ -33,7 +33,7 @@ import Board.Board;
 
 
 
-public class Control_GUI extends JFrame {
+public class Control_GUI extends JPanel {
 
 	// whoseTurnPanel variables
 	private String playersName;
@@ -57,19 +57,19 @@ public class Control_GUI extends JFrame {
 	
 	
 		
-	Board board;
+	//Board board;
 	
 
 	public  Control_GUI(){
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setTitle("Clue GUI");
-		setSize(800, 800);	
+		//setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		//setTitle("Clue GUI");
+		//setSize(800, 800);	
 		Controler();
-		createBoard();
+		//createBoard();
 		
-		JMenuBar menuBar = new JMenuBar();
-		setJMenuBar(menuBar);
-		menuBar.add(openNotes());
+		//JMenuBar menuBar = new JMenuBar();
+		//setJMenuBar(menuBar);
+		//menuBar.add(openNotes());
 }
 	
 	
@@ -182,7 +182,7 @@ public class Control_GUI extends JFrame {
 		responseArea.setText(response);
 	}
 
-	private JMenu openNotes(){
+	/*private JMenu openNotes(){
 		JMenu menu = new JMenu("File");
 		menu.add(detectiveNotes());
 		return menu;
@@ -201,17 +201,20 @@ public class Control_GUI extends JFrame {
 		return item;
 		
 	}
+	*/
 
+
+	 // public void createBoard() {
+	 //       board = new Board();
+	  //      add(board, BorderLayout.CENTER);
+	//  }
+	    
 	
-	  public void createBoard() {
-	        board = new Board();
-	        add(board, BorderLayout.CENTER);
-	    }
+
+//	public static void main(String[] args) {
+//		Control_GUI controler = new Control_GUI() ;
+//		controler.setVisible(true);
+
+//	}
 	
-
-	public static void main(String[] args) {
-		Control_GUI controler = new Control_GUI() ;
-		controler.setVisible(true);
-
-	}
 }
