@@ -38,6 +38,7 @@ public class Board extends JPanel{
 	private Set<BoardCell> targets = new HashSet<BoardCell>();
 	private String LegendFile;
 	private String BoardFile;
+	private HumanPlayer human;
 	private ArrayList<Player> players = new ArrayList<Player>();
 	private ArrayList<Card> deck = new ArrayList<Card>();
 	private ArrayList<Card> testDeck = new ArrayList<Card>(); //Only used for testing.
@@ -164,7 +165,7 @@ public class Board extends JPanel{
 			String spot = data[2];
 			int index = Integer.parseInt(spot);
 			
-			HumanPlayer human = new HumanPlayer(name, color, index, getWeapons(), getPeople(), getRoomCards());
+			human = new HumanPlayer(name, color, index, getWeapons(), getPeople(), getRoomCards());
 			human.setLocation(getCellAt(index));
 			players.add(human);
 			
@@ -248,6 +249,7 @@ public class Board extends JPanel{
 			}
 		}
 	}
+	
 	
 	public Boolean makeAccusation (String room, String person, String weapon) {
 		if (Solution.get(0).getContent().equalsIgnoreCase(room) 
@@ -502,21 +504,20 @@ public class Board extends JPanel{
         
 }
 
-	
-	
-	
-	
-	
-	
-	
-	
+	public HumanPlayer getHuman(){
+		return human;
+	}
+
+	public Card getType(){
+		return getType();
+	}
 	
 	
 	public static void main(String [ ] args) {
 
 		//Board b = new Board("ClueLayout.csv" , "Legend.txt");
-		Board b = new Board("ClueLayouttest.csv", "ClueLegend.txt");
-		//System.out.println(b.getAdjList(7));
+		Board b = new Board("ClueLayout.csv", "ClueLegend.txt");
+		
 		//System.out.println(b.getAdjList(505));
 		//System.out.println(b.getAdjList(b.calcIndex(15,6)));
 		//System.out.println(b.getAdjList(b.calcIndex(7,4)));
@@ -524,6 +525,7 @@ public class Board extends JPanel{
 		//System.out.println(b.getNumColumns());
 		//System.out.println(b.calcIndex(b.getNumColumns(), b.getNumRows()));
 		//System.out.println(b.getRoomName('K'));
+		System.out.println(b.human.getCards());
 		System.out.println(b.players.get(0).getColor());
 		
 	}
