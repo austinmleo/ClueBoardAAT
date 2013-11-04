@@ -77,7 +77,7 @@ public class Control_GUI extends JPanel {
 		JPanel whoseTurnPanel = new JPanel();
 		JLabel turnLabel = new JLabel("Whose Turn");
 		playersName = "Todd";
-		displayPlayer = new JTextArea(1,10);
+		displayPlayer = new JTextArea();
 
 		displayPlayer.setBackground(Color.lightGray);
 		displayPlayer.setEditable(false);
@@ -105,7 +105,7 @@ public class Control_GUI extends JPanel {
 
 		JPanel diePanel = new JPanel();
 		JLabel dieLabel = new JLabel("Die");
-		die = new JTextArea(1,10);
+		die = new JTextArea();
 		die.setBackground(Color.lightGray);
 		die.setEditable(false);
 		die.setLineWrap(true);
@@ -125,7 +125,7 @@ public class Control_GUI extends JPanel {
 		JPanel guessPanel = new JPanel();
 		JLabel guessLabel = new JLabel("Guess");
 		makeAGuess = "Plasma Gun";
-		inputGuess = new JTextArea(1,10);
+		inputGuess = new JTextArea();
 		inputGuess.setBackground(Color.lightGray);
 		inputGuess.setEditable(false);
 		inputGuess.setLineWrap(true);
@@ -139,7 +139,7 @@ public class Control_GUI extends JPanel {
 		JPanel resultPanel = new JPanel();
 		JLabel resultLabel = new JLabel("Response");
 		response = "I have nothing";
-		responseArea = new JTextArea(1,10);
+		responseArea = new JTextArea();
 		responseArea.setBackground(Color.lightGray);
 		responseArea.setEditable(false);
 		responseArea.setLineWrap(true);

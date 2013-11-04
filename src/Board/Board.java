@@ -25,7 +25,7 @@ import Board.RoomCell.DoorDirection;
 //Authors: Arnaud Filliat and Vy Ta
 //Make sure to note that for the cells we use (x,y) coordinates so (column, row)
 public class Board extends JPanel{
-	public static final int CELL_SIZE = 25;
+	public static final int CELL_SIZE = 30;
 
 
 	private ArrayList<BoardCell> cells;
