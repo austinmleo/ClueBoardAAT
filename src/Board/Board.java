@@ -580,7 +580,7 @@ public class Board extends JPanel{
 				if(cell.isRoom() && ((ComputerPlayer) p).getLastVisited() != ((RoomCell) cell).getInitial()){
 					roomList.add(cell);
 					hasRoom = true;
-					((ComputerPlayer) p).setLastVisited(((RoomCell) cell).getInitial());
+					
 				} else {
 					list.add(cell);
 				}
@@ -591,6 +591,7 @@ public class Board extends JPanel{
 			if(hasRoom){
 				int room = generator.nextInt(roomList.size());
 				p.setCurrentIndex(roomList.get(room).getIndex());
+				((ComputerPlayer) p).setLastVisited(((RoomCell) roomList.get(room)).getInitial());
 			} else {
 				int cell = generator.nextInt(list.size());
 				p.setCurrentIndex(list.get(cell).getIndex());
