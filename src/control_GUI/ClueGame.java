@@ -74,7 +74,7 @@ public class ClueGame extends JFrame {
 		    if (e.getSource() == button1) {
 		    	System.out.println("good job");
 		    	startUp = true;
-		    	gui.updateDisplay();
+		    	
 		    	//ClueGame game = new ClueGame();
 		    	//game.setVisible(true);
 		       	
@@ -117,7 +117,8 @@ public class ClueGame extends JFrame {
     		
     		public void actionPerformed(ActionEvent e){
     		board.nextTurn();
-    			
+    		gui.setPlayerName();
+    		gui.rollDie();
     		}
     	});
     }
@@ -196,7 +197,7 @@ public class ClueGame extends JFrame {
 public static void main(String[] args) {
 	ClueGame controller = new ClueGame() ;
 	controller.setVisible(true);
-	//controller.startGame();
+	controller.startGame();
 	
 }
 }

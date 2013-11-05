@@ -13,6 +13,8 @@ public abstract class BoardCell {
 	protected boolean room = false;
 	protected boolean walkway = false;
 	
+	protected boolean isTarget;
+	
 	public int getRow() {
 		return row;
 	}
@@ -53,7 +55,9 @@ public abstract class BoardCell {
 	
 	public abstract void draw(Graphics g);
 
-
+	public void setTarget(boolean value) {
+		isTarget = value;
+	}
 	
 
 }

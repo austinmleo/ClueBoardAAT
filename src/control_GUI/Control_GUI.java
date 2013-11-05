@@ -175,13 +175,28 @@ public class Control_GUI extends JPanel {
 		
 
 
-	public void updateDisplay	(){
+	public void updateDisplay(){
 		die.setText(dieRoll);
-		displayPlayer.setText(theboard.getPeople().get(theboard.getTurnCounter()).getContent());
+		displayPlayer.setText(playersName);
 		inputGuess.setText(makeAGuess);
 		responseArea.setText(response);
 	}
 
+	public void setPlayerName(){
+		playersName = theboard.getPeople().get(theboard.getTurnCounter()).getContent();
+		updateDisplay();
+	}
+	
+	public void rollDie(){
+		//Random roll = new Random();
+		//int die = Math.abs(roll.nextInt());
+		//die = die % 6 + 1;
+		int die = theboard.getDie();
+		System.out.println(die);
+		dieRoll = Integer.toString(die);
+		updateDisplay();	
+	}
+	
 	/*private JMenu openNotes(){
 		JMenu menu = new JMenu("File");
 		menu.add(detectiveNotes());

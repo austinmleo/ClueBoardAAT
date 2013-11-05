@@ -39,6 +39,7 @@ public class Board extends JPanel{
 	private Set<BoardCell> targets = new HashSet<BoardCell>();
 	private String LegendFile;
 	private String BoardFile;
+	private int die;
 	private HumanPlayer human;
 	private int turnCounter;
 	private boolean humansTurn;
@@ -558,17 +559,38 @@ public class Board extends JPanel{
 		this.people = people;
 	}
 	
+	public void rollDie(){
+		Random roll = new Random();
+		die = Math.abs(roll.nextInt());
+		die = die % 6 + 1;
+	}
+		
+	public int getDie(){
+		return die;
+	}
+	
+	
+	
 	public void makeMove(Player p){
 		
+		rollDie();
+		startTargets(p.currentIndex, die);
 		
 		if(p instanceof ComputerPlayer){
 			humansTurn = false;
-		}else
+		} else {
 			humansTurn = true;
+			for(BoardCell cell : getTargets()) {
+				System.out.println("board cell targets");
+				cell.setTarget(true);
+			}
+		}
 		
+		paintComponent(super.getGraphics());
 	}
 	
 	public void nextTurn(){
+		
 		if (humansTurn){
 			JOptionPane.showMessageDialog(this, "You have to make a more before we can contiue");
 			System.out.println("human check");
