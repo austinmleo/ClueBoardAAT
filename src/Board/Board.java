@@ -16,6 +16,7 @@ import java.util.Set;
 import java.util.Random;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import Board.Card.type;
@@ -25,7 +26,7 @@ import Board.RoomCell.DoorDirection;
 //Authors: Arnaud Filliat and Vy Ta
 //Make sure to note that for the cells we use (x,y) coordinates so (column, row)
 public class Board extends JPanel{
-	public static final int CELL_SIZE = 30;
+	public static final int CELL_SIZE = 25;
 
 
 	private ArrayList<BoardCell> cells;
@@ -39,6 +40,8 @@ public class Board extends JPanel{
 	private String LegendFile;
 	private String BoardFile;
 	private HumanPlayer human;
+	private int turnCounter;
+	private boolean humansTurn;
 	private ArrayList<Player> players = new ArrayList<Player>();
 	private ArrayList<Card> deck = new ArrayList<Card>();
 	private ArrayList<Card> testDeck = new ArrayList<Card>(); //Only used for testing.
@@ -61,6 +64,7 @@ public class Board extends JPanel{
 	public Board() {
 		this.BoardFile = "ClueLayout.csv";
 		this.LegendFile = "legend.txt";
+		turnCounter = 0;
 		try {
 		loadConfigFiles();
 		calcAdjacencies();
@@ -552,5 +556,35 @@ public class Board extends JPanel{
 
 	public void setPeople(ArrayList<Card> people) {
 		this.people = people;
+	}
+	
+	public void makeMove(Player p){
+		
+		
+		if(p instanceof ComputerPlayer){
+			humansTurn = false;
+		}else
+			humansTurn = true;
+		
+	}
+	
+	public void nextTurn(){
+		if (humansTurn){
+			JOptionPane.showMessageDialog(this, "You have to make a more before we can contiue");
+			System.out.println("human check");
+			return;
+		}
+		
+		turnCounter = (++turnCounter % players.size());
+		makeMove(players.get(turnCounter));
+		
+		
+	}
+	
+	public boolean isHumansTurn(){
+		return humansTurn;
+	}
+	public int getTurnCounter(){
+		return turnCounter;
 	}
 }

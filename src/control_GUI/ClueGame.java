@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
@@ -31,8 +32,10 @@ public class ClueGame extends JFrame {
 	private Board board;
 	private Control_GUI gui;
 	JButton button1;
+	boolean startUp = false;
 	
 	DetectiveNotes notes; // = new DetectiveNotes(this.getBoard());
+	
 	
     public ClueGame() {
     	setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -40,26 +43,29 @@ public class ClueGame extends JFrame {
         setSize(1000, 1000);
         setResizable(false);
         
-  
-
+      //  while (!startUp){
+        //	System.out.println("test");
+        //startUpDialog();
+       // }
         
-        
-        
-      // board = this.getBoard();
+       //if(startUp){
+      //  System.out.println("in game");
         createMenuBar();
         createBoard();
         createControls();     
         notes = new DetectiveNotes(this.getBoard());
+   // }
     }
 	
     public void startUpDialog(){
-    	JFrame startUp = new JFrame();
+    	JDialog startUp = new JDialog();
     	startUp.setTitle("Clue Game");
     	startUp.setSize(200, 100);
     	button1 = new JButton("OK");
     	ButtonListener listener = new ButtonListener();
     	button1.addActionListener(listener);
     	add(button1, BorderLayout.SOUTH);
+    
     	
     }
     
@@ -67,12 +73,11 @@ public class ClueGame extends JFrame {
     	public void actionPerformed(ActionEvent e) {
 		    if (e.getSource() == button1) {
 		    	System.out.println("good job");
-		    	createMenuBar();
-		        createBoard();
-		        createControls();   
-		        notes = new DetectiveNotes(board);
-		        
-		    	
+		    	startUp = true;
+		    	gui.updateDisplay();
+		    	//ClueGame game = new ClueGame();
+		    	//game.setVisible(true);
+		       	
 		    }
 		    }
 		
@@ -93,7 +98,7 @@ public class ClueGame extends JFrame {
     }
 	
     public void createControls() {
-    	gui = new Control_GUI();
+    	gui = new Control_GUI(this.getBoard());
     	add(gui, BorderLayout.SOUTH);
     	
     	
@@ -107,12 +112,20 @@ public class ClueGame extends JFrame {
     	humanCards.add(displayCards("Rooms", board.getHuman().getCards(), type.ROOM));
     	add(humanCards, BorderLayout.EAST);
     	
+    	
+    	gui.getNextPlayerButton().addActionListener(new ActionListener(){
+    		
+    		public void actionPerformed(ActionEvent e){
+    		board.nextTurn();
+    			
+    		}
+    	});
     }
     
     public JPanel displayCards(String title, ArrayList<Card> cards, type type){
     	JPanel cardDisplay = new JPanel();
     	cardDisplay.setBorder(new TitledBorder(new EtchedBorder(), title));
-    	cardDisplay.setPreferredSize(new Dimension(5,5));
+    	cardDisplay.setPreferredSize(new Dimension(5,2));
     	
     	for (Card c: cards){
     		if(c.getCardType() == type){ 
@@ -138,11 +151,6 @@ public class ClueGame extends JFrame {
     public Control_GUI getGui(){
     	return gui;
     }
-    
-    public static void main(String[] args) {
-    	ClueGame controler = new ClueGame() ;
-		controler.setVisible(true);
-	}
     
     private JMenu openNotes(){
 		JMenu menu = new JMenu("File");
@@ -177,5 +185,18 @@ public class ClueGame extends JFrame {
 		
 	}
 	
-}
+	public void startGame(){
+		board.makeMove(board.getHuman());
+	}
+	
+	
 
+
+
+public static void main(String[] args) {
+	ClueGame controller = new ClueGame() ;
+	controller.setVisible(true);
+	//controller.startGame();
+	
+}
+}

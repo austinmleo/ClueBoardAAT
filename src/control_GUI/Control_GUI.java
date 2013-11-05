@@ -49,14 +49,15 @@ public class Control_GUI extends JPanel {
 	
 	
 		
-	//Board board;
+	Board theboard;
 	
 
-	public  Control_GUI(){
+	public  Control_GUI(Board input){
 		//setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		//setTitle("Clue GUI");
-		//setSize(800, 800);	
-		Controler();
+		//setSize(800, 800);
+		theboard = input;
+		controller();
 		//createBoard();
 		
 		//JMenuBar menuBar = new JMenuBar();
@@ -65,7 +66,7 @@ public class Control_GUI extends JPanel {
 }
 	
 	
-		public void Controler(){
+		public void controller(){
 
 		final JPanel test = new JPanel();
 		GridLayout experimentLayout = new GridLayout(0,3);
@@ -76,7 +77,8 @@ public class Control_GUI extends JPanel {
 
 		JPanel whoseTurnPanel = new JPanel();
 		JLabel turnLabel = new JLabel("Whose Turn");
-		playersName = "Todd";
+		playersName = theboard.getPeople().get(0).getContent();
+		System.out.println("the count" + theboard.getTurnCounter());
 		displayPlayer = new JTextArea();
 
 		displayPlayer.setBackground(Color.lightGray);
@@ -166,10 +168,16 @@ public class Control_GUI extends JPanel {
 		add(test, BorderLayout.SOUTH);
 	
 	}
+		
+		public JButton getNextPlayerButton(){
+			return nextPlayerButton;
+		}
+		
 
-	private void updateDisplay	(){
+
+	public void updateDisplay	(){
 		die.setText(dieRoll);
-		displayPlayer.setText(playersName);
+		displayPlayer.setText(theboard.getPeople().get(theboard.getTurnCounter()).getContent());
 		inputGuess.setText(makeAGuess);
 		responseArea.setText(response);
 	}
@@ -204,8 +212,8 @@ public class Control_GUI extends JPanel {
 	
 
 //	public static void main(String[] args) {
-//		Control_GUI controler = new Control_GUI() ;
-//		controler.setVisible(true);
+//		Control_GUI controller = new Control_GUI() ;
+//		controller.setVisible(true);
 
 //	}
 	
