@@ -2,6 +2,9 @@ package Board;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Point;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.lang.reflect.Field;
@@ -14,6 +17,7 @@ import java.util.Map;
 import java.util.Scanner;
 import java.util.Set;
 import java.util.Random;
+import java.util.TreeSet;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -57,6 +61,7 @@ public class Board extends JPanel{
 		try {
 		loadConfigFiles();
 		calcAdjacencies();
+		addMouseListener(new PlayerClick());
 		} catch (Exception e) {
 			System.out.println(e.getLocalizedMessage());
 		}
@@ -69,6 +74,7 @@ public class Board extends JPanel{
 		try {
 		loadConfigFiles();
 		calcAdjacencies();
+		addMouseListener(new PlayerClick());
 		} catch (Exception e) {
 			System.out.println(e.getLocalizedMessage());
 		}
@@ -497,6 +503,8 @@ public class Board extends JPanel{
         
        
         //g.setColor(Color.BLACK);
+
+        
         g.drawString("Study", 90, 45);
         g.drawString("Hall", 280, 45);
         g.drawString("Lounge", 450, 45);
@@ -518,22 +526,7 @@ public class Board extends JPanel{
 	}
 	
 	
-	public static void main(String [ ] args) {
 
-		//Board b = new Board("ClueLayout.csv" , "Legend.txt");
-		Board b = new Board("ClueLayout.csv", "ClueLegend.txt");
-		
-		//System.out.println(b.getAdjList(505));
-		//System.out.println(b.getAdjList(b.calcIndex(15,6)));
-		//System.out.println(b.getAdjList(b.calcIndex(7,4)));
-		//System.out.println(b.getNumRows());
-		//System.out.println(b.getNumColumns());
-		//System.out.println(b.calcIndex(b.getNumColumns(), b.getNumRows()));
-		//System.out.println(b.getRoomName('K'));
-		System.out.println(b.human.getCards());
-		System.out.println(b.players.get(0).getColor());
-		
-	}
 
 	public ArrayList<Card> getRoomCards() {
 		return roomCards;
@@ -563,6 +556,7 @@ public class Board extends JPanel{
 		Random roll = new Random();
 		die = Math.abs(roll.nextInt());
 		die = die % 6 + 1;
+		System.out.println(die + "in Board");
 	}
 		
 	public int getDie(){
@@ -608,5 +602,58 @@ public class Board extends JPanel{
 	}
 	public int getTurnCounter(){
 		return turnCounter;
+	}
+
+	private class PlayerClick implements MouseListener {
+		public void mousePressed (MouseEvent event){
+			Point click = event.getPoint();
+			System.out.println(click);
+			click.x = click.x/CELL_SIZE;
+			click.y = click.y/CELL_SIZE;
+			int index = calcIndex(click.x, click.y);
+			System.out.println(index);
+			
+		}
+	public void mouseClicked(MouseEvent event){}
+
+	public void mouseEntered(MouseEvent arg0) {}
+
+	public void mouseExited(MouseEvent arg0) {}
+
+	
+	public void mouseReleased(MouseEvent arg0) {}
+	}
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+public static void main(String [ ] args) {
+
+	//Board b = new Board("ClueLayout.csv" , "Legend.txt");
+	Board b = new Board("ClueLayout.csv", "ClueLegend.txt");
+	
+	//System.out.println(b.getAdjList(505));
+	//System.out.println(b.getAdjList(b.calcIndex(15,6)));
+	//System.out.println(b.getAdjList(b.calcIndex(7,4)));
+	//System.out.println(b.getNumRows());
+	//System.out.println(b.getNumColumns());
+	//System.out.println(b.calcIndex(b.getNumColumns(), b.getNumRows()));
+	//System.out.println(b.getRoomName('K'));
+	System.out.println(b.human.getCards());
+	System.out.println(b.players.get(0).getColor());
+	
 	}
 }
