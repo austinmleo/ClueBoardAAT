@@ -69,6 +69,10 @@ public class ComputerPlayer extends Player {
 		this.lastVisited = lastVisited;
 	}
 	
+	public char getLastVisited(){
+		return lastVisited;
+	}
+	
 	 @Override
      void draw(Graphics g) {
             // BoardCell location = getLocation();
