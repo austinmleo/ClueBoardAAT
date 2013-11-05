@@ -27,7 +27,7 @@ public class WalkwayCell extends BoardCell {
         g.fillRect(x, y, Board.CELL_SIZE, Board.CELL_SIZE);
         
         if(isTarget){
-        	System.out.println("is a target");
+        	
         	g.setColor(Color.CYAN);
         	g.fillRect(x, y, Board.CELL_SIZE, Board.CELL_SIZE);
         }

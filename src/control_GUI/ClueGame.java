@@ -118,7 +118,7 @@ public class ClueGame extends JFrame {
     		public void actionPerformed(ActionEvent e){
     		board.nextTurn();
     		gui.setPlayerName();
-    		gui.rollDie();
+    		gui.setRollDie();
     		}
     	});
     }
@@ -188,6 +188,7 @@ public class ClueGame extends JFrame {
 	
 	public void startGame(){
 		board.makeMove(board.getHuman());
+		gui.setRollDie();
 	}
 	
 	

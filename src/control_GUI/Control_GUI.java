@@ -187,12 +187,13 @@ public class Control_GUI extends JPanel {
 		updateDisplay();
 	}
 	
-	public void rollDie(){
+	public void setRollDie(){
 		//Random roll = new Random();
 		//int die = Math.abs(roll.nextInt());
 		//die = die % 6 + 1;
+		//theboard.rollDie();
 		int die = theboard.getDie();
-		System.out.println(die);
+		System.out.println(die + "in control");
 		dieRoll = Integer.toString(die);
 		updateDisplay();	
 	}
