@@ -41,7 +41,7 @@ public class ClueGame extends JFrame {
     public ClueGame() {
     	setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setTitle("Clue Game");
-        setSize(1000, 1000);
+        setSize(1000, 800);
         setResizable(false);
         
       //  while (!startUp){
@@ -69,20 +69,18 @@ public class ClueGame extends JFrame {
     
     	
     }
-    
+
     class ButtonListener implements ActionListener{
     	public void actionPerformed(ActionEvent e) {
-		    if (e.getSource() == button1) {
-		    	System.out.println("good job");
-		    	startUp = true;
-		    	
-		    	//ClueGame game = new ClueGame();
-		    	//game.setVisible(true);
-		       	
-		    }
-		    }
-		
-    	
+    		if (e.getSource() == button1) {
+    			System.out.println("good job");
+    			startUp = true;
+
+    			//ClueGame game = new ClueGame();
+    			//game.setVisible(true);
+
+    		}
+    	}
     }
     
 	public void createMenuBar() {
@@ -115,11 +113,11 @@ public class ClueGame extends JFrame {
     	
     	
     	gui.getNextPlayerButton().addActionListener(new ActionListener(){
-    		
+
     		public void actionPerformed(ActionEvent e){
-    		board.nextTurn();
-    		gui.setPlayerName();
-    		gui.setRollDie();
+    			board.nextTurn();
+    			gui.setPlayerName();
+    			gui.setRollDie();
     		}
     	});
     }

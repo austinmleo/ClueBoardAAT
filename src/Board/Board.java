@@ -34,8 +34,8 @@ public class Board extends JPanel{
 
 
 	private ArrayList<BoardCell> cells;
-	public int numRows;
-	public int numColumns;
+	static public int numRows;
+	static public int numColumns;
 	private Map<Character, String> rooms;
 	private Map<Integer, ArrayList<Integer>> adjs = new HashMap<Integer, ArrayList<Integer>>();
 	private LinkedList<Integer> adjList;
@@ -177,7 +177,7 @@ public class Board extends JPanel{
 			int index = Integer.parseInt(spot);
 			
 			human = new HumanPlayer(name, color, index, getWeapons(), getPeople(), getRoomCards());
-			human.setLocation(getCellAt(index));
+			human.setCurrentIndex(index);
 			players.add(human);
 			
 			while(in.hasNextLine()){
@@ -190,7 +190,7 @@ public class Board extends JPanel{
 				index = Integer.parseInt(spot);
 				
 				Player next = new ComputerPlayer (name, color, index, getWeapons(), getPeople(), getRoomCards());
-				next.setLocation(getCellAt(index));
+				next.setCurrentIndex(index);
 				players.add(next);				
 			}
 	}
@@ -575,9 +575,9 @@ public class Board extends JPanel{
 		} else {
 			humansTurn = true;
 			for(BoardCell cell : getTargets()) {
-				System.out.println("board cell targets");
 				cell.setTarget(true);
 			}
+			
 		}
 		
 		paintComponent(super.getGraphics());
@@ -590,10 +590,10 @@ public class Board extends JPanel{
 			System.out.println("human check");
 			return;
 		}
-		
+
 		turnCounter = (++turnCounter % players.size());
 		makeMove(players.get(turnCounter));
-		
+
 		
 	}
 	
@@ -606,24 +606,38 @@ public class Board extends JPanel{
 
 	private class PlayerClick implements MouseListener {
 		public void mousePressed (MouseEvent event){
-			Point click = event.getPoint();
-			System.out.println(click);
-			click.x = click.x/CELL_SIZE;
-			click.y = click.y/CELL_SIZE;
-			int index = calcIndex(click.x, click.y);
-			System.out.println(index);
-			
+			if(humansTurn) {
+				Point click = event.getPoint();
+				System.out.println(click);
+
+				click.x = click.x/CELL_SIZE;
+				click.y = click.y/CELL_SIZE;
+				if(click.x < numColumns && click.y < numRows) {
+
+
+
+					int index = calcIndex(click.x, click.y);
+					System.out.println(index);
+					System.out.println(targets);
+					if(getCellAt(index).isTarget()) {
+						human.setCurrentIndex(index);
+						
+						targets.clear();
+						humansTurn = false;
+					}
+				}
+			}
 		}
-	public void mouseClicked(MouseEvent event){}
+		public void mouseClicked(MouseEvent event){}
 
-	public void mouseEntered(MouseEvent arg0) {}
+		public void mouseEntered(MouseEvent arg0) {}
 
-	public void mouseExited(MouseEvent arg0) {}
+		public void mouseExited(MouseEvent arg0) {}
 
-	
-	public void mouseReleased(MouseEvent arg0) {}
+
+		public void mouseReleased(MouseEvent arg0) {}
 	}
-	
+
 
 
 

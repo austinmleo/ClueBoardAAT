@@ -6,7 +6,7 @@ import java.lang.reflect.Field;
 import java.util.ArrayList;
 
 public class Player {
-
+	
 	protected String name;
 	protected String strColor;
 	protected int currentIndex;
@@ -17,7 +17,7 @@ public class Player {
 	protected ArrayList<Card> possiblePeople;
 	protected ArrayList<Card> possibleRooms;
 	
-	protected BoardCell location;
+	//protected BoardCell location;
 
 	
 	
@@ -48,6 +48,10 @@ public class Player {
 		return name;
 	}
 
+	public void setCurrentIndex(int index) {
+		this.currentIndex = index;
+	}
+	
 	public int getCurrentIndex() {
 		return currentIndex;
 	}
@@ -98,14 +102,15 @@ public class Player {
 		this.possibleRooms = possibleRooms;
 	}
 	
-	public void  setLocation(BoardCell location){
+
+/*	public void  setLocation(BoardCell location){
 		this.location = location;
 	}
 	
 	public BoardCell getLocation(){
 		
 		return location;
-	}
+	}*/
 	
 	public void setColor(Color toSet){
 		this.color = toSet;

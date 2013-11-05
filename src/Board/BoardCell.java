@@ -31,7 +31,10 @@ public abstract class BoardCell {
 	
 	public boolean isWalkway(){
 		return walkway;
+	}
 	
+	public boolean isTarget(){
+		return isTarget;
 	}
 	
 	public boolean isRoom(){

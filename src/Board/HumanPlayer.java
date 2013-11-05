@@ -21,9 +21,9 @@ public class HumanPlayer extends Player{
 		
 		
 	
-		 BoardCell location = getLocation();
-         int x = location.column * Board.CELL_SIZE;
-         int y = location.row * Board.CELL_SIZE;
+		int x = (currentIndex % Board.numColumns)*Board.CELL_SIZE;
+        int y = (currentIndex / Board.numRows)*Board.CELL_SIZE;
+        
          g.setColor(getColor());
          g.fillOval(x, y, Board.CELL_SIZE, Board.CELL_SIZE);
          g.setColor(Color.BLACK);
