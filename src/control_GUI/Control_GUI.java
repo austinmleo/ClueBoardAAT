@@ -193,7 +193,7 @@ public class Control_GUI extends JPanel {
 		//die = die % 6 + 1;
 		//theboard.rollDie();
 		int die = theboard.getDie();
-		System.out.println(die + "in control");
+		System.out.println(die + " in control");
 		dieRoll = Integer.toString(die);
 		updateDisplay();	
 	}

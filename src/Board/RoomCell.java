@@ -91,7 +91,11 @@ public class RoomCell extends BoardCell{
 			g.fillRect(x, y, width, height);
         }
 		
-
+        if(isTarget){
+        	
+        	g.setColor(Color.CYAN);
+        	g.fillRect(x, y, Board.CELL_SIZE, Board.CELL_SIZE);
+        }
    
 		
 	}

@@ -646,7 +646,10 @@ public class Board extends JPanel{
 					System.out.println(targets);
 					if(getCellAt(index).isTarget()) {
 						human.setCurrentIndex(index);
-
+						
+						for (BoardCell target : targets) {
+							target.setTarget(false);
+						}
 						targets.clear();
 						humansTurn = false;
 					}
