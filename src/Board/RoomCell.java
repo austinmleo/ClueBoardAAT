@@ -67,6 +67,11 @@ public class RoomCell extends BoardCell{
            g.fillRect(x, y, Board.CELL_SIZE, Board.CELL_SIZE);
        }
        
+       if(isTarget){
+       	
+       	g.setColor(Color.CYAN);
+       	g.fillRect(x, y, Board.CELL_SIZE, Board.CELL_SIZE);
+       }
        
         if (this.isDoor) {
         	int height = 4;
@@ -90,12 +95,7 @@ public class RoomCell extends BoardCell{
 			g.setColor(Color.BLUE);
 			g.fillRect(x, y, width, height);
         }
-		
-        if(isTarget){
-        	
-        	g.setColor(Color.CYAN);
-        	g.fillRect(x, y, Board.CELL_SIZE, Board.CELL_SIZE);
-        }
+
    
 		
 	}
