@@ -33,7 +33,7 @@ public class ClueGame extends JFrame {
 	private Board board;
 	private Control_GUI gui;
 	JButton button1;
-	boolean startUp = false;
+	 boolean firstturn = true;
 	
 	DetectiveNotes notes; // = new DetectiveNotes(this.getBoard());
 	
@@ -43,24 +43,17 @@ public class ClueGame extends JFrame {
         setTitle("Clue Game");
         setSize(1000, 800);
         setResizable(false);
-        
-      //  while (!startUp){
-        //	System.out.println("test");
-        //startUpDialog();
-       // }
-        
-       //if(startUp){
-      //  System.out.println("in game");
+ 
         createMenuBar();
         createBoard();
         createControls();     
         notes = new DetectiveNotes(this.getBoard());
-   // }
+   
     }
 	
-    public void startUpDialog(){
+   /* public void startUpDialog(){
     	JDialog startUp = new JDialog();
-    	startUp.setTitle("Clue Game");
+    	startUp.setTitle("Clue Gdfdsfsdame");
     	startUp.setSize(200, 100);
     	button1 = new JButton("OK");
     	ButtonListener listener = new ButtonListener();
@@ -68,20 +61,14 @@ public class ClueGame extends JFrame {
     	add(button1, BorderLayout.SOUTH);
     
     	
-    }
+    }*/
 
     class ButtonListener implements ActionListener{
     	public void actionPerformed(ActionEvent e) {
-    		if (e.getSource() == button1) {
-    			System.out.println("good job");
-    			//startUp = true;
-
-    			//ClueGame game = new ClueGame();
-    			//game.setVisible(true);
-
+    		
     		}
     	}
-    }
+    
     
 	public void createMenuBar() {
 		
@@ -112,15 +99,23 @@ public class ClueGame extends JFrame {
     	add(humanCards, BorderLayout.EAST);
     	
     	
+    	
     	gui.getNextPlayerButton().addActionListener(new ActionListener(){
-    		//if
+    		
     		public void actionPerformed(ActionEvent e){
+    			if(firstturn){
+    				board.makeMove(board.getHuman());
+    				firstturn = false;
+    				System.out.println("good job you did it");
+    			}
+    			else
     			board.nextTurn();
     			gui.setPlayerName();
     			gui.setRollDie();
     		}
     	});
     }
+   
     
     public JPanel displayCards(String title, ArrayList<Card> cards, type type){
     	JPanel cardDisplay = new JPanel();
@@ -185,10 +180,7 @@ public class ClueGame extends JFrame {
 		
 	}
 	
-	public void startGame(){
-		board.makeMove(board.getHuman());
-		//gui.setRollDie();
-	}
+
 	
 	
 
@@ -199,7 +191,6 @@ public static void main(String[] args) {
 	ClueGame controller = new ClueGame() ;
 	JOptionPane.showMessageDialog(controller, "You are " + controller.board.getHuman().getName() + ", press Next Player to begin play.", "Welcome to Clue", JOptionPane.INFORMATION_MESSAGE);
 	controller.setVisible(true);
-	controller.startGame();
 	
 }
 }

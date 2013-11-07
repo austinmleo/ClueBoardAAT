@@ -608,13 +608,19 @@ public class Board extends JPanel{
 		paintComponent(super.getGraphics());
 	}
 
+	
 	public void nextTurn(){
+//JOptionPane.INFORMATION_MESSAGE
+	
+			if (humansTurn){
 
-		if (humansTurn){
-			JOptionPane.showMessageDialog(this, "You have to make a more before we can contiue");
-			System.out.println("human check");
-			return;
-		}
+				JOptionPane.showMessageDialog(this, "You have to make a more before we can contiue", BoardFile, JOptionPane.ERROR_MESSAGE);
+				
+				
+				System.out.println("human check");
+				return;
+			}
+		
 
 		turnCounter = (++turnCounter % players.size());
 		makeMove(players.get(turnCounter));
@@ -644,8 +650,15 @@ public class Board extends JPanel{
 					int index = calcIndex(click.x, click.y);
 					System.out.println(index);
 					System.out.println(targets);
+					
+					
+					
+				
 					if(getCellAt(index).isTarget()) {
 						human.setCurrentIndex(index);
+						
+						
+						
 						
 						for (BoardCell target : targets) {
 							target.setTarget(false);
@@ -655,6 +668,7 @@ public class Board extends JPanel{
 					}
 				}
 			}
+			
 		}
 		public void mouseClicked(MouseEvent event){}
 
@@ -694,8 +708,8 @@ public class Board extends JPanel{
 		//System.out.println(b.getNumColumns());
 		//System.out.println(b.calcIndex(b.getNumColumns(), b.getNumRows()));
 		//System.out.println(b.getRoomName('K'));
-		System.out.println(b.human.getCards());
-		System.out.println(b.players.get(0).getColor());
+		//System.out.println(b.human.getCards());
+		//System.out.println(b.players.get(0).getColor());
 
 	}
 }
