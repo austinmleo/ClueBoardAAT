@@ -28,6 +28,7 @@ import Board.RoomCell.DoorDirection;
 
 
 //Authors: Arnaud Filliat and Vy Ta
+//Authors: Arnaud Filliat, Austin Leo, and Todd Sorden
 //Make sure to note that for the cells we use (x,y) coordinates so (column, row)
 public class Board extends JPanel{
 	public static final int CELL_SIZE = 25;
@@ -645,6 +646,8 @@ public class Board extends JPanel{
 					System.out.println(index);
 					System.out.println(targets);
 					if(getCellAt(index).isTarget()) {
+						
+						//human.setTempIndex(index));
 						human.setCurrentIndex(index);
 						
 						for (BoardCell target : targets) {

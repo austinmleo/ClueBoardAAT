@@ -113,11 +113,12 @@ public class ClueGame extends JFrame {
     	
     	
     	gui.getNextPlayerButton().addActionListener(new ActionListener(){
-    		//if
+    		
     		public void actionPerformed(ActionEvent e){
-    			board.nextTurn();
+    			
     			gui.setPlayerName();
     			gui.setRollDie();
+    			board.nextTurn();
     		}
     	});
     }

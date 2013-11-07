@@ -18,8 +18,6 @@ public class HumanPlayer extends Player{
 
 	@Override
 	void draw (Graphics g){
-		
-		
 	
 		int x = (currentIndex % Board.numColumns)*Board.CELL_SIZE;
         int y = (currentIndex / Board.numRows)*Board.CELL_SIZE;
