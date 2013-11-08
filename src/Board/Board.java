@@ -25,6 +25,7 @@ import javax.swing.JPanel;
 
 import Board.Card.type;
 import Board.RoomCell.DoorDirection;
+import control_GUI.AccusationDialog;
 
 
 //Authors: Arnaud Filliat and Vy Ta
@@ -606,6 +607,10 @@ public class Board extends JPanel{
 		}
 
 		paintComponent(super.getGraphics());
+		if(getCellAt(human.getCurrentIndex()).isDoorway()){
+			AccusationDialog Accuse = new AccusationDialog(this);
+			Accuse.setVisible(true);
+		}
 	}
 
 	

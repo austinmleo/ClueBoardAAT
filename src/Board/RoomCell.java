@@ -9,6 +9,7 @@ public class RoomCell extends BoardCell{
 	public enum DoorDirection {UP, DOWN, LEFT, RIGHT, NONE};
 	private DoorDirection directionOfDoor;
 	private char roomInitial;
+	private String roomName;
 	//private int row;
 	//private int column;
 	
@@ -40,6 +41,29 @@ public class RoomCell extends BoardCell{
 	public char getInitial(){
 		return roomInitial;
 	}	
+	
+	public String getRoomName(){
+		if (roomInitial == 'S')
+			roomName = "Study";
+		else if (roomInitial == 'L')
+			roomName = "Library";
+		else if (roomInitial == 'R')
+			roomName = "Billiard Room";
+		else if (roomInitial == 'C')
+			roomName = "Conservatory";
+		else if (roomInitial == 'B')
+			roomName = "Ballroom";
+		else if (roomInitial == 'K')
+			roomName = "Kitchen";
+		else if (roomInitial == 'D')
+			roomName = "Dining Room";
+		else if (roomInitial == 'O')
+			roomName = "Lounge";
+		else if (roomInitial == 'H')
+			roomName = "Hall";
+		
+		return roomName;
+	}
 	
 	
 	@Override
