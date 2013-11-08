@@ -534,7 +534,6 @@ public class Board extends JPanel{
 		Random roll = new Random();
 		die = Math.abs(roll.nextInt());
 		die = die % 6 + 1;
-		System.out.println(die + "in Board");
 	}
 
 	public int getDie(){
@@ -620,6 +619,8 @@ public class Board extends JPanel{
 	}
 
 	private class PlayerClick extends JPanel implements MouseListener{
+		
+		
 		public void mousePressed (MouseEvent event){
 			if(humansTurn) {
 				Point click = event.getPoint();
@@ -635,8 +636,8 @@ public class Board extends JPanel{
 					
 				
 					if(getCellAt(index).isTarget()) {
-						human.setCurrentIndex(index);
 						
+						human.setCurrentIndex(index);
 						moveMade = true;
 					}
 				}

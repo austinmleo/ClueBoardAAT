@@ -7,7 +7,6 @@ import java.util.ArrayList;
 
 public class HumanPlayer extends Player{
 
-	private int tempIndex;
 
 	public HumanPlayer(String name, String strColor, int currentIndex,
 			ArrayList<Card> possibleWeapons, ArrayList<Card> possiblePeople,
@@ -28,16 +27,7 @@ public class HumanPlayer extends Player{
          g.drawOval(x, y, Board.CELL_SIZE, Board.CELL_SIZE);                
 	}
 
-	public int getTempIndex() {
-		return tempIndex;
-	}
-
-	public void setTempIndex(int tempIndex) {
-		this.tempIndex = tempIndex;
-	}
 	
-
-		
 }
 
 
