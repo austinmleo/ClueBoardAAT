@@ -8,7 +8,6 @@ import java.util.ArrayList;
 public class HumanPlayer extends Player{
 
 
-
 	public HumanPlayer(String name, String strColor, int currentIndex,
 			ArrayList<Card> possibleWeapons, ArrayList<Card> possiblePeople,
 			ArrayList<Card> possibleRooms) {
@@ -18,8 +17,6 @@ public class HumanPlayer extends Player{
 
 	@Override
 	void draw (Graphics g){
-		
-		
 	
 		int x = (currentIndex % Board.numColumns)*Board.CELL_SIZE;
         int y = (currentIndex / Board.numRows)*Board.CELL_SIZE;
@@ -29,9 +26,8 @@ public class HumanPlayer extends Player{
          g.setColor(Color.BLACK);
          g.drawOval(x, y, Board.CELL_SIZE, Board.CELL_SIZE);                
 	}
-	
 
-		
+	
 }
 
 

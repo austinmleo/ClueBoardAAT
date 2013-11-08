@@ -48,6 +48,7 @@ public class Board extends JPanel{
 	private HumanPlayer human;
 	private int turnCounter;
 	private boolean humansTurn;
+	private boolean moveMade;
 	private ArrayList<Player> players = new ArrayList<Player>();
 	private ArrayList<Card> deck = new ArrayList<Card>();
 	private ArrayList<Card> testDeck = new ArrayList<Card>(); //Only used for testing.
@@ -272,7 +273,7 @@ public class Board extends JPanel{
 			return false;
 	}
 
-	public String handelSuggestion(String room, String person, String weapon, Player accuser) {
+	public String handleSuggestion(String room, String person, String weapon, Player accuser) {
 		String info = null;
 		ArrayList<String> dissapprovals = new ArrayList<String>();
 		Boolean cardShown = false;
@@ -472,29 +473,6 @@ public class Board extends JPanel{
 		for(BoardCell cell : cells)
 			cell.draw(g);
 
-		/*
-        for (int i = 0; i < numRows; ++i) {
-                for (int j = 0; j < numColumns; ++j) {
-                        int index = calcIndex(i, j);
-                        int x = j * CELL_SIZE;
-                        int y = i * CELL_SIZE;
-                        //int counter = 0;
-
-                        BoardCell cell = getCellAt(index);
-                        if (getRoomCellAt(index) != null) {
-                        	System.out.println("A room Cell!");
-                        	counter++;
-                        	System.out.println(counter);
-                            //RoomCell roomCell = (RoomCell) cell;
-                        	RoomCell room = getRoomCellAt(index);
-                            room.draw(g);
-                        } else if (cell.isWalkway()) {
-                            cell.draw(g);
-                        }        
-
-                }
-        }
-		 */
 
 		for (Player p : players) {
 			p.draw(g);
@@ -557,7 +535,6 @@ public class Board extends JPanel{
 		Random roll = new Random();
 		die = Math.abs(roll.nextInt());
 		die = die % 6 + 1;
-		System.out.println(die + "in Board");
 	}
 
 	public int getDie(){
@@ -567,7 +544,11 @@ public class Board extends JPanel{
 
 
 	public void makeMove(Player p){
-
+		
+		for (BoardCell target : targets) {
+			target.setTarget(false);
+		}
+		
 		rollDie();
 		startTargets(p.currentIndex, die);
 
@@ -600,6 +581,8 @@ public class Board extends JPanel{
 
 		} else {
 			humansTurn = true;
+			moveMade = false;
+
 			for(BoardCell cell : getTargets()) {
 				cell.setTarget(true);
 			}
@@ -617,7 +600,7 @@ public class Board extends JPanel{
 	public void nextTurn(){
 //JOptionPane.INFORMATION_MESSAGE
 	
-			if (humansTurn){
+			if (moveMade == false){
 
 				JOptionPane.showMessageDialog(this, "You have to make a more before we can contiue", BoardFile, JOptionPane.ERROR_MESSAGE);
 				
@@ -640,7 +623,9 @@ public class Board extends JPanel{
 		return turnCounter;
 	}
 
-	private class PlayerClick implements MouseListener {
+	private class PlayerClick extends JPanel implements MouseListener{
+		
+		
 		public void mousePressed (MouseEvent event){
 			if(humansTurn) {
 				Point click = event.getPoint();
@@ -650,28 +635,19 @@ public class Board extends JPanel{
 				click.y = click.y/CELL_SIZE;
 				if(click.x < numColumns && click.y < numRows) {
 
-
-
 					int index = calcIndex(click.x, click.y);
 					System.out.println(index);
 					System.out.println(targets);
 					
-					
-					
 				
 					if(getCellAt(index).isTarget()) {
+						
 						human.setCurrentIndex(index);
-						
-						
-						
-						
-						for (BoardCell target : targets) {
-							target.setTarget(false);
-						}
-						targets.clear();
-						humansTurn = false;
+						moveMade = true;
 					}
 				}
+			} else {
+				targets.clear();
 			}
 			
 		}

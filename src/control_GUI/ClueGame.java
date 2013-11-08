@@ -51,7 +51,7 @@ public class ClueGame extends JFrame {
    
     }
 	
-   /* public void startUpDialog(){
+   /* public void startUpDialog() {
     	JDialog startUp = new JDialog();
     	startUp.setTitle("Clue Gdfdsfsdame");
     	startUp.setSize(200, 100);
@@ -100,30 +100,31 @@ public class ClueGame extends JFrame {
     	
     	
     	
-    	gui.getNextPlayerButton().addActionListener(new ActionListener(){
+    	gui.getNextPlayerButton().addActionListener(new ActionListener() {
     		
-    		public void actionPerformed(ActionEvent e){
-    			if(firstturn){
+    		public void actionPerformed(ActionEvent e) {
+    			if(firstturn) {
     				board.makeMove(board.getHuman());
     				firstturn = false;
     				System.out.println("good job you did it");
     			}
-    			else
-    			board.nextTurn();
-    			gui.setPlayerName();
-    			gui.setRollDie();
+    			else {
+    				board.nextTurn();
+    				gui.setPlayerName();
+    				gui.setRollDie();
+    			}
     		}
     	});
     }
    
     
-    public JPanel displayCards(String title, ArrayList<Card> cards, type type){
+    public JPanel displayCards(String title, ArrayList<Card> cards, type type) {
     	JPanel cardDisplay = new JPanel();
     	cardDisplay.setBorder(new TitledBorder(new EtchedBorder(), title));
     	cardDisplay.setPreferredSize(new Dimension(5,2));
     	
-    	for (Card c: cards){
-    		if(c.getCardType() == type){ 
+    	for (Card c: cards) {
+    		if(c.getCardType() == type) { 
     			cardDisplay.setLayout(new GridLayout(0,1));
     			JTextArea textField = new JTextArea(c.getContent());
     		
@@ -143,22 +144,22 @@ public class ClueGame extends JFrame {
         return board;
     }
     
-    public Control_GUI getGui(){
+    public Control_GUI getGui() {
     	return gui;
     }
     
-    private JMenu openNotes(){
+    private JMenu openNotes() {
 		JMenu menu = new JMenu("File");
 		menu.add(detectiveNotes());
 		menu.add(exit());
 		return menu;
 	}
 	
-	private JMenuItem detectiveNotes(){
+	private JMenuItem detectiveNotes() {
 		//final ClueGame temp = this;
 		JMenuItem item = new JMenuItem("Detective Notes");
 		class MenuItemListener  implements ActionListener{
-			public void actionPerformed(ActionEvent e){
+			public void actionPerformed(ActionEvent e) {
 				notes.setVisible(true);
 			
 			}
@@ -167,10 +168,10 @@ public class ClueGame extends JFrame {
 		return item;	
 	}
 	
-	private JMenuItem exit(){
+	private JMenuItem exit() {
 		JMenuItem item = new JMenuItem("Exit");
 		class MenuItemListener  implements ActionListener{
-			public void actionPerformed(ActionEvent e){
+			public void actionPerformed(ActionEvent e) {
 				System.exit(0);
 			
 			}
