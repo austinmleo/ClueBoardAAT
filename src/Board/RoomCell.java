@@ -62,41 +62,41 @@ public class RoomCell extends BoardCell{
         g.fillRect(x, y, Board.CELL_SIZE, Board.CELL_SIZE);
 
        if (roomInitial == 'X'){
-    	   
-    	   g.setColor(Color.RED.darker().darker());
-           g.fillRect(x, y, Board.CELL_SIZE, Board.CELL_SIZE);
-       }
-       
-       if(isTarget){
-       	
-       	g.setColor(Color.CYAN);
-       	g.fillRect(x, y, Board.CELL_SIZE, Board.CELL_SIZE);
-       }
-       
-        if (this.isDoor) {
-        	int height = 4;
-			int width = Board.CELL_SIZE;
-			switch (directionOfDoor){
-			case UP:
-				break;
-			case DOWN:
-				y = (y + Board.CELL_SIZE - height);
-				width = Board.CELL_SIZE;
-				break;
-			case RIGHT:
-				x = (x + Board.CELL_SIZE - height);
-				height = Board.CELL_SIZE;
-				break;
-			case LEFT:
-				height = Board.CELL_SIZE;
-				width = 4;
-				break;
-			}
-			g.setColor(Color.BLUE);
-			g.fillRect(x, y, width, height);
-        }
 
-   
+    	   g.setColor(Color.RED.darker().darker());
+    	   g.fillRect(x, y, Board.CELL_SIZE, Board.CELL_SIZE);
+       }
+
+       if(isTarget){
+
+    	   g.setColor(Color.CYAN);
+    	   g.fillRect(x, y, Board.CELL_SIZE, Board.CELL_SIZE);
+       }
+
+       if (this.isDoor) {
+    	   int height = 4;
+    	   int width = Board.CELL_SIZE;
+    	   switch (directionOfDoor){
+    	   case UP:
+    		   break;
+    	   case DOWN:
+    		   y = (y + Board.CELL_SIZE - height);
+    		   width = Board.CELL_SIZE;
+    		   break;
+    	   case RIGHT:
+    		   x = (x + Board.CELL_SIZE - height);
+    		   height = Board.CELL_SIZE;
+    		   break;
+    	   case LEFT:
+    		   height = Board.CELL_SIZE;
+    		   width = 4;
+    		   break;
+    	   }
+    	   g.setColor(Color.BLUE);
+    	   g.fillRect(x, y, width, height);
+       }
+
+
 		
 	}
 
