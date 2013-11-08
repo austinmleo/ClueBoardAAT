@@ -149,7 +149,7 @@ public class testPeopleAndCards {
 		newHand.add(new Card(type.WEAPON, "Maul"));
 		playersTest.get(0).setCards(newHand);
 		
-		String test = board.handelSuggestion("Some Place", "A Person", "Maul", playersTest.get(3));
+		String test = board.handleSuggestion("Some Place", "A Person", "Maul", playersTest.get(3));
 		Assert.assertTrue(test.equalsIgnoreCase("Maul"));	
 		board.getPlayers().get(0).setCards(hold0);
 	}
@@ -163,7 +163,7 @@ public class testPeopleAndCards {
 		newHand.add(new Card(type.PERSON, "Jesus"));
 		playersTest.get(0).setCards(newHand);
 		
-		String test = board.handelSuggestion("Some Place", "Jesus", "Maul", playersTest.get(3));
+		String test = board.handleSuggestion("Some Place", "Jesus", "Maul", playersTest.get(3));
 		//System.out.println(test);
 		Assert.assertTrue(test.equalsIgnoreCase("Maul") || test.equalsIgnoreCase("Jesus"));	
 		board.getPlayers().get(0).setCards(hold0);
@@ -222,7 +222,7 @@ public class testPeopleAndCards {
 		//newHand.add(new Card(type.PERSON, "Jesus"));
 		playersTest.get(0).setCards(newHand);
 		
-		String test = board.handelSuggestion("Some Place", "A Person", "MiniGun", playersTest.get(0));
+		String test = board.handleSuggestion("Some Place", "A Person", "MiniGun", playersTest.get(0));
 		//System.out.println(test);
 		Assert.assertTrue(test == null);	
 		board.getPlayers().get(0).setCards(hold0);

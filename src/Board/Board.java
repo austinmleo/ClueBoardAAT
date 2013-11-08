@@ -590,24 +590,25 @@ public class Board extends JPanel{
 		}
 
 		paintComponent(super.getGraphics());
-		if(getCellAt(human.getCurrentIndex()).isDoorway()){
-			AccusationDialog Accuse = new AccusationDialog(this);
-			Accuse.setVisible(true);
-		}
+		
+		
 	}
 
 	
 	public void nextTurn(){
 //JOptionPane.INFORMATION_MESSAGE
 	
-			if (moveMade == false){
+		if (moveMade == false){
 
-				JOptionPane.showMessageDialog(this, "You have to make a more before we can contiue", BoardFile, JOptionPane.ERROR_MESSAGE);
-				
-				
-				System.out.println("human check");
-				return;
-			}
+			JOptionPane.showMessageDialog(this, "You have to make a more before we can contiue", BoardFile, JOptionPane.ERROR_MESSAGE);
+
+
+			System.out.println("human check");
+			return;
+		} else if (humansTurn && moveMade && getCellAt(human.getCurrentIndex()).isDoorway()){
+			AccusationDialog Accuse = new AccusationDialog(this);
+			Accuse.setVisible(true);
+		}
 		
 
 		turnCounter = (++turnCounter % players.size());
