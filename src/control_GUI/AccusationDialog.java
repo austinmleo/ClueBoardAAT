@@ -3,6 +3,8 @@ package control_GUI;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.ActionMap;
 import javax.swing.JButton;
@@ -26,6 +28,7 @@ public class AccusationDialog extends JDialog {
 	private String cRoom = "";
 	private JButton submit, cancel;
 	private JTextArea CurrentRoom;
+	private JComboBox<String> people, weapons;
 	
 	public AccusationDialog(Board input){
 		theboard = input;
@@ -33,6 +36,10 @@ public class AccusationDialog extends JDialog {
 		setSize(360,240);
 		
 		addComponents();
+	}
+	
+	public JButton getSubmitrButton(){
+		return submit;
 	}
 
 	
@@ -69,7 +76,7 @@ public class AccusationDialog extends JDialog {
 		
 		
 		JPanel personGuess = new JPanel();
-		JComboBox<String> people = new JComboBox<String>();
+		people = new JComboBox<String>();
 		people.setPreferredSize(new Dimension(120,50));
 		for (int peo = 0; peo < theboard.getPeople().size(); peo++){
 			people.addItem(theboard.getPeople().get(peo).getContent());
@@ -97,7 +104,7 @@ public class AccusationDialog extends JDialog {
 			//System.out.println("the room is"  + cRoom);
 		}
 		else
-			cRoom = "nothing";
+			cRoom = null;
 		
 		updateDisplay();
 		
@@ -110,7 +117,7 @@ public class AccusationDialog extends JDialog {
 		
 		
 	JPanel weaponGuess = new JPanel();
-	JComboBox<String> weapons = new JComboBox<String>();
+	weapons = new JComboBox<String>();
 	weapons.setPreferredSize(new Dimension(120,50));
 	for (int wep = 0; wep < theboard.getWeapons().size(); wep++){
 		weapons.addItem(theboard.getWeapons().get(wep).getContent());
@@ -127,6 +134,18 @@ public class AccusationDialog extends JDialog {
 	buttonPanel.add(submit);
 	buttonPanel.add(cancel);
 	buttonPanel.setLayout(new GridLayout(0, 2));	
+	
+	this.getSubmitrButton().addActionListener(new ActionListener(){
+		public void actionPerformed(ActionEvent e) {
+		
+				System.out.println(cRoom);
+				System.out.println(people.getSelectedItem());
+				System.out.println(weapons.getSelectedItem());
+			}
+		
+	});
+	
+	
 	
 	
 		
@@ -153,8 +172,6 @@ public class AccusationDialog extends JDialog {
 	public void setCurrentRoom(){
 		cRoom = theboard.getRoomCellAt(20).getRoomName().toString();
 	}
-	
-	
 	
 	
 	

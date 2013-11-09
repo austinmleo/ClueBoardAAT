@@ -3,6 +3,8 @@ package Board;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Point;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.FileNotFoundException;
@@ -46,6 +48,7 @@ public class Board extends JPanel{
 	private String BoardFile;
 	private int die;
 	private HumanPlayer human;
+	private AccusationDialog Accuse;
 	private int turnCounter;
 	private boolean humansTurn;
 	private boolean moveMade;
@@ -621,6 +624,10 @@ public class Board extends JPanel{
 
 
 	}
+	
+	public AccusationDialog getAccuse(){
+		return Accuse;
+	}
 
 	public boolean isHumansTurn(){
 		return humansTurn;
@@ -643,7 +650,6 @@ public class Board extends JPanel{
 					int index = calcIndex(click.x, click.y);
 
 					
-				//	JOptionPane.showMessageDialog(this, "You have to make a more before we can contiue", BoardFile, JOptionPane.ERROR_MESSAGE);
 					
 					
 				
@@ -662,7 +668,19 @@ public class Board extends JPanel{
 				targets.clear();
 			}
 			
-		}
+		
+		
+		
+		
+    	
+		
+		}	
+		
+		
+		
+	
+		
+		
 		public void mouseClicked(MouseEvent event){}
 
 		public void mouseEntered(MouseEvent arg0) {}

@@ -32,6 +32,7 @@ public class ClueGame extends JFrame {
 	
 	private Board board;
 	private Control_GUI gui;
+	AccusationDialog makeAGuess;
 	JButton button1;
 	 boolean firstturn = true;
 	
@@ -87,6 +88,8 @@ public class ClueGame extends JFrame {
     	gui = new Control_GUI(this.getBoard());
     	add(gui, BorderLayout.SOUTH);
     	
+    	//makeAGuess = new AccusationDialog(this.getBoard());
+    	
     	
     	JPanel humanCards = new JPanel();
     	//humanCards.setLayout(new BoxLayout(humanCards, BoxLayout.Y_AXIS))
@@ -105,8 +108,9 @@ public class ClueGame extends JFrame {
     		public void actionPerformed(ActionEvent e) {
     			if(firstturn) {
     				board.makeMove(board.getHuman());
+    				
     				firstturn = false;
-    				System.out.println("good job you did it");
+    				
     			}
     			else {
     				board.nextTurn();
@@ -115,6 +119,17 @@ public class ClueGame extends JFrame {
     			}
     		}
     	});
+    	
+    	//makeAGuess.getSubmitrButton().addActionListener(new ActionListener(){
+    	//	public void actionPerformed(ActionEvent e) {
+    		
+    				
+    				//System.out.println("good job you did it");
+    		//	}
+    		
+    	//});
+    	//
+    	
     }
    
     
