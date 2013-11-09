@@ -37,6 +37,7 @@ public class Board extends JPanel{
 
 
 	private ArrayList<BoardCell> cells;
+	private boolean AccusationDialog;
 	static public int numRows;
 	static public int numColumns;
 	private Map<Character, String> rooms;
@@ -59,6 +60,7 @@ public class Board extends JPanel{
 	private ArrayList<Card> weapons = new ArrayList<Card>();
 	private ArrayList<Card> people = new ArrayList<Card>();
 	private ArrayList<Card> roomCards = new ArrayList<Card>();
+	private String result = null;
 
 	public Board(String BoardFile, String LegendFile) {	
 		this.LegendFile = LegendFile;
@@ -303,7 +305,8 @@ public class Board extends JPanel{
 		}	
 		return info;
 	}
-
+	
+	
 	public int getNumRows() {
 		return numRows;
 	}
@@ -602,19 +605,66 @@ public class Board extends JPanel{
 		
 		
 	}
+	
+	public boolean getAccuse(){
+		return AccusationDialog;
+		
+	}
+	/*public AccusationDialog getDialog(){
+		if (AccusationDialog){
+			System.out.println("accusation true");
+			return Accuse;
+		}
+		
+		else{
+			System.out.println("accuastin false");
+			return new AccusationDialog(this);
+		}
+	}*/
+	
+	
+	public void openAccusationDialog(boolean Accusation){
+		AccusationDialog = Accusation;
+		Accuse = new AccusationDialog(this);
+		AccusationDialog = true;
+		Accuse.setVisible(true);
+		this.getReuslt();
+	}
+	
+	public String getReuslt(){
+		if (AccusationDialog){
+			result = Accuse.gettheReuslt();
+			System.out.println(result + "this shall be");
+			System.out.println("accuasint is the ture");
+			
+		return result;
+		}
+		else{
+			System.out.println("accuasint is the false");
+			return null;
+		}
+		
+	}
 
 	
 	public void nextTurn(){
+		
+		getReuslt();
+		
 //JOptionPane.INFORMATION_MESSAGE
 	
+		System.out.println(result);
 		if (moveMade == false){
 
 			JOptionPane.showMessageDialog(this, "You have to make a more before we can contiue", BoardFile, JOptionPane.ERROR_MESSAGE);
 			
 			return;
 		} else if (humansTurn && moveMade && getCellAt(human.getCurrentIndex()).isDoorway()){
-			AccusationDialog Accuse = new AccusationDialog(this);
-			Accuse.setVisible(true);
+			
+			openAccusationDialog(false);
+			
+			//AccusationDialog Accuse = new AccusationDialog(this);
+			//Accuse.setVisible(true);
 			//Make Accusation
 		}
 		
@@ -625,9 +675,6 @@ public class Board extends JPanel{
 
 	}
 	
-	public AccusationDialog getAccuse(){
-		return Accuse;
-	}
 
 	public boolean isHumansTurn(){
 		return humansTurn;

@@ -35,6 +35,7 @@ public class ClueGame extends JFrame {
 	AccusationDialog makeAGuess;
 	JButton button1;
 	 boolean firstturn = true;
+	 private boolean Accusation = false;
 	
 	DetectiveNotes notes; // = new DetectiveNotes(this.getBoard());
 	
@@ -84,6 +85,10 @@ public class ClueGame extends JFrame {
         add(board, BorderLayout.CENTER);
     }
 	
+    public Control_GUI getControl(){
+    	return gui;
+    }
+    
     public void createControls() {
     	gui = new Control_GUI(this.getBoard());
     	add(gui, BorderLayout.SOUTH);
@@ -114,22 +119,31 @@ public class ClueGame extends JFrame {
     			}
     			else {
     				board.nextTurn();
+    				gui.setResponse();
     				gui.setPlayerName();
     				gui.setRollDie();
+    				
     			}
     		}
     	});
     	
-    	//makeAGuess.getSubmitrButton().addActionListener(new ActionListener(){
-    	//	public void actionPerformed(ActionEvent e) {
-    		
-    				
-    				//System.out.println("good job you did it");
-    		//	}
-    		
-    	//});
-    	//
     	
+	gui.getaccusationButton().addActionListener(new ActionListener() {
+    		
+    		public void actionPerformed(ActionEvent e) {
+    			
+    			Accusation = true;
+    			board.openAccusationDialog(Accusation);
+    			System.out.println("good job");
+    		
+    			
+    		}
+    	});
+    	
+    }
+    
+    public boolean getAccusationBoolean(){
+    	return Accusation;
     }
    
     

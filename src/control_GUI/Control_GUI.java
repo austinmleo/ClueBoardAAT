@@ -24,6 +24,7 @@ import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
 
 import Board.Board;
+import control_GUI.AccusationDialog;
 
 public class Control_GUI extends JPanel {
 
@@ -45,12 +46,12 @@ public class Control_GUI extends JPanel {
 	//resultPanel variables
 	private String response;
 	private JTextArea responseArea;
-	
-	
-	
-		
+
+
+
+
 	Board theboard;
-	
+
 
 	public  Control_GUI(Board input){
 		//setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -59,20 +60,20 @@ public class Control_GUI extends JPanel {
 		theboard = input;
 		controller();
 		//createBoard();
-		
+
 		//JMenuBar menuBar = new JMenuBar();
 		//setJMenuBar(menuBar);
 		//menuBar.add(openNotes());
-}
-	
-	
-		public void controller(){
+	}
+
+
+	public void controller(){
 
 		final JPanel test = new JPanel();
 		GridLayout experimentLayout = new GridLayout(0,3);
 		test.setLayout(experimentLayout);
-		
-		
+
+
 		// Whose Turn Label and Current Players Turn
 
 		JPanel whoseTurnPanel = new JPanel();
@@ -91,8 +92,8 @@ public class Control_GUI extends JPanel {
 		//empty panel
 		JPanel emptyPanel = new JPanel();
 		emptyPanel.setOpaque(false);
-		
-		
+
+
 		// Buttons
 
 		JPanel buttonPanel = new JPanel();
@@ -101,7 +102,7 @@ public class Control_GUI extends JPanel {
 		buttonPanel.add(nextPlayerButton);
 		buttonPanel.add(accusationButton);
 		buttonPanel.setLayout(new GridLayout(0, 2));
-		
+
 
 		// Die
 
@@ -116,10 +117,10 @@ public class Control_GUI extends JPanel {
 		dieRoll = Integer.toString(tempDie);
 		diePanel.add(dieLabel);
 		diePanel.add(die);
-		
-		
+
+
 		diePanel.setBorder(new TitledBorder (new EtchedBorder(), "Die"));
-	
+
 
 
 		// Guess
@@ -140,7 +141,8 @@ public class Control_GUI extends JPanel {
 		// Guess Result
 		JPanel resultPanel = new JPanel();
 		JLabel resultLabel = new JLabel("Response");
-		response = "I have nothing";
+		response = theboard.getReuslt();
+		System.out.println(response);
 		responseArea = new JTextArea();
 		responseArea.setBackground(Color.lightGray);
 		responseArea.setEditable(false);
@@ -158,21 +160,24 @@ public class Control_GUI extends JPanel {
 		test.add(whoseTurnPanel);
 		test.add(emptyPanel);
 		test.add(buttonPanel);
-	
-		
+
+
 		test.add(diePanel);
 		test.add(guessPanel);
 		test.add(resultPanel);
 
 
 		add(test, BorderLayout.SOUTH);
-	
+
 	}
-		
-		public JButton getNextPlayerButton(){
-			return nextPlayerButton;
-		}
-		
+
+	public JButton getNextPlayerButton(){
+		return nextPlayerButton;
+	}
+	public JButton getaccusationButton(){
+		return accusationButton;
+	}
+
 
 
 	public void updateDisplay(){
@@ -181,56 +186,59 @@ public class Control_GUI extends JPanel {
 		inputGuess.setText(makeAGuess);
 		responseArea.setText(response);
 	}
+	
+	public  void setResponse(){
+		response = theboard.getReuslt();
+		updateDisplay();
+		//response = theboard.getReuslt();
+	}
 
 	public void setPlayerName(){
 		playersName = theboard.getPeople().get(theboard.getTurnCounter()).getContent();
 		updateDisplay();
 	}
-	
+
 	public void setRollDie(){
-		//Random roll = new Random();
-		//int die = Math.abs(roll.nextInt());
-		//die = die % 6 + 1;
-		//theboard.rollDie();
+
 		int die = theboard.getDie();
 		System.out.println(die + " in control");
 		dieRoll = Integer.toString(die);
 		updateDisplay();	
 	}
-	
+
 	/*private JMenu openNotes(){
 		JMenu menu = new JMenu("File");
 		menu.add(detectiveNotes());
 		return menu;
 	}
-	
+
 	private JMenuItem detectiveNotes(){
 		JMenuItem item = new JMenuItem("Detective Notes");
 		class MenuItemListener  implements ActionListener{
 			public void actionPerformed(ActionEvent e){
 				DetectiveNotes notes = new DetectiveNotes();
 				notes.setVisible(true);
-			
+
 			}	
 		}
 		item.addActionListener(new MenuItemListener());
 		return item;
-		
+
 	}
-	*/
+	 */
 
 
-	 // public void createBoard() {
-	 //       board = new Board();
-	  //      add(board, BorderLayout.CENTER);
+	// public void createBoard() {
+	//       board = new Board();
+	//      add(board, BorderLayout.CENTER);
 	//  }
-	    
-	
 
-//	public static void main(String[] args) {
-//		Control_GUI controller = new Control_GUI() ;
-//		controller.setVisible(true);
 
-//	}
-	
+
+	//	public static void main(String[] args) {
+	//		Control_GUI controller = new Control_GUI() ;
+	//		controller.setVisible(true);
+
+	//	}
+
 }

@@ -21,18 +21,31 @@ import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
 
 import Board.Board;
+import Board.Player;
 
 public class AccusationDialog extends JDialog {
 	
 	private Board theboard;
 	private String cRoom = "";
+	private  String result;
+	String title;
 	private JButton submit, cancel;
 	private JTextArea CurrentRoom;
 	private JComboBox<String> people, weapons;
+	private boolean firstGuess = false;
+	
+	
 	
 	public AccusationDialog(Board input){
 		theboard = input;
-		setTitle("Make a Guess");
+		if(theboard.getAccuse())
+			title = "Make an Accusation";
+		else 
+			title = "Make A Guess";
+		
+		
+		
+		setTitle(title);
 		setSize(360,240);
 		
 		addComponents();
@@ -130,21 +143,43 @@ public class AccusationDialog extends JDialog {
 		
 	JPanel buttonPanel = new JPanel();
 	submit = new JButton("OK");
-	cancel = new JButton("Make an accusation");
+	cancel = new JButton("Cancel");
 	buttonPanel.add(submit);
 	buttonPanel.add(cancel);
 	buttonPanel.setLayout(new GridLayout(0, 2));	
 	
-	this.getSubmitrButton().addActionListener(new ActionListener(){
+	this.submit.addActionListener(new ActionListener(){
 		public void actionPerformed(ActionEvent e) {
 		
+			
+				//String RoomGuess = cRoom;
+				String personGuess = (String) people.getSelectedItem();
+				String weaponGuess = (String) weapons.getSelectedItem();
 				System.out.println(cRoom);
-				System.out.println(people.getSelectedItem());
-				System.out.println(weapons.getSelectedItem());
+				System.out.println(personGuess);
+				System.out.println(weaponGuess);
+				
+				//public String handleSuggestion(String room, String person, String weapon, Player accuser) {
+				
+				firstGuess = true;
+				result = theboard.handleSuggestion(cRoom, personGuess, weaponGuess, theboard.getHuman());
+				System.out.println("this is the " + result);
+				//theboard.getd
+				//Control_GUI.setResponse();
+				setVisible(false);
+				gettheReuslt();
+				
 			}
 		
 	});
 	
+	this.cancel.addActionListener(new ActionListener(){
+		public void actionPerformed(ActionEvent e) {
+		
+			setVisible(false);
+			}
+		
+	});
 	
 	
 	
@@ -164,6 +199,17 @@ public class AccusationDialog extends JDialog {
 		add(buttonPanel, BorderLayout.SOUTH);
 	}
 	
+	public String gettheReuslt(){
+		if(firstGuess){
+			System.out.println("first");
+			System.out.println(result);
+			return result;
+			}
+		else{
+			System.out.println("none yet");
+			return null;
+		}
+	}
 	public void updateDisplay(){
 		CurrentRoom.setText(cRoom);
 		
