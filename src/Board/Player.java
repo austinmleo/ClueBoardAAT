@@ -17,11 +17,6 @@ public class Player {
 	protected ArrayList<Card> possiblePeople;
 	protected ArrayList<Card> possibleRooms;
 	
-	//protected BoardCell location;
-
-	
-	
-	
 	
 	public Player(String name, String strColor, int currentIndex) {
 		super();
@@ -102,15 +97,6 @@ public class Player {
 		this.possibleRooms = possibleRooms;
 	}
 	
-
-/*	public void  setLocation(BoardCell location){
-		this.location = location;
-	}
-	
-	public BoardCell getLocation(){
-		
-		return location;
-	}*/
 	
 	public void setColor(Color toSet){
 		this.color = toSet;

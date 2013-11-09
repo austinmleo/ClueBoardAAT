@@ -91,8 +91,6 @@ public class Board extends JPanel{
 			loadBoard(BoardFile);
 			loadCards("cards.txt");
 			loadPlayers("People.txt");
-			//paintComponent(Graphics g = new Graphics();)
-			//loadCards("cards.txt");
 			dealCards();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -547,11 +545,11 @@ public class Board extends JPanel{
 
 
 	public void makeMove(Player p){
-		
+
 		for (BoardCell target : targets) {
 			target.setTarget(false);
 		}
-		
+
 		rollDie();
 		startTargets(p.currentIndex, die);
 
@@ -560,19 +558,19 @@ public class Board extends JPanel{
 			ArrayList<BoardCell> roomList = new ArrayList<BoardCell>();
 			ArrayList<BoardCell> list = new ArrayList<BoardCell>();
 			boolean hasRoom = false;
-			
+
 			for(BoardCell cell : getTargets()) {
 				if(cell.isRoom() && ((ComputerPlayer) p).getLastVisited() != ((RoomCell) cell).getInitial()){
 					roomList.add(cell);
 					hasRoom = true;
-					
+
 				} else {
 					list.add(cell);
 				}
 			}
-			
+
 			Random generator = new Random();
-			
+
 			if(hasRoom){
 				int room = generator.nextInt(roomList.size());
 				p.setCurrentIndex(roomList.get(room).getIndex());
@@ -581,13 +579,13 @@ public class Board extends JPanel{
 				int cell = generator.nextInt(list.size());
 				p.setCurrentIndex(list.get(cell).getIndex());
 			}
-			
+
 			if (getCellAt(p.getCurrentIndex()).isDoorway()) {
 				//Handle and Make Accusations
 				//Need to pick random person and weapon
 				//makeAccusation(getCellAt(p.getCurrentIndex()), person, weapon)
 			}
-			
+
 		} else {
 			humansTurn = true;
 			moveMade = false;
@@ -599,32 +597,32 @@ public class Board extends JPanel{
 		}
 
 		paintComponent(super.getGraphics());
-		
-		
+
+
 	}
 
-	
+
 	public void nextTurn(){
-//JOptionPane.INFORMATION_MESSAGE
-	
+		//JOptionPane.INFORMATION_MESSAGE
+
 		if (moveMade == false){
 
 			JOptionPane.showMessageDialog(this, "You have to make a more before we can contiue", BoardFile, JOptionPane.ERROR_MESSAGE);
-			
+
 			return;
 		} else if (humansTurn && moveMade && getCellAt(human.getCurrentIndex()).isDoorway()){
 			AccusationDialog Accuse = new AccusationDialog(this);
 			Accuse.setVisible(true);
 			//Make Accusation
 		}
-		
+
 
 		turnCounter = (++turnCounter % players.size());
 		makeMove(players.get(turnCounter));
 
 
 	}
-	
+
 	public AccusationDialog getAccuse(){
 		return Accuse;
 	}
@@ -637,8 +635,7 @@ public class Board extends JPanel{
 	}
 
 	private class PlayerClick extends JPanel implements MouseListener{
-		
-		
+
 		public void mousePressed (MouseEvent event){
 			if(humansTurn) {
 				Point click = event.getPoint();
@@ -647,40 +644,35 @@ public class Board extends JPanel{
 				click.y = click.y/CELL_SIZE;
 				if(click.x < numColumns && click.y < numRows) {
 
-					int index = calcIndex(click.x, click.y);
+					int index = calcIndex(click.x, click.y);			
 
-					
-					
-					
-				
 					if(getCellAt(index).isTarget()) {
-						
 						human.setCurrentIndex(index);
 						moveMade = true;
 					}
 					else if(!getCellAt(index).isTarget()) {
 						System.out.println("error");
 						JOptionPane.showMessageDialog(this, "Please Make A Valid Move", null, JOptionPane.ERROR_MESSAGE);
-						
+
 					}
 				}
 			} else {
 				targets.clear();
 			}
-			
-		
-		
-		
-		
-    	
-		
+
+
+
+
+
+
+
 		}	
-		
-		
-		
-	
-		
-		
+
+
+
+
+
+
 		public void mouseClicked(MouseEvent event){}
 
 		public void mouseEntered(MouseEvent arg0) {}

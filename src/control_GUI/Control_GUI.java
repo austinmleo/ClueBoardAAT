@@ -224,13 +224,5 @@ public class Control_GUI extends JPanel {
 	 //       board = new Board();
 	  //      add(board, BorderLayout.CENTER);
 	//  }
-	    
-	
-
-//	public static void main(String[] args) {
-//		Control_GUI controller = new Control_GUI() ;
-//		controller.setVisible(true);
-
-//	}
 	
 }
