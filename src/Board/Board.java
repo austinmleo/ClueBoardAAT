@@ -580,7 +580,9 @@ public class Board extends JPanel{
 			}
 			
 			if (getCellAt(p.getCurrentIndex()).isDoorway()) {
-				
+				//Handle and Make Accusations
+				//Need to pick random person and weapon
+				//makeAccusation(getCellAt(p.getCurrentIndex()), person, weapon)
 			}
 			
 		} else {
@@ -610,6 +612,7 @@ public class Board extends JPanel{
 		} else if (humansTurn && moveMade && getCellAt(human.getCurrentIndex()).isDoorway()){
 			AccusationDialog Accuse = new AccusationDialog(this);
 			Accuse.setVisible(true);
+			//Make Accusation
 		}
 		
 
