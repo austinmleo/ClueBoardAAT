@@ -37,6 +37,7 @@ public class ClueGame extends JFrame {
 	 boolean firstturn = true;
 	 private boolean Accusation = false;
 	
+	
 	DetectiveNotes notes; // = new DetectiveNotes(this.getBoard());
 	
 	

@@ -192,6 +192,10 @@ public class Control_GUI extends JPanel {
 		updateDisplay();
 		//response = theboard.getReuslt();
 	}
+	
+	public void setGuessPane(){
+		//inputGuess = 
+	}
 
 	public void setPlayerName(){
 		playersName = theboard.getPeople().get(theboard.getTurnCounter()).getContent();
