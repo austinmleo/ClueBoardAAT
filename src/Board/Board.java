@@ -606,7 +606,6 @@ public class Board extends JPanel{
 
 			JOptionPane.showMessageDialog(this, "You have to make a more before we can contiue", BoardFile, JOptionPane.ERROR_MESSAGE);
 			
-			System.out.println("human check");
 			return;
 		} else if (humansTurn && moveMade && getCellAt(human.getCurrentIndex()).isDoorway()){
 			AccusationDialog Accuse = new AccusationDialog(this);
@@ -633,15 +632,13 @@ public class Board extends JPanel{
 		public void mousePressed (MouseEvent event){
 			if(humansTurn) {
 				Point click = event.getPoint();
-				System.out.println(click);
 
 				click.x = click.x/CELL_SIZE;
 				click.y = click.y/CELL_SIZE;
 				if(click.x < numColumns && click.y < numRows) {
 
 					int index = calcIndex(click.x, click.y);
-					System.out.println(index);
-					System.out.println(targets);
+
 					
 				
 					if(getCellAt(index).isTarget()) {

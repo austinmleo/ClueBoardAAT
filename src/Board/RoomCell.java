@@ -93,7 +93,7 @@ public class RoomCell extends BoardCell{
 
        if(isTarget){
 
-    	   g.setColor(Color.CYAN);
+    	   g.setColor(Color.PINK);
     	   g.fillRect(x, y, Board.CELL_SIZE, Board.CELL_SIZE);
        }
 
