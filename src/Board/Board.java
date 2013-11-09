@@ -578,7 +578,11 @@ public class Board extends JPanel{
 				int cell = generator.nextInt(list.size());
 				p.setCurrentIndex(list.get(cell).getIndex());
 			}
-
+			
+			if (getCellAt(p.getCurrentIndex()).isDoorway()) {
+				
+			}
+			
 		} else {
 			humansTurn = true;
 			moveMade = false;
@@ -601,8 +605,7 @@ public class Board extends JPanel{
 		if (moveMade == false){
 
 			JOptionPane.showMessageDialog(this, "You have to make a more before we can contiue", BoardFile, JOptionPane.ERROR_MESSAGE);
-
-
+			
 			System.out.println("human check");
 			return;
 		} else if (humansTurn && moveMade && getCellAt(human.getCurrentIndex()).isDoorway()){

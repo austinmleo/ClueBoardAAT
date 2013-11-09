@@ -29,7 +29,7 @@ import Board.Board;
 import Board.HumanPlayer;
 
 public class ClueGame extends JFrame {
-
+	
 	private Board board;
 	private Control_GUI gui;
 	JButton button1;
