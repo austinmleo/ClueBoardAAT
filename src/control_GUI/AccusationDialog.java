@@ -46,7 +46,7 @@ public class AccusationDialog extends JDialog {
 		}
 		else {
 			title = "Make A Guess";
-			localbool = true;
+			localbool = false;
 		}
 
 
