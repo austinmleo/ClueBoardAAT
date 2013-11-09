@@ -643,11 +643,19 @@ public class Board extends JPanel{
 					int index = calcIndex(click.x, click.y);
 
 					
+				//	JOptionPane.showMessageDialog(this, "You have to make a more before we can contiue", BoardFile, JOptionPane.ERROR_MESSAGE);
+					
+					
 				
 					if(getCellAt(index).isTarget()) {
 						
 						human.setCurrentIndex(index);
 						moveMade = true;
+					}
+					else if(!getCellAt(index).isTarget()) {
+						System.out.println("error");
+						JOptionPane.showMessageDialog(this, "Please Make A Valid Move", null, JOptionPane.ERROR_MESSAGE);
+						
 					}
 				}
 			} else {
