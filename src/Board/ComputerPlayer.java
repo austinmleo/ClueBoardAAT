@@ -75,7 +75,6 @@ public class ComputerPlayer extends Player {
 	
 	 @Override
      void draw(Graphics g) {
-            // BoardCell location = getLocation();
 			int x = (currentIndex % Board.numColumns)*Board.CELL_SIZE;
 	        int y = (currentIndex / Board.numRows)*Board.CELL_SIZE;
              
