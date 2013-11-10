@@ -625,11 +625,15 @@ public class Board extends JPanel{
 		AccusationDialog = Accusation;
 		Accuse = new AccusationDialog(this);
 		AccusationDialog = true;
-		Accuse.setVisible(true);
-		this.getReuslt();
+		if(humansTurn){
+			Accuse.setVisible(true);
+			this.getResult();
+		} else {
+			JOptionPane.showMessageDialog(Accuse, "You can only make a suggestion on your turn", "Error", JOptionPane.INFORMATION_MESSAGE);
+		}
 	}
 	
-	public String getReuslt(){
+	public String getResult(){
 		if (AccusationDialog){
 			result = Accuse.gettheReuslt();
 			System.out.println(result + "this shall be");
@@ -648,7 +652,7 @@ public class Board extends JPanel{
 	public void nextTurn(){
 
 		
-		getReuslt();
+		getResult();
 		
 //JOptionPane.INFORMATION_MESSAGE
 	

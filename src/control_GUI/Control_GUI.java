@@ -141,7 +141,7 @@ public class Control_GUI extends JPanel {
 		// Guess Result
 		JPanel resultPanel = new JPanel();
 		JLabel resultLabel = new JLabel("Response");
-		response = theboard.getReuslt();
+		response = theboard.getResult();
 		System.out.println(response);
 		responseArea = new JTextArea();
 		responseArea.setBackground(Color.lightGray);
@@ -188,7 +188,7 @@ public class Control_GUI extends JPanel {
 	}
 	
 	public  void setResponse(){
-		response = theboard.getReuslt();
+		response = theboard.getResult();
 		updateDisplay();
 		//response = theboard.getReuslt();
 	}

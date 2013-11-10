@@ -204,7 +204,7 @@ if(!localbool){
 					//Control_GUI.setResponse();
 					setVisible(false);
 					gettheReuslt();
-					theboard.getReuslt();
+					theboard.getResult();
 				}
 			}
 
