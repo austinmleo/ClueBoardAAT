@@ -633,7 +633,7 @@ public class Board extends JPanel{
 		if (AccusationDialog){
 			result = Accuse.gettheReuslt();
 			System.out.println(result + "this shall be");
-			System.out.println("accuasint is the ture");
+			System.out.println("accuasint is the true");
 			
 		return result;
 		}
@@ -656,7 +656,7 @@ public class Board extends JPanel{
 
 		if (moveMade == false){
 
-			JOptionPane.showMessageDialog(this, "You have to make a more before we can contiue", BoardFile, JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(this, "You have to make a move before we can contiue", BoardFile, JOptionPane.ERROR_MESSAGE);
 
 			return;
 		} else if (humansTurn && moveMade && getCellAt(human.getCurrentIndex()).isDoorway()){

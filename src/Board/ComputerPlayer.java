@@ -56,6 +56,10 @@ public class ComputerPlayer extends Player {
 		
 	}
 	
+	public void makeAccusation(){
+		
+	}
+	
 	public void updatePossibilities(Card seen) {
 		if(seen.getCardType() == type.WEAPON)
 			possibleWeapons.remove(seen);
