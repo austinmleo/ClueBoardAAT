@@ -10,6 +10,9 @@ import Board.Card.type;
 
 public class ComputerPlayer extends Player {
 	private char lastVisited;
+	Card weaponCard;
+	Card personCard;
+	Card roomCard;
 
 	public ComputerPlayer(String name, String strColor, int currentIndex,
 			ArrayList<Card> possibleWeapons, ArrayList<Card> possiblePeople,
@@ -42,21 +45,51 @@ public class ComputerPlayer extends Player {
 		currentIndex = selected;
 	}
 	
-	public void makeSuggestion() {
-		Random generator = new Random();
+	public boolean makeSuggestion(ArrayList<Player> players ) {
+		boolean suggestionCaught = false;
 		
+		Random generator = new Random();
 		int rand = generator.nextInt(possibleWeapons.size());
 		String weapon = possibleWeapons.get(rand).getContent();
 		rand = generator.nextInt(possiblePeople.size());
 		String person = possiblePeople.get(rand).getContent();
 		rand = generator.nextInt(possibleRooms.size());
 		String room = possibleRooms.get(rand).getContent();
+		Card card = new Card(null, "null");
+		weaponCard = new Card(Card.type.WEAPON, weapon);
+		personCard = new Card(Card.type.PERSON, person);
+		roomCard = new Card(Card.type.ROOM, room);
+		
+		for(Player p: players){
+			if(p.cards.contains(weapon)){
+				card = new Card(Card.type.WEAPON, weapon);
+				suggestionCaught = true;
+				break;
+			}
+			if(p.cards.contains(person)){
+				card = new Card(Card.type.PERSON, person);
+				suggestionCaught = true;
+				break;
+			}
+			if(p.cards.contains(room)){
+				card = new Card(Card.type.ROOM, room);
+				suggestionCaught = true;
+				break;
+			}
+		}
+		return suggestionCaught;
 		
 		
 		
 	}
 	
-	public void makeAccusation(){
+	public ArrayList<Card> makeAccusation(){
+		ArrayList<Card> accusationCards = new ArrayList<Card>();
+		accusationCards.add(personCard);
+		accusationCards.add(roomCard);
+		accusationCards.add(weaponCard);
+		
+		return accusationCards;
 		
 	}
 	

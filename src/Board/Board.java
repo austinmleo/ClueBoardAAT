@@ -583,10 +583,16 @@ public class Board extends JPanel{
 				p.setCurrentIndex(list.get(cell).getIndex());
 			}
 
-			if (getCellAt(p.getCurrentIndex()).isDoorway()) {
-				//Handle and Make Accusations
-				//Need to pick random person and weapon
-				//makeAccusation(getCellAt(p.getCurrentIndex()), person, weapon)
+			if (getCellAt(p.getCurrentIndex()).isRoom()) {
+				if(!((ComputerPlayer) p).makeSuggestion(players)){
+					ArrayList<Card> accusationCards = ((ComputerPlayer) p).makeAccusation();
+					
+					JOptionPane.showMessageDialog(Accuse, "Computer player " + p.name + " makes the accusation: " + 
+							accusationCards.get(0).getContent() + ", " + accusationCards.get(1).getContent() + ", " + accusationCards.get(2).getContent(), "Accusation", JOptionPane.INFORMATION_MESSAGE);
+				}
+				
+
+				
 			}
 
 		} else {
